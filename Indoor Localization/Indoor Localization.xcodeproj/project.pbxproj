@@ -14,6 +14,15 @@
 		86235F501BA94E3500A8517C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86235F4F1BA94E3500A8517C /* Images.xcassets */; };
 		86235F531BA94E3500A8517C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86235F511BA94E3500A8517C /* LaunchScreen.xib */; };
 		86235F5F1BA94E3500A8517C /* Indoor_LocalizationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 86235F5E1BA94E3500A8517C /* Indoor_LocalizationTests.m */; };
+		86997B4F1BB58F8A006FE3DA /* IndoorLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86997B4E1BB58F8A006FE3DA /* IndoorLocationViewController.m */; settings = {ASSET_TAGS = (); }; };
+		86997B511BB58FA8006FE3DA /* IndoorLocation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86997B501BB58FA8006FE3DA /* IndoorLocation.storyboard */; settings = {ASSET_TAGS = (); }; };
+		86997B531BB597B5006FE3DA /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86997B521BB597B5006FE3DA /* Profile.storyboard */; settings = {ASSET_TAGS = (); }; };
+		86997B561BB597DB006FE3DA /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86997B551BB597DB006FE3DA /* ProfileViewController.m */; settings = {ASSET_TAGS = (); }; };
+		86997B591BB597FC006FE3DA /* ScanBeaconViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86997B581BB597FC006FE3DA /* ScanBeaconViewController.m */; settings = {ASSET_TAGS = (); }; };
+		86997B5B1BB59812006FE3DA /* ScanBeacon.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86997B5A1BB59812006FE3DA /* ScanBeacon.storyboard */; settings = {ASSET_TAGS = (); }; };
+		86997B5D1BB59831006FE3DA /* MapLocation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86997B5C1BB59831006FE3DA /* MapLocation.storyboard */; settings = {ASSET_TAGS = (); }; };
+		86997B601BB59849006FE3DA /* MapLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86997B5F1BB59849006FE3DA /* MapLocationViewController.m */; settings = {ASSET_TAGS = (); }; };
+		86997B621BB5995B006FE3DA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86997B611BB5995B006FE3DA /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +49,19 @@
 		86235F581BA94E3500A8517C /* Indoor LocalizationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Indoor LocalizationTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		86235F5D1BA94E3500A8517C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		86235F5E1BA94E3500A8517C /* Indoor_LocalizationTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Indoor_LocalizationTests.m; sourceTree = "<group>"; };
+		86997B4D1BB58F8A006FE3DA /* IndoorLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndoorLocationViewController.h; sourceTree = "<group>"; };
+		86997B4E1BB58F8A006FE3DA /* IndoorLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndoorLocationViewController.m; sourceTree = "<group>"; };
+		86997B501BB58FA8006FE3DA /* IndoorLocation.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = IndoorLocation.storyboard; sourceTree = "<group>"; };
+		86997B521BB597B5006FE3DA /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
+		86997B541BB597DB006FE3DA /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		86997B551BB597DB006FE3DA /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		86997B571BB597FC006FE3DA /* ScanBeaconViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScanBeaconViewController.h; sourceTree = "<group>"; };
+		86997B581BB597FC006FE3DA /* ScanBeaconViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScanBeaconViewController.m; sourceTree = "<group>"; };
+		86997B5A1BB59812006FE3DA /* ScanBeacon.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ScanBeacon.storyboard; sourceTree = "<group>"; };
+		86997B5C1BB59831006FE3DA /* MapLocation.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MapLocation.storyboard; sourceTree = "<group>"; };
+		86997B5E1BB59849006FE3DA /* MapLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapLocationViewController.h; sourceTree = "<group>"; };
+		86997B5F1BB59849006FE3DA /* MapLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapLocationViewController.m; sourceTree = "<group>"; };
+		86997B611BB5995B006FE3DA /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86997B621BB5995B006FE3DA /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +86,7 @@
 		86235F361BA94E3500A8517C = {
 			isa = PBXGroup;
 			children = (
+				86997B611BB5995B006FE3DA /* MapKit.framework */,
 				86235F411BA94E3500A8517C /* Indoor Localization */,
 				86235F5B1BA94E3500A8517C /* Indoor LocalizationTests */,
 				86235F401BA94E3500A8517C /* Products */,
@@ -81,11 +105,7 @@
 		86235F411BA94E3500A8517C /* Indoor Localization */ = {
 			isa = PBXGroup;
 			children = (
-				86235F461BA94E3500A8517C /* AppDelegate.h */,
-				86235F471BA94E3500A8517C /* AppDelegate.m */,
-				86235F491BA94E3500A8517C /* ViewController.h */,
-				86235F4A1BA94E3500A8517C /* ViewController.m */,
-				86235F4C1BA94E3500A8517C /* Main.storyboard */,
+				86997B471BB588B3006FE3DA /* Classes */,
 				86235F4F1BA94E3500A8517C /* Images.xcassets */,
 				86235F511BA94E3500A8517C /* LaunchScreen.xib */,
 				86235F421BA94E3500A8517C /* Supporting Files */,
@@ -117,6 +137,70 @@
 				86235F5D1BA94E3500A8517C /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		86997B471BB588B3006FE3DA /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				86997B4C1BB58C5D006FE3DA /* TabBar */,
+				86997B4B1BB588E9006FE3DA /* Profile */,
+				86997B4A1BB588DF006FE3DA /* IndoorLocation */,
+				86997B491BB588D3006FE3DA /* ScanBeacon */,
+				86997B481BB588C5006FE3DA /* MapLocation */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		86997B481BB588C5006FE3DA /* MapLocation */ = {
+			isa = PBXGroup;
+			children = (
+				86997B5C1BB59831006FE3DA /* MapLocation.storyboard */,
+				86997B5E1BB59849006FE3DA /* MapLocationViewController.h */,
+				86997B5F1BB59849006FE3DA /* MapLocationViewController.m */,
+			);
+			name = MapLocation;
+			sourceTree = "<group>";
+		};
+		86997B491BB588D3006FE3DA /* ScanBeacon */ = {
+			isa = PBXGroup;
+			children = (
+				86997B571BB597FC006FE3DA /* ScanBeaconViewController.h */,
+				86997B581BB597FC006FE3DA /* ScanBeaconViewController.m */,
+				86997B5A1BB59812006FE3DA /* ScanBeacon.storyboard */,
+			);
+			name = ScanBeacon;
+			sourceTree = "<group>";
+		};
+		86997B4A1BB588DF006FE3DA /* IndoorLocation */ = {
+			isa = PBXGroup;
+			children = (
+				86997B4D1BB58F8A006FE3DA /* IndoorLocationViewController.h */,
+				86997B4E1BB58F8A006FE3DA /* IndoorLocationViewController.m */,
+				86997B501BB58FA8006FE3DA /* IndoorLocation.storyboard */,
+			);
+			name = IndoorLocation;
+			sourceTree = "<group>";
+		};
+		86997B4B1BB588E9006FE3DA /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				86997B521BB597B5006FE3DA /* Profile.storyboard */,
+				86997B541BB597DB006FE3DA /* ProfileViewController.h */,
+				86997B551BB597DB006FE3DA /* ProfileViewController.m */,
+			);
+			name = Profile;
+			sourceTree = "<group>";
+		};
+		86997B4C1BB58C5D006FE3DA /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				86235F461BA94E3500A8517C /* AppDelegate.h */,
+				86235F471BA94E3500A8517C /* AppDelegate.m */,
+				86235F491BA94E3500A8517C /* ViewController.h */,
+				86235F4A1BA94E3500A8517C /* ViewController.m */,
+				86235F4C1BA94E3500A8517C /* Main.storyboard */,
+			);
+			name = TabBar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -200,8 +284,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				86235F4E1BA94E3500A8517C /* Main.storyboard in Resources */,
+				86997B511BB58FA8006FE3DA /* IndoorLocation.storyboard in Resources */,
+				86997B5D1BB59831006FE3DA /* MapLocation.storyboard in Resources */,
+				86997B531BB597B5006FE3DA /* Profile.storyboard in Resources */,
 				86235F531BA94E3500A8517C /* LaunchScreen.xib in Resources */,
 				86235F501BA94E3500A8517C /* Images.xcassets in Resources */,
+				86997B5B1BB59812006FE3DA /* ScanBeacon.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,9 +307,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86997B4F1BB58F8A006FE3DA /* IndoorLocationViewController.m in Sources */,
+				86997B591BB597FC006FE3DA /* ScanBeaconViewController.m in Sources */,
 				86235F4B1BA94E3500A8517C /* ViewController.m in Sources */,
+				86997B601BB59849006FE3DA /* MapLocationViewController.m in Sources */,
 				86235F481BA94E3500A8517C /* AppDelegate.m in Sources */,
 				86235F451BA94E3500A8517C /* main.m in Sources */,
+				86997B561BB597DB006FE3DA /* ProfileViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -416,6 +508,7 @@
 				86235F641BA94E3500A8517C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		86235F651BA94E3500A8517C /* Build configuration list for PBXNativeTarget "Indoor LocalizationTests" */ = {
 			isa = XCConfigurationList;
@@ -424,6 +517,7 @@
 				86235F671BA94E3500A8517C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

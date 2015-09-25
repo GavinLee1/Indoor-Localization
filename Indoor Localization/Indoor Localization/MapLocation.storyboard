@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="EIi-nJ-W2e">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+    </dependencies>
+    <scenes>
+        <!--Map Location View Controller-->
+        <scene sceneID="5VI-ec-Oel">
+            <objects>
+                <viewController id="EIi-nJ-W2e" customClass="MapLocationViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="MJX-Wr-uXn"/>
+                        <viewControllerLayoutGuide type="bottom" id="YDG-IK-NlR"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="koI-Q7-mel">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="I8Y-zL-Qjd">
+                                <rect key="frame" x="0.0" y="60" width="600" height="540"/>
+                                <connections>
+                                    <outlet property="delegate" destination="EIi-nJ-W2e" id="BOT-kI-TFK"/>
+                                </connections>
+                            </mapView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Location" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mcg-tj-bIT">
+                                <rect key="frame" x="0.0" y="20" width="600" height="40"/>
+                                <color key="backgroundColor" red="1" green="0.50196081399917603" blue="0.0" alpha="0.5" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="gEd-aS-rWd"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="20"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="I8Y-zL-Qjd" firstAttribute="leading" secondItem="koI-Q7-mel" secondAttribute="leading" id="6f4-pK-r7V"/>
+                            <constraint firstItem="mcg-tj-bIT" firstAttribute="top" secondItem="MJX-Wr-uXn" secondAttribute="bottom" id="9eb-ZD-4Cm"/>
+                            <constraint firstItem="mcg-tj-bIT" firstAttribute="leading" secondItem="koI-Q7-mel" secondAttribute="leading" id="Hur-p6-eGx"/>
+                            <constraint firstAttribute="trailing" secondItem="mcg-tj-bIT" secondAttribute="trailing" id="Run-Qn-uAF"/>
+                            <constraint firstAttribute="trailing" secondItem="I8Y-zL-Qjd" secondAttribute="trailing" id="sI4-PY-KEe"/>
+                            <constraint firstItem="I8Y-zL-Qjd" firstAttribute="top" secondItem="mcg-tj-bIT" secondAttribute="bottom" id="vuq-Sx-fHX"/>
+                            <constraint firstItem="YDG-IK-NlR" firstAttribute="top" secondItem="I8Y-zL-Qjd" secondAttribute="bottom" id="yoj-Yw-TgB"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="I8Y-zL-Qjd" id="OG0-fG-gbc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4Yy-P6-2qQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="207" y="125"/>
+        </scene>
+    </scenes>
+</document>
