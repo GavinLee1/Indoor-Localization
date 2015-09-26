@@ -1,27 +1,119 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="T2E-TM-Yg2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="XG2-Os-VBm">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <scenes>
         <!--Scan Beacon View Controller-->
-        <scene sceneID="BLb-rU-dzf">
+        <scene sceneID="Ejd-k4-Dw3">
             <objects>
-                <viewController id="T2E-TM-Yg2" customClass="ScanBeaconViewController" sceneMemberID="viewController">
+                <viewController id="XG2-Os-VBm" userLabel="Scan Beacon View Controller" customClass="ScanBeaconViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Nto-er-kUE"/>
-                        <viewControllerLayoutGuide type="bottom" id="2hj-5K-3e5"/>
+                        <viewControllerLayoutGuide type="top" id="Q12-Yr-vbx"/>
+                        <viewControllerLayoutGuide type="bottom" id="X3N-BM-jXq"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="165-NS-9Ln">
+                    <view key="view" contentMode="scaleToFill" id="fk3-1A-aSX">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tcS-r7-Rgs">
+                                <rect key="frame" x="20" y="110" width="270" height="40"/>
+                                <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="iaM-aD-GgG"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="27"/>
+                                <state key="normal" title="START">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="start:" destination="XG2-Os-VBm" eventType="touchUpInside" id="OAu-3L-bwl"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Press the button start to start scan!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8v8-xf-9ld" userLabel="InfoLabel">
+                                <rect key="frame" x="20" y="170" width="560" height="40"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="0.5" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="v4X-8a-cyJ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="TTN-43-mTo" userLabel="ShowDataView">
+                                <rect key="frame" x="20" y="295" width="560" height="285"/>
+                                <color key="backgroundColor" red="0.50196081400000003" green="0.0" blue="0.0" alpha="0.40000000000000002" colorSpace="calibratedRGB"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RJ1-mZ-Peh">
+                                <rect key="frame" x="310" y="110" width="270" height="40"/>
+                                <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="27"/>
+                                <state key="normal" title="STOP">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="stop:" destination="XG2-Os-VBm" eventType="touchUpInside" id="Rqc-2X-rp5"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Beacon Scanning" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BTE-UX-mJP" userLabel="TitleLabel">
+                                <rect key="frame" x="20" y="40" width="560" height="50"/>
+                                <color key="backgroundColor" red="0.80000001190000003" green="1" blue="0.40000000600000002" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="2Ao-No-M7D"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="ua4-9m-oqH"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="24"/>
+                                <color key="textColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_compasspointer" translatesAutoresizingMaskIntoConstraints="NO" id="jjx-7l-s0l" userLabel="CompassView">
+                                <rect key="frame" x="262.5" y="215" width="75" height="75"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="75" id="CgU-Ay-dFc"/>
+                                    <constraint firstAttribute="width" constant="75" id="k8f-3s-9PZ"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="BTE-UX-mJP" firstAttribute="leading" secondItem="fk3-1A-aSX" secondAttribute="leading" constant="20" id="DW5-Qv-Ljo"/>
+                            <constraint firstItem="TTN-43-mTo" firstAttribute="leading" secondItem="fk3-1A-aSX" secondAttribute="leading" constant="20" id="HSy-Br-Z1i"/>
+                            <constraint firstItem="RJ1-mZ-Peh" firstAttribute="height" secondItem="tcS-r7-Rgs" secondAttribute="height" id="KVg-36-hlH"/>
+                            <constraint firstAttribute="trailing" secondItem="RJ1-mZ-Peh" secondAttribute="trailing" constant="20" id="LgX-6Q-PwG"/>
+                            <constraint firstAttribute="trailing" secondItem="TTN-43-mTo" secondAttribute="trailing" constant="20" id="POC-R2-Cte"/>
+                            <constraint firstItem="RJ1-mZ-Peh" firstAttribute="leading" secondItem="tcS-r7-Rgs" secondAttribute="trailing" constant="20" id="Rq8-4K-mlu"/>
+                            <constraint firstItem="tcS-r7-Rgs" firstAttribute="leading" secondItem="fk3-1A-aSX" secondAttribute="leading" constant="20" id="UhI-WS-WLm"/>
+                            <constraint firstItem="jjx-7l-s0l" firstAttribute="top" secondItem="8v8-xf-9ld" secondAttribute="bottom" constant="5" id="gc0-Sm-SaE"/>
+                            <constraint firstItem="TTN-43-mTo" firstAttribute="top" secondItem="jjx-7l-s0l" secondAttribute="bottom" constant="5" id="hEL-HG-TTQ"/>
+                            <constraint firstItem="tcS-r7-Rgs" firstAttribute="top" secondItem="BTE-UX-mJP" secondAttribute="bottom" constant="20" id="l8H-wp-1z5"/>
+                            <constraint firstItem="X3N-BM-jXq" firstAttribute="top" secondItem="TTN-43-mTo" secondAttribute="bottom" constant="20" id="oWy-PJ-WMq"/>
+                            <constraint firstItem="8v8-xf-9ld" firstAttribute="top" secondItem="tcS-r7-Rgs" secondAttribute="bottom" constant="20" id="ouC-fE-csv"/>
+                            <constraint firstItem="BTE-UX-mJP" firstAttribute="top" secondItem="Q12-Yr-vbx" secondAttribute="bottom" constant="20" id="q7C-2S-DLz"/>
+                            <constraint firstItem="jjx-7l-s0l" firstAttribute="centerX" secondItem="fk3-1A-aSX" secondAttribute="centerX" id="rVr-AM-iyy"/>
+                            <constraint firstItem="RJ1-mZ-Peh" firstAttribute="top" secondItem="tcS-r7-Rgs" secondAttribute="top" id="riO-PL-7Zj"/>
+                            <constraint firstItem="8v8-xf-9ld" firstAttribute="leading" secondItem="fk3-1A-aSX" secondAttribute="leading" constant="20" id="uV2-eV-XZg"/>
+                            <constraint firstItem="RJ1-mZ-Peh" firstAttribute="width" secondItem="tcS-r7-Rgs" secondAttribute="width" id="uxE-RS-Nep"/>
+                            <constraint firstAttribute="trailing" secondItem="8v8-xf-9ld" secondAttribute="trailing" constant="20" id="v9i-a0-8eu"/>
+                            <constraint firstAttribute="trailing" secondItem="BTE-UX-mJP" secondAttribute="trailing" constant="20" id="y8w-3m-Ubd"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="compassView" destination="jjx-7l-s0l" id="MbG-Dp-APa"/>
+                        <outlet property="infoLabel" destination="8v8-xf-9ld" id="s79-yl-Fla"/>
+                        <outlet property="showDataView" destination="TTN-43-mTo" id="BMz-5f-LuL"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Fti-dP-2cH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7DO-DQ-sDa" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="329" y="109"/>
+            <point key="canvasLocation" x="300" y="334"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="bg_compasspointer" width="300" height="300"/>
+    </resources>
 </document>
