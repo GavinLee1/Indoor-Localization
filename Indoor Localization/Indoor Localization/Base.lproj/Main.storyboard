@@ -106,23 +106,5 @@
             </objects>
             <point key="canvasLocation" x="599" y="-494"/>
         </scene>
-        <!--Tab Bar Controller-->
-        <scene sceneID="Geb-OB-0V6">
-            <objects>
-                <tabBarController id="gbG-TN-0Qe" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="SK0-nX-vxk">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    </tabBar>
-                    <connections>
-                        <segue destination="pvA-sz-8wP" kind="relationship" relationship="viewControllers" id="xlc-4G-nZP"/>
-                        <segue destination="CdM-iW-hHP" kind="relationship" relationship="viewControllers" id="yie-jG-qXp"/>
-                    </connections>
-                </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bI2-vp-gd9" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-221" y="-163"/>
-        </scene>
     </scenes>
 </document>
