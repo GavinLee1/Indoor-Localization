@@ -24,6 +24,8 @@
 		86997B5D1BB59831006FE3DA /* MapLocation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86997B5C1BB59831006FE3DA /* MapLocation.storyboard */; settings = {ASSET_TAGS = (); }; };
 		86997B601BB59849006FE3DA /* MapLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86997B5F1BB59849006FE3DA /* MapLocationViewController.m */; settings = {ASSET_TAGS = (); }; };
 		86997B621BB5995B006FE3DA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86997B611BB5995B006FE3DA /* MapKit.framework */; };
+		86EEDB5F1BB92AAA007558BC /* BeaconTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 86EEDB5E1BB92AAA007558BC /* BeaconTool.m */; settings = {ASSET_TAGS = (); }; };
+		86EEDB621BB92B29007558BC /* RealPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 86EEDB611BB92B29007558BC /* RealPoint.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +67,10 @@
 		86997B5E1BB59849006FE3DA /* MapLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapLocationViewController.h; sourceTree = "<group>"; };
 		86997B5F1BB59849006FE3DA /* MapLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapLocationViewController.m; sourceTree = "<group>"; };
 		86997B611BB5995B006FE3DA /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		86EEDB5D1BB92AAA007558BC /* BeaconTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeaconTool.h; sourceTree = "<group>"; };
+		86EEDB5E1BB92AAA007558BC /* BeaconTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeaconTool.m; sourceTree = "<group>"; };
+		86EEDB601BB92B29007558BC /* RealPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RealPoint.h; sourceTree = "<group>"; };
+		86EEDB611BB92B29007558BC /* RealPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RealPoint.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +185,7 @@
 		86997B4A1BB588DF006FE3DA /* IndoorLocation */ = {
 			isa = PBXGroup;
 			children = (
+				86EEDB5C1BB92992007558BC /* Models */,
 				86997B4D1BB58F8A006FE3DA /* IndoorLocationViewController.h */,
 				86997B4E1BB58F8A006FE3DA /* IndoorLocationViewController.m */,
 				86997B501BB58FA8006FE3DA /* IndoorLocation.storyboard */,
@@ -206,6 +213,17 @@
 				86235F4C1BA94E3500A8517C /* Main.storyboard */,
 			);
 			name = TabBar;
+			sourceTree = "<group>";
+		};
+		86EEDB5C1BB92992007558BC /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				86EEDB5D1BB92AAA007558BC /* BeaconTool.h */,
+				86EEDB5E1BB92AAA007558BC /* BeaconTool.m */,
+				86EEDB601BB92B29007558BC /* RealPoint.h */,
+				86EEDB611BB92B29007558BC /* RealPoint.m */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -314,7 +332,9 @@
 			files = (
 				86997B4F1BB58F8A006FE3DA /* IndoorLocationViewController.m in Sources */,
 				86359DB41BB8E6720017A0E9 /* BeaconModel.m in Sources */,
+				86EEDB5F1BB92AAA007558BC /* BeaconTool.m in Sources */,
 				86997B591BB597FC006FE3DA /* ScanBeaconViewController.m in Sources */,
+				86EEDB621BB92B29007558BC /* RealPoint.m in Sources */,
 				86235F4B1BA94E3500A8517C /* ViewController.m in Sources */,
 				86997B601BB59849006FE3DA /* MapLocationViewController.m in Sources */,
 				86235F481BA94E3500A8517C /* AppDelegate.m in Sources */,
