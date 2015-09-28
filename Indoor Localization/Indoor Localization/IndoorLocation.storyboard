@@ -40,6 +40,9 @@
                                 <state key="normal" title="Locate" backgroundImage="locate">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="startLocate:" destination="JEi-CS-4fd" eventType="touchUpInside" id="4fK-Ig-fkh"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ias-yv-bqb">
                                 <rect key="frame" x="520" y="520" width="60" height="60"/>
@@ -51,6 +54,9 @@
                                 <state key="normal" title="Reset" backgroundImage="reset">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="reset:" destination="JEi-CS-4fd" eventType="touchUpInside" id="ldo-c5-Afk"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2F7-0F-wPp">
                                 <rect key="frame" x="460" y="520" width="60" height="60"/>
@@ -62,6 +68,9 @@
                                 <state key="normal" title="Track" backgroundImage="track">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="track:" destination="JEi-CS-4fd" eventType="touchUpInside" id="yUa-6U-Scj"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -89,7 +98,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="indoorMap" width="374" height="636"/>
+        <image name="indoorMap" width="2008" height="1776"/>
         <image name="locate" width="60" height="60"/>
         <image name="reset" width="60" height="60"/>
         <image name="track" width="60" height="60"/>

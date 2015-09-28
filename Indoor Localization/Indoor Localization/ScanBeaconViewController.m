@@ -157,7 +157,7 @@
     // rssi按降序排列
     NSSortDescriptor *sortDescriptor1=[[NSSortDescriptor alloc] initWithKey:@"rssi" ascending:NO];
     // major按升序排列
-    NSSortDescriptor *sortDescriptor2=[[NSSortDescriptor alloc] initWithKey:@"major" ascending:YES];
+    NSSortDescriptor *sortDescriptor2=[[NSSortDescriptor alloc] initWithKey:@"minor" ascending:YES];
     // 根据前两个条件对 beaconAvg数组里的元素进行排序
     tempBeacons1 = [self.beaconsStore sortedArrayUsingDescriptors:[NSArray arrayWithObjects:sortDescriptor1,sortDescriptor2, nil]];
     
@@ -199,7 +199,7 @@
      //_textView.text=[_textView.text stringByAppendingString:@"No beacons nearby\n"];
      }*/
     
-    if ([tempBeacons1 isEqual:nil]) {
+    if ([tempBeacons1 count] < 1) {
         self.showDataView.text = [self.showDataView.text stringByAppendingString:@"No beacons around!\n"];
     }
     
