@@ -26,6 +26,12 @@
 		86997B621BB5995B006FE3DA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86997B611BB5995B006FE3DA /* MapKit.framework */; };
 		86EEDB5F1BB92AAA007558BC /* BeaconTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 86EEDB5E1BB92AAA007558BC /* BeaconTool.m */; settings = {ASSET_TAGS = (); }; };
 		86EEDB621BB92B29007558BC /* RealPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 86EEDB611BB92B29007558BC /* RealPoint.m */; settings = {ASSET_TAGS = (); }; };
+		86EEDB6F1BB97556007558BC /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 86EEDB651BB97556007558BC /* FMDatabase.m */; settings = {ASSET_TAGS = (); }; };
+		86EEDB701BB97556007558BC /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 86EEDB671BB97556007558BC /* FMDatabaseAdditions.m */; settings = {ASSET_TAGS = (); }; };
+		86EEDB711BB97556007558BC /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 86EEDB691BB97556007558BC /* FMDatabasePool.m */; settings = {ASSET_TAGS = (); }; };
+		86EEDB721BB97556007558BC /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 86EEDB6B1BB97556007558BC /* FMDatabaseQueue.m */; settings = {ASSET_TAGS = (); }; };
+		86EEDB731BB97556007558BC /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 86EEDB6E1BB97556007558BC /* FMResultSet.m */; settings = {ASSET_TAGS = (); }; };
+		86EEDB761BB97602007558BC /* RealPointDataBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 86EEDB751BB97602007558BC /* RealPointDataBase.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +77,19 @@
 		86EEDB5E1BB92AAA007558BC /* BeaconTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeaconTool.m; sourceTree = "<group>"; };
 		86EEDB601BB92B29007558BC /* RealPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RealPoint.h; sourceTree = "<group>"; };
 		86EEDB611BB92B29007558BC /* RealPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RealPoint.m; sourceTree = "<group>"; };
+		86EEDB641BB97556007558BC /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
+		86EEDB651BB97556007558BC /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
+		86EEDB661BB97556007558BC /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
+		86EEDB671BB97556007558BC /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseAdditions.m; sourceTree = "<group>"; };
+		86EEDB681BB97556007558BC /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabasePool.h; sourceTree = "<group>"; };
+		86EEDB691BB97556007558BC /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabasePool.m; sourceTree = "<group>"; };
+		86EEDB6A1BB97556007558BC /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseQueue.h; sourceTree = "<group>"; };
+		86EEDB6B1BB97556007558BC /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
+		86EEDB6C1BB97556007558BC /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDB.h; sourceTree = "<group>"; };
+		86EEDB6D1BB97556007558BC /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
+		86EEDB6E1BB97556007558BC /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
+		86EEDB741BB97602007558BC /* RealPointDataBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RealPointDataBase.h; sourceTree = "<group>"; };
+		86EEDB751BB97602007558BC /* RealPointDataBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RealPointDataBase.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +114,7 @@
 		86235F361BA94E3500A8517C = {
 			isa = PBXGroup;
 			children = (
+				86EEDB631BB97556007558BC /* fmdb */,
 				86997B611BB5995B006FE3DA /* MapKit.framework */,
 				86235F411BA94E3500A8517C /* Indoor Localization */,
 				86235F5B1BA94E3500A8517C /* Indoor LocalizationTests */,
@@ -222,8 +242,28 @@
 				86EEDB5E1BB92AAA007558BC /* BeaconTool.m */,
 				86EEDB601BB92B29007558BC /* RealPoint.h */,
 				86EEDB611BB92B29007558BC /* RealPoint.m */,
+				86EEDB741BB97602007558BC /* RealPointDataBase.h */,
+				86EEDB751BB97602007558BC /* RealPointDataBase.m */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		86EEDB631BB97556007558BC /* fmdb */ = {
+			isa = PBXGroup;
+			children = (
+				86EEDB641BB97556007558BC /* FMDatabase.h */,
+				86EEDB651BB97556007558BC /* FMDatabase.m */,
+				86EEDB661BB97556007558BC /* FMDatabaseAdditions.h */,
+				86EEDB671BB97556007558BC /* FMDatabaseAdditions.m */,
+				86EEDB681BB97556007558BC /* FMDatabasePool.h */,
+				86EEDB691BB97556007558BC /* FMDatabasePool.m */,
+				86EEDB6A1BB97556007558BC /* FMDatabaseQueue.h */,
+				86EEDB6B1BB97556007558BC /* FMDatabaseQueue.m */,
+				86EEDB6C1BB97556007558BC /* FMDB.h */,
+				86EEDB6D1BB97556007558BC /* FMResultSet.h */,
+				86EEDB6E1BB97556007558BC /* FMResultSet.m */,
+			);
+			path = fmdb;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -331,15 +371,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				86997B4F1BB58F8A006FE3DA /* IndoorLocationViewController.m in Sources */,
+				86EEDB761BB97602007558BC /* RealPointDataBase.m in Sources */,
 				86359DB41BB8E6720017A0E9 /* BeaconModel.m in Sources */,
+				86EEDB711BB97556007558BC /* FMDatabasePool.m in Sources */,
+				86EEDB721BB97556007558BC /* FMDatabaseQueue.m in Sources */,
 				86EEDB5F1BB92AAA007558BC /* BeaconTool.m in Sources */,
 				86997B591BB597FC006FE3DA /* ScanBeaconViewController.m in Sources */,
 				86EEDB621BB92B29007558BC /* RealPoint.m in Sources */,
 				86235F4B1BA94E3500A8517C /* ViewController.m in Sources */,
 				86997B601BB59849006FE3DA /* MapLocationViewController.m in Sources */,
+				86EEDB731BB97556007558BC /* FMResultSet.m in Sources */,
 				86235F481BA94E3500A8517C /* AppDelegate.m in Sources */,
 				86235F451BA94E3500A8517C /* main.m in Sources */,
+				86EEDB6F1BB97556007558BC /* FMDatabase.m in Sources */,
 				86997B561BB597DB006FE3DA /* ProfileViewController.m in Sources */,
+				86EEDB701BB97556007558BC /* FMDatabaseAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
