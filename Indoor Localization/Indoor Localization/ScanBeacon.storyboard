@@ -27,6 +27,9 @@
                                 <state key="normal" title="START">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="start:" destination="XG2-Os-VBm" eventType="touchUpInside" id="fkm-be-7HI"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Press the button start to start scan!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8v8-xf-9ld" userLabel="InfoLabel">
                                 <rect key="frame" x="20" y="170" width="560" height="40"/>
@@ -53,6 +56,9 @@
                                 <state key="normal" title="STOP">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="stop:" destination="XG2-Os-VBm" eventType="touchUpInside" id="Hd3-g0-frW"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Beacon Scanning" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BTE-UX-mJP" userLabel="TitleLabel">
                                 <rect key="frame" x="20" y="40" width="560" height="50"/>
@@ -96,6 +102,11 @@
                             <constraint firstAttribute="trailing" secondItem="BTE-UX-mJP" secondAttribute="trailing" constant="20" id="y8w-3m-Ubd"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="compassView" destination="jjx-7l-s0l" id="QCl-VA-lT7"/>
+                        <outlet property="infoLabel" destination="8v8-xf-9ld" id="LsV-TO-u43"/>
+                        <outlet property="showDataView" destination="TTN-43-mTo" id="s3b-42-Pem"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7DO-DQ-sDa" sceneMemberID="firstResponder"/>
             </objects>

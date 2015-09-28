@@ -14,6 +14,7 @@
 		86235F501BA94E3500A8517C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86235F4F1BA94E3500A8517C /* Images.xcassets */; };
 		86235F531BA94E3500A8517C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86235F511BA94E3500A8517C /* LaunchScreen.xib */; };
 		86235F5F1BA94E3500A8517C /* Indoor_LocalizationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 86235F5E1BA94E3500A8517C /* Indoor_LocalizationTests.m */; };
+		86359DB41BB8E6720017A0E9 /* BeaconModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 86359DB31BB8E6720017A0E9 /* BeaconModel.m */; settings = {ASSET_TAGS = (); }; };
 		86997B4F1BB58F8A006FE3DA /* IndoorLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86997B4E1BB58F8A006FE3DA /* IndoorLocationViewController.m */; settings = {ASSET_TAGS = (); }; };
 		86997B511BB58FA8006FE3DA /* IndoorLocation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86997B501BB58FA8006FE3DA /* IndoorLocation.storyboard */; settings = {ASSET_TAGS = (); }; };
 		86997B531BB597B5006FE3DA /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86997B521BB597B5006FE3DA /* Profile.storyboard */; settings = {ASSET_TAGS = (); }; };
@@ -49,6 +50,8 @@
 		86235F581BA94E3500A8517C /* Indoor LocalizationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Indoor LocalizationTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		86235F5D1BA94E3500A8517C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		86235F5E1BA94E3500A8517C /* Indoor_LocalizationTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Indoor_LocalizationTests.m; sourceTree = "<group>"; };
+		86359DB21BB8E6720017A0E9 /* BeaconModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeaconModel.h; sourceTree = "<group>"; };
+		86359DB31BB8E6720017A0E9 /* BeaconModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeaconModel.m; sourceTree = "<group>"; };
 		86997B4D1BB58F8A006FE3DA /* IndoorLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndoorLocationViewController.h; sourceTree = "<group>"; };
 		86997B4E1BB58F8A006FE3DA /* IndoorLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndoorLocationViewController.m; sourceTree = "<group>"; };
 		86997B501BB58FA8006FE3DA /* IndoorLocation.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = IndoorLocation.storyboard; sourceTree = "<group>"; };
@@ -164,6 +167,8 @@
 		86997B491BB588D3006FE3DA /* ScanBeacon */ = {
 			isa = PBXGroup;
 			children = (
+				86359DB21BB8E6720017A0E9 /* BeaconModel.h */,
+				86359DB31BB8E6720017A0E9 /* BeaconModel.m */,
 				86997B571BB597FC006FE3DA /* ScanBeaconViewController.h */,
 				86997B581BB597FC006FE3DA /* ScanBeaconViewController.m */,
 				86997B5A1BB59812006FE3DA /* ScanBeacon.storyboard */,
@@ -308,6 +313,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				86997B4F1BB58F8A006FE3DA /* IndoorLocationViewController.m in Sources */,
+				86359DB41BB8E6720017A0E9 /* BeaconModel.m in Sources */,
 				86997B591BB597FC006FE3DA /* ScanBeaconViewController.m in Sources */,
 				86235F4B1BA94E3500A8517C /* ViewController.m in Sources */,
 				86997B601BB59849006FE3DA /* MapLocationViewController.m in Sources */,
