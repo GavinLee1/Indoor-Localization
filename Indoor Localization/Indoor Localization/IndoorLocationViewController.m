@@ -199,12 +199,17 @@
     self.point.originalX += 0.5;
     self.point.originalY += 0.5;
     //***********************************//
+    
+    // Insert the showing point into the database.
     [RealPointDataBase addPoint:self.point];
+    
+    //************ For testing **********//
     NSArray *points = [[NSArray alloc] init];
     points = [RealPointDataBase points];
     for (RealPoint *point in points) {
         NSLog(@"----------The point infor: %f, %f",point.originalX,point.originalY);
     }
+    //***********************************//
     
     // It means that this is a new scanning cycle
     self.newCycleTag = 1;

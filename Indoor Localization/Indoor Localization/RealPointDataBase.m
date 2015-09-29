@@ -7,7 +7,7 @@
 //
 
 #import "RealPointDataBase.h"
-
+#import "FMDatabaseAdditions.h"
 
 @implementation RealPointDataBase
 
@@ -25,7 +25,8 @@ static FMDatabase *_db;
 
 + (NSArray *) points
 {
-    {// 得到结果集
+    {
+        // 得到结果集
         FMResultSet *set = [_db executeQuery:@"SELECT * FROM t_point;"];
         // 不断往下取数据
         NSMutableArray *points = [NSMutableArray array];
@@ -40,9 +41,43 @@ static FMDatabase *_db;
     }
 }
 
+/**
+ *  Since as design, this system only need 10 points to draw the track line.
+ *  Therefore, this function is design to get reasonable 10 points from the database.
+ *
+ *  @return a NSArray contains point objects.
+ */
++ (NSArray *) trackedPoints
+{
+    NSMutableArray *points = [NSMutableArray array];
+    NSUInteger sum = [self count];
+    int steps;
+    // Totally, we only need 10 points from the whole database, therefore, we need a step number to filter data if points in database are more than  10.
+    if (sum >= 10) {
+        steps = floor(sum/10);
+    }else{
+        steps = 1;
+    }
+    // Get a point for every "steps" points.
+    FMResultSet *set = [_db executeQuery:@"SELECT * FROM t_point WHERE id - (id / %d) * %d = 0;",steps,steps];
+    while (set.next) {
+        RealPoint *point = [[RealPoint alloc] init];
+        point.originalX = [set doubleForColumn:@"xValue"];
+        point.originalY = [set doubleForColumn:@"yValue"];
+        [points addObject:point];
+    }
+    return points;
+}
+
 + (RealPoint *) getTheMostUpdatedPoint
 {
     return [[RealPoint alloc] init];
+}
+
++ (NSUInteger) count
+{
+    NSUInteger count = [_db intForQuery:@"SELECT count(*) FROM t_point;"];
+    return count;
 }
 
 + (void)addPoint:(RealPoint *)point
