@@ -45,7 +45,7 @@
 
 - (IBAction)startLocate:(UIButton *)sender;
 - (IBAction)track:(UIButton *)sender;
-- (IBAction)reset:(UIButton *)sender;
+- (IBAction)stop:(UIButton *)sender;
 - (IBAction)clear:(UIButton *)sender;
 
 
@@ -122,6 +122,7 @@
     self.locationManager.delegate=self;
 }
 
+#pragma mark -Functional Buttons
 - (IBAction)startLocate:(UIButton *)sender {
     self.infoLabel.text = @"Locate Button Pressed!\n";
     
@@ -149,12 +150,10 @@
     
 }
 
-- (IBAction)reset:(UIButton *)sender {
+- (IBAction)stop:(UIButton *)sender {
     NSLog(@"%s", __func__);
     NSLog(@"Scanning process stop!");
-    // self.infoLabel.text = @"Stop scanning!\n";
-    [self.location removeFromSuperview];
-    [RealPointDataBase removeAllPoints];
+    self.infoLabel.text = @"Stop scanning! Press Locate to restart!\n";
     // 停止时钟并重置
     [self.time invalidate];
     self.time = nil;
@@ -165,6 +164,18 @@
 }
 
 - (IBAction)clear:(UIButton *)sender {
+    self.infoLabel.text = @"Cleared all data in database!\n";
+    // Remove "location" UIImageView
+    [self.location removeFromSuperview];
+    // Delete all points in the dataBase
+    [RealPointDataBase removeAllPoints];
+    // 停止时钟并重置
+    [self.time invalidate];
+    self.time = nil;
+    // 关闭monitor 关闭扫描的region
+    [self.locationManager stopUpdatingLocation];
+    [self.locationManager stopRangingBeaconsInRegion:self.beaconRegion];
+    [self.locationManager stopMonitoringForRegion:self.beaconRegion];
 }
 
 # pragma mark -Timer
