@@ -11,8 +11,10 @@
 #import "FMDatabase.h"
 
 @interface RealPointDataBase : NSObject
+
 + (NSArray *) points;
 + (RealPoint *) getTheMostUpdatedPoint;
 + (void)addPoint:(RealPoint *)point;
++ (void)removeAllPoints;
 
 @end

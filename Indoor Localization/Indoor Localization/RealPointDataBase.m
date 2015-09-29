@@ -50,4 +50,9 @@ static FMDatabase *_db;
     [_db executeUpdateWithFormat:@"INSERT INTO t_point(xValue, yValue) VALUES (%f, %f);", point.originalX, point.originalY];
 }
 
++ (void)removeAllPoints
+{
+    [_db executeUpdateWithFormat:@"DELETE FROM t_point"];
+}
+
 @end

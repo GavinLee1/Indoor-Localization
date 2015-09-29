@@ -12,6 +12,7 @@
 #import "BeaconModel.h"
 #import "RealPoint.h"
 #import "BeaconTool.h"
+#import "RealPointDataBase.h"
 
 @interface IndoorLocationViewController () <CLLocationManagerDelegate>
 
@@ -45,6 +46,7 @@
 - (IBAction)startLocate:(UIButton *)sender;
 - (IBAction)track:(UIButton *)sender;
 - (IBAction)reset:(UIButton *)sender;
+- (IBAction)clear:(UIButton *)sender;
 
 
 @end
@@ -144,12 +146,15 @@
 }
 
 - (IBAction)track:(UIButton *)sender {
+    
 }
 
 - (IBAction)reset:(UIButton *)sender {
     NSLog(@"%s", __func__);
     NSLog(@"Scanning process stop!");
     // self.infoLabel.text = @"Stop scanning!\n";
+    [self.location removeFromSuperview];
+    [RealPointDataBase removeAllPoints];
     // 停止时钟并重置
     [self.time invalidate];
     self.time = nil;
@@ -157,6 +162,9 @@
     [self.locationManager stopUpdatingLocation];
     [self.locationManager stopRangingBeaconsInRegion:self.beaconRegion];
     [self.locationManager stopMonitoringForRegion:self.beaconRegion];
+}
+
+- (IBAction)clear:(UIButton *)sender {
 }
 
 # pragma mark -Timer
@@ -180,6 +188,12 @@
     self.point.originalX += 0.5;
     self.point.originalY += 0.5;
     //***********************************//
+    [RealPointDataBase addPoint:self.point];
+    NSArray *points = [[NSArray alloc] init];
+    points = [RealPointDataBase points];
+    for (RealPoint *point in points) {
+        NSLog(@"----------The point infor: %f, %f",point.originalX,point.originalY);
+    }
     
     // It means that this is a new scanning cycle
     self.newCycleTag = 1;
