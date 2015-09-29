@@ -263,6 +263,9 @@
     
     // Add animation to make the current point twinkling.
     [self.location.layer addAnimation:[self opacityForever_Animation:0.3] forKey:nil];
+    // 添加缩放的动画
+    [self.location.layer addAnimation:[self scale:[NSNumber numberWithFloat:1.0f] orgin:[NSNumber numberWithFloat:2.0f] durTimes:2.0f Rep:MAXFLOAT] forKey:nil];
+    
     [self.view addSubview:self.location];
     [self.view bringSubviewToFront:self.location];
 }
@@ -424,6 +427,19 @@
     return animation;
 }
 
+#pragma mark =====缩放-=============
+-(CABasicAnimation *)scale:(NSNumber *)Multiple orgin:(NSNumber *)orginMultiple durTimes:(float)time Rep:(float)repertTimes
+{
+    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+    animation.fromValue = Multiple;
+    animation.toValue = orginMultiple;
+    animation.autoreverses = YES;
+    animation.repeatCount = repertTimes;
+    animation.duration = time;//不设置时候的话，有一个默认的缩放时间.
+    animation.removedOnCompletion = NO;
+    animation.fillMode = kCAFillModeForwards;
+    return  animation;
+}
 /*
  #pragma mark - Navigation
  
