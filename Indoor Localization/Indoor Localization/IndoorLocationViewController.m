@@ -8,6 +8,7 @@
 
 #import "IndoorLocationViewController.h"
 #import <CoreLocation/CoreLocation.h>
+#import <CoreMotion/CoreMotion.h>
 #import "BeaconModel.h"
 #import "RealPoint.h"
 #import "BeaconTool.h"
@@ -16,6 +17,8 @@
 
 #define UUID @"77777777-7777-7777-7777-777777777777"
 #define BeaconRegionIdentifier @"FYP"
+
+@property (strong, nonatomic) CMMotionManager *motionManager;
 
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) CLBeaconRegion *beaconRegion;
@@ -92,6 +95,14 @@
     }
     return _location;
 }
+// Initialization for motionManager
+- (CMMotionManager *) motionManager
+{
+    if (!_motionManager) {
+        _motionManager = [[CMMotionManager alloc] init];
+    }
+    return _motionManager;
+}
 // Initialization for testing point
 - (RealPoint *) point
 {
@@ -116,6 +127,8 @@
     
     // 开始扫描并监听beacons
     [self.locationManager startMonitoringForRegion:self.beaconRegion];
+    
+    [self.motionManager startAccelerometerUpdates];
     
     NSLog(@"The region is: %@",self.beaconRegion);
     
@@ -248,6 +261,8 @@
     self.location.frame = transferFrame;
     [UIView commitAnimations];
     
+    // Add animation to make the current point twinkling.
+    [self.location.layer addAnimation:[self opacityForever_Animation:0.3] forKey:nil];
     [self.view addSubview:self.location];
     [self.view bringSubviewToFront:self.location];
 }
@@ -391,6 +406,22 @@
     [self.locationManager startRangingBeaconsInRegion:self.beaconRegion];
     [self.locationManager startUpdatingLocation];
     // self.infoLabel.text = @"Enter region";
+}
+
+#pragma mark === 永久闪烁的动画 ======
+-(CABasicAnimation *)opacityForever_Animation:(float)time
+{
+    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"opacity"];//必须写opacity才行
+    animation.fromValue = [NSNumber numberWithFloat:1.0f];
+    animation.toValue = [NSNumber numberWithFloat:0.0f];//这是透明度
+    animation.autoreverses = YES;
+    animation.duration = time;
+    animation.repeatCount = MAXFLOAT;
+    animation.removedOnCompletion = NO;
+    animation.fillMode = kCAFillModeForwards;
+    //没有的话是均匀的动画
+    animation.timingFunction=[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
+    return animation;
 }
 
 /*
