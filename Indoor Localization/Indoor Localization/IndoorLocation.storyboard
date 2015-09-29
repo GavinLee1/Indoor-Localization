@@ -72,6 +72,13 @@
                                     <action selector="track:" destination="JEi-CS-4fd" eventType="touchUpInside" id="yUa-6U-Scj"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Press Locate to start!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DCs-4R-zPf" userLabel="InfoLabel">
+                                <rect key="frame" x="82" y="535" width="376" height="40"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="0.5" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -80,8 +87,12 @@
                             <constraint firstItem="u8i-ZP-FSR" firstAttribute="top" secondItem="Rfs-Ej-393" secondAttribute="bottom" constant="20" id="DL7-if-GUP"/>
                             <constraint firstItem="Rfs-Ej-393" firstAttribute="leading" secondItem="3b9-ha-f6V" secondAttribute="leading" constant="20" id="IHC-MN-Go4"/>
                             <constraint firstItem="u8i-ZP-FSR" firstAttribute="top" secondItem="Ias-yv-bqb" secondAttribute="bottom" constant="20" id="N4q-17-FTr"/>
+                            <constraint firstItem="DCs-4R-zPf" firstAttribute="top" secondItem="Ra3-TV-tkR" secondAttribute="bottom" constant="15" id="NF7-Fs-lOI"/>
+                            <constraint firstItem="DCs-4R-zPf" firstAttribute="leading" secondItem="Rfs-Ej-393" secondAttribute="trailing" constant="2" id="NKV-zV-DED"/>
                             <constraint firstItem="Ias-yv-bqb" firstAttribute="leading" secondItem="2F7-0F-wPp" secondAttribute="trailing" id="OeP-E7-6D4"/>
                             <constraint firstAttribute="trailing" secondItem="Ias-yv-bqb" secondAttribute="trailing" constant="20" id="OqO-Va-uJm"/>
+                            <constraint firstItem="u8i-ZP-FSR" firstAttribute="top" secondItem="DCs-4R-zPf" secondAttribute="bottom" constant="25" id="VTI-oe-IPg"/>
+                            <constraint firstItem="2F7-0F-wPp" firstAttribute="leading" secondItem="DCs-4R-zPf" secondAttribute="trailing" constant="2" id="bWC-52-MZx"/>
                             <constraint firstAttribute="trailing" secondItem="Ra3-TV-tkR" secondAttribute="trailing" id="cCq-PV-uW4"/>
                             <constraint firstItem="7MJ-1D-h2B" firstAttribute="leading" secondItem="3b9-ha-f6V" secondAttribute="leading" id="jkT-kJ-6uJ"/>
                             <constraint firstItem="Ra3-TV-tkR" firstAttribute="top" secondItem="7MJ-1D-h2B" secondAttribute="bottom" id="kxD-jF-CM6"/>
@@ -91,6 +102,9 @@
                             <constraint firstItem="Rfs-Ej-393" firstAttribute="top" secondItem="Ra3-TV-tkR" secondAttribute="bottom" id="zoY-dA-UD9"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="infoLabel" destination="DCs-4R-zPf" id="CdO-IO-xsE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vp1-ka-GgQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

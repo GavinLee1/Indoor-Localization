@@ -34,6 +34,15 @@
     return locatedBeaconPoints;
 }
 
+/**
+ *  Core calculation algorithms, invovling LDPL and Linear Least Square Algorithm.
+ *  LDPL can compute the distance from device to a specific beacon with RSSI value.
+ *  LLSA can compute a accurate location point with three beacons.
+ *
+ *  @param beaconModels NSArray including three sorted beaconModels, sorting or not is not mandatory.
+ *
+ *  @return a point object which means the current location, the x and y value for the point is in meter.
+ */
 - (RealPoint *) computeRealTimePoint: (NSArray *) beaconModels
 {
     if ([beaconModels count] < 3) {

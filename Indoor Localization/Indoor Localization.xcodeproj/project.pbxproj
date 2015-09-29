@@ -24,6 +24,8 @@
 		86997B5D1BB59831006FE3DA /* MapLocation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86997B5C1BB59831006FE3DA /* MapLocation.storyboard */; settings = {ASSET_TAGS = (); }; };
 		86997B601BB59849006FE3DA /* MapLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86997B5F1BB59849006FE3DA /* MapLocationViewController.m */; settings = {ASSET_TAGS = (); }; };
 		86997B621BB5995B006FE3DA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86997B611BB5995B006FE3DA /* MapKit.framework */; };
+		86C52C111BBA7901005C8C9D /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 86C52C101BBA7901005C8C9D /* libsqlite3.tbd */; };
+		86C52C131BBA790C005C8C9D /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 86C52C121BBA790C005C8C9D /* libsqlite3.0.tbd */; };
 		86EEDB5F1BB92AAA007558BC /* BeaconTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 86EEDB5E1BB92AAA007558BC /* BeaconTool.m */; settings = {ASSET_TAGS = (); }; };
 		86EEDB621BB92B29007558BC /* RealPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 86EEDB611BB92B29007558BC /* RealPoint.m */; settings = {ASSET_TAGS = (); }; };
 		86EEDB6F1BB97556007558BC /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 86EEDB651BB97556007558BC /* FMDatabase.m */; settings = {ASSET_TAGS = (); }; };
@@ -73,6 +75,8 @@
 		86997B5E1BB59849006FE3DA /* MapLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapLocationViewController.h; sourceTree = "<group>"; };
 		86997B5F1BB59849006FE3DA /* MapLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapLocationViewController.m; sourceTree = "<group>"; };
 		86997B611BB5995B006FE3DA /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		86C52C101BBA7901005C8C9D /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		86C52C121BBA790C005C8C9D /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		86EEDB5D1BB92AAA007558BC /* BeaconTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeaconTool.h; sourceTree = "<group>"; };
 		86EEDB5E1BB92AAA007558BC /* BeaconTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeaconTool.m; sourceTree = "<group>"; };
 		86EEDB601BB92B29007558BC /* RealPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RealPoint.h; sourceTree = "<group>"; };
@@ -97,6 +101,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86C52C131BBA790C005C8C9D /* libsqlite3.0.tbd in Frameworks */,
+				86C52C111BBA7901005C8C9D /* libsqlite3.tbd in Frameworks */,
 				86997B621BB5995B006FE3DA /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -114,6 +120,8 @@
 		86235F361BA94E3500A8517C = {
 			isa = PBXGroup;
 			children = (
+				86C52C121BBA790C005C8C9D /* libsqlite3.0.tbd */,
+				86C52C101BBA7901005C8C9D /* libsqlite3.tbd */,
 				86EEDB631BB97556007558BC /* fmdb */,
 				86997B611BB5995B006FE3DA /* MapKit.framework */,
 				86235F411BA94E3500A8517C /* Indoor Localization */,

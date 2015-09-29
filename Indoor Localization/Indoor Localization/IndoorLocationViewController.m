@@ -9,6 +9,8 @@
 #import "IndoorLocationViewController.h"
 #import <CoreLocation/CoreLocation.h>
 #import "BeaconModel.h"
+#import "RealPoint.h"
+#import "BeaconTool.h"
 
 @interface IndoorLocationViewController () <CLLocationManagerDelegate>
 
@@ -18,6 +20,7 @@
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) CLBeaconRegion *beaconRegion;
 
+@property (strong, nonatomic) BeaconTool *beaconTool;
 @property (strong, nonatomic) BeaconModel *beaconModel;
 
 @property (strong, nonatomic) NSMutableArray *beaconsStore;
@@ -26,6 +29,15 @@
 @property (assign, nonatomic) NSInteger matchSameBeaconTag;
 @property (strong, nonatomic) NSTimer *time;
 @property (assign, nonatomic) NSInteger tickTimes;
+
+// Use to show operating information on the view
+@property (weak, nonatomic) IBOutlet UILabel *infoLabel;
+@property (strong, nonatomic) UIImageView *location;
+
+// Wait to delete
+@property (assign, nonatomic) NSInteger *movedTimes;
+// Testing point
+@property (strong, nonatomic) RealPoint *point;
 
 - (IBAction)startLocate:(UIButton *)sender;
 - (IBAction)track:(UIButton *)sender;
@@ -63,6 +75,32 @@
     }
     return _beaconRegion;
 }
+// Initialization for beconTool
+- (BeaconTool *) beaconTool
+{
+    if (!_beaconTool) {
+        _beaconTool = [[BeaconTool alloc] init];
+    }
+    return _beaconTool;
+}
+// Initialization for UIImageView <show current location>
+- (UIImageView *) location
+{
+    if (!_location) {
+        _location = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 20, 10)];
+        _location.image = [UIImage imageNamed:@"current_location"];
+    }
+    return _location;
+}
+// Initialization for testing point
+- (RealPoint *) point
+{
+    if (!_point) {
+        _point = [[RealPoint alloc] initWith:0.5 andY:0.5];
+    }
+    return _point;
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -72,6 +110,7 @@
 }
 
 - (IBAction)startLocate:(UIButton *)sender {
+    self.infoLabel.text = @"Locate Button Pressed!\n";
     
     self.locationManager.pausesLocationUpdatesAutomatically = NO;
     
@@ -109,7 +148,7 @@
 
 # pragma mark -Timer
 // At the end of 5 seconds, extract avg rssi, major, minor
--(void)onTicking:(NSTimer *)timer{
+-(void)onTicking:(NSTimer *) timer {
     NSLog(@"%s", __func__);
     NSLog(@"------On Ticking------");
     self.tickTimes++;
@@ -117,6 +156,34 @@
     // 5秒到了之后就打断一次扫描
     [self.locationManager stopUpdatingLocation];
     
+    NSArray *transferArray = [self getTopThreeBeacons];
+    NSLog(@"Ranked beacons: %@",transferArray);
+//    RealPoint *currentLocationPoint = [self.beaconTool computeRealTimePoint:transferArray];
+//    NSLog(@"Computed location point: %@",currentLocationPoint);
+//    [self moveCurrentLocation:currentLocationPoint];
+    
+    //********** Testing points **********//
+    [self moveCurrentLocation:self.point];
+    self.point.originalX += 0.5;
+    self.point.originalY += 0.5;
+    //***********************************//
+    
+    // It means that this is a new scanning cycle
+    self.newCycleTag = 1;
+    // Remove beacons in beaconsStore, which is added into the array in last scanning period.
+    [self.beaconsStore removeAllObjects];
+    // 每五秒操作一次，执行完这个操作之后就再次进行监听
+    [self.locationManager startUpdatingLocation];
+}
+
+/**
+ *  Be called every 5 senconds in onTicking method.
+ *  It is designed to sort the beacon array with RSSI value and get the top three beacons.
+ *
+ *  @return NSArray records threes beaonModel objects.
+ */
+- (NSArray *) getTopThreeBeacons
+{
     NSArray *sortedBeacons = [[NSArray alloc]init];
     NSMutableArray *tempBeacons = [NSMutableArray array];
     
@@ -144,22 +211,55 @@
         NSLog(@"The number of beacons for localization is less than 3!");
     }
     
-    // It means that this is a new scanning cycle
-    self.newCycleTag = 1;
-    // Remove beacons in beaconsStore, which is added into the array in last scanning period.
-    [self.beaconsStore removeAllObjects];
-    // 每五秒操作一次，执行完这个操作之后就再次进行监听
-    [self.locationManager startUpdatingLocation];
+    return tempBeacons;
 }
 
+/**
+ *  Be called every 5 senconds in onTicking method.
+ *  Designed to move current location UIImageView with calculated location point.
+ *
+ *  @param point returned RealPoint object from core calculation algorithms.
+ */
+- (void) moveCurrentLocation: (RealPoint *) point
+{
+    // Wait to delete
+    self.infoLabel.text = [NSString stringWithFormat:@"Moved for %ld times.",self.movedTimes];
+    self.movedTimes++;
+    
+    // The left up point of the map in the view.
+#define origin_x 0
+#define origin_y 80
+    // 50 pixels for one meter
+    // 50 像素代表一米
+#define grid 40
+    // UILabel *location = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 15, 20)];
+    // UIImageView *location = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 20, 10)];
+    // location.image = [UIImage imageNamed:@"current_location"];
+    
+    CGRect transferFrame = self.location.frame;
+    
+    NSLog(@"Recevied Point Value is:%@",point);
+    transferFrame.origin.x = point.originalX * grid + origin_x;
+    transferFrame.origin.y = point.originalY * grid + origin_y;
+    NSLog(@"Location Point Coordinate is: ( %f, %f )",transferFrame.origin.x,transferFrame.origin.y);
+    
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:4.0];
+    self.location.frame = transferFrame;
+    [UIView commitAnimations];
+    
+    [self.view addSubview:self.location];
+    [self.view bringSubviewToFront:self.location];
+}
 
 # pragma mark -CLLocationManagerDelegate
 /**
  ** Calling when start monitoring successfully and it will be called automatically.
  **
  **/
--(void)locationManager:(CLLocationManager *)manager didRangeBeacons:(NSArray *)beacons inRegion:(CLBeaconRegion *)region
+- (void)locationManager:(CLLocationManager *)manager didRangeBeacons:(NSArray *)beacons inRegion:(CLBeaconRegion *)region
 {
+    self.infoLabel.text = @"Scanning...........!\n";
     NSLog(@"%s",__func__);
     // scannedBeaconCount: the number of beacons scanned.
     NSInteger scannedBeaconCount = [beacons count];
