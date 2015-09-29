@@ -8,8 +8,6 @@
 
 #import "IndoorLocationViewController.h"
 #import <CoreLocation/CoreLocation.h>
-#import <CoreMotion/CoreMotion.h>
-#import <QuartzCore/QuartzCore.h>
 #import "BeaconModel.h"
 #import "RealPoint.h"
 #import "BeaconTool.h"
@@ -20,8 +18,6 @@
 #define UUID @"77777777-7777-7777-7777-777777777777"
 #define BeaconRegionIdentifier @"FYP"
 
-@property (strong, nonatomic) CMMotionManager *motionManager;
-
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) CLBeaconRegion *beaconRegion;
 
@@ -29,6 +25,8 @@
 @property (strong, nonatomic) BeaconModel *beaconModel;
 
 @property (strong, nonatomic) NSMutableArray *beaconsStore;
+@property (strong, nonatomic) UIImageView *location;
+
 // 每隔5秒重新扫描出 RSSI 最强的前三个 beacon  每次扫描的时候会
 @property (assign, nonatomic) NSInteger newCycleTag;
 @property (assign, nonatomic) NSInteger matchSameBeaconTag;
@@ -37,10 +35,7 @@
 
 // Use to show operating information on the view
 @property (weak, nonatomic) IBOutlet UILabel *infoLabel;
-@property (strong, nonatomic) UIImageView *location;
 
-// Wait to delete
-@property (assign, nonatomic) NSInteger *movedTimes;
 // Testing point
 @property (strong, nonatomic) RealPoint *point;
 
@@ -98,14 +93,6 @@
     }
     return _location;
 }
-// Initialization for motionManager
-- (CMMotionManager *) motionManager
-{
-    if (!_motionManager) {
-        _motionManager = [[CMMotionManager alloc] init];
-    }
-    return _motionManager;
-}
 // Initialization for testing point
 - (RealPoint *) point
 {
@@ -131,8 +118,6 @@
     
     // 开始扫描并监听beacons
     [self.locationManager startMonitoringForRegion:self.beaconRegion];
-    
-    [self.motionManager startAccelerometerUpdates];
     
     NSLog(@"The region is: %@",self.beaconRegion);
     
@@ -198,14 +183,14 @@
     // 5秒到了之后就打断一次扫描
     [self.locationManager stopUpdatingLocation];
     
-    NSArray *transferArray = [self getTopThreeBeacons];
+    NSArray *transferArray = [self.beaconTool getTopThreeBeacons:self.beaconsStore];
     NSLog(@"Ranked beacons: %@",transferArray);
 //    RealPoint *currentLocationPoint = [self.beaconTool computeRealTimePoint:transferArray];
 //    NSLog(@"Computed location point: %@",currentLocationPoint);
-//    [self moveCurrentLocation:currentLocationPoint];
+//    [self.point moveCurrentLocation:currentLocationPoint onView:self.view andImageView:self.location];
     
     //********** Testing points **********//
-    [self moveCurrentLocation:self.point];
+    [self.point moveCurrentLocation:self.point onView:self.view andImageView:self.location];
     self.point.originalX += 0.5;
     self.point.originalY += 0.5;
     //***********************************//
@@ -227,87 +212,6 @@
     [self.beaconsStore removeAllObjects];
     // 每五秒操作一次，执行完这个操作之后就再次进行监听
     [self.locationManager startUpdatingLocation];
-}
-
-/**
- *  Be called every 5 senconds in onTicking method.
- *  It is designed to sort the beacon array with RSSI value and get the top three beacons.
- *
- *  @return NSArray records threes beaonModel objects.
- */
-- (NSArray *) getTopThreeBeacons
-{
-    NSArray *sortedBeacons = [[NSArray alloc]init];
-    NSMutableArray *tempBeacons = [NSMutableArray array];
-    
-    // 当beaconAvg数组中记录的数据大于3条时
-    // 只有当其中存储的beacon信息超过3个时才说明 beacon以及准备好来定位，如果不足三个，就返回not ready
-    NSLog(@"BeaconStore Info: %@",[self.beaconsStore description]);
-    
-    if([self.beaconsStore count] >= 3 )
-    {
-        // get beacons array with ascending rssi
-        // rssi按降序排列
-        NSSortDescriptor *sortDescriptor1=[[NSSortDescriptor alloc] initWithKey:@"rssi" ascending:NO];
-        // major按升序排列
-        NSSortDescriptor *sortDescriptor2=[[NSSortDescriptor alloc] initWithKey:@"minor" ascending:YES];
-        // 根据前两个条件对 beaconAvg数组里的元素进行排序
-        sortedBeacons = [self.beaconsStore sortedArrayUsingDescriptors:[NSArray arrayWithObjects:sortDescriptor1,sortDescriptor2, nil]];
-        // 取出RSSI最强烈的前三条用于定位
-        for (int i = 0; i < 3; i++)
-        {
-            BeaconModel *tempBeacon = [sortedBeacons objectAtIndex:i];
-            [tempBeacons addObject:tempBeacon];
-        }
-    }
-    else{
-        NSLog(@"The number of beacons for localization is less than 3!");
-    }
-    
-    return tempBeacons;
-}
-
-/**
- *  Be called every 5 senconds in onTicking method.
- *  Designed to move current location UIImageView with calculated location point.
- *
- *  @param point returned RealPoint object from core calculation algorithms.
- */
-- (void) moveCurrentLocation: (RealPoint *) point
-{
-    // Wait to delete
-    self.infoLabel.text = [NSString stringWithFormat:@"Moved for %ld times.",self.movedTimes];
-    self.movedTimes++;
-    
-    // The left up point of the map in the view.
-#define origin_x 0
-#define origin_y 80
-    // 50 pixels for one meter
-    // 50 像素代表一米
-#define grid 40
-    // UILabel *location = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 15, 20)];
-    // UIImageView *location = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 20, 10)];
-    // location.image = [UIImage imageNamed:@"current_location"];
-    
-    CGRect transferFrame = self.location.frame;
-    
-    NSLog(@"Recevied Point Value is:%@",point);
-    transferFrame.origin.x = point.originalX * grid + origin_x;
-    transferFrame.origin.y = point.originalY * grid + origin_y;
-    NSLog(@"Location Point Coordinate is: ( %f, %f )",transferFrame.origin.x,transferFrame.origin.y);
-    
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:4.0];
-    self.location.frame = transferFrame;
-    [UIView commitAnimations];
-    
-    // Add animation to make the current point twinkling.
-    [self.location.layer addAnimation:[self opacityForever_Animation:0.3] forKey:nil];
-    // 添加缩放的动画
-    [self.location.layer addAnimation:[self scale:[NSNumber numberWithFloat:1.0f] orgin:[NSNumber numberWithFloat:2.0f] durTimes:2.0f Rep:MAXFLOAT] forKey:nil];
-    
-    [self.view addSubview:self.location];
-    [self.view bringSubviewToFront:self.location];
 }
 
 # pragma mark -CLLocationManagerDelegate
@@ -460,35 +364,6 @@
     self.location.transform = CGAffineTransformMakeRotation( -angle);
 }
 
-#pragma mark === 永久闪烁的动画 ======
--(CABasicAnimation *)opacityForever_Animation:(float)time
-{
-    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"opacity"];//必须写opacity才行
-    animation.fromValue = [NSNumber numberWithFloat:1.0f];
-    animation.toValue = [NSNumber numberWithFloat:0.0f];//这是透明度
-    animation.autoreverses = YES;
-    animation.duration = time;
-    animation.repeatCount = MAXFLOAT;
-    animation.removedOnCompletion = NO;
-    animation.fillMode = kCAFillModeForwards;
-    //没有的话是均匀的动画
-    animation.timingFunction=[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
-    return animation;
-}
-
-#pragma mark =====缩放-=============
--(CABasicAnimation *)scale:(NSNumber *)Multiple orgin:(NSNumber *)orginMultiple durTimes:(float)time Rep:(float)repertTimes
-{
-    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
-    animation.fromValue = Multiple;
-    animation.toValue = orginMultiple;
-    animation.autoreverses = YES;
-    animation.repeatCount = repertTimes;
-    animation.duration = time;//不设置时候的话，有一个默认的缩放时间.
-    animation.removedOnCompletion = NO;
-    animation.fillMode = kCAFillModeForwards;
-    return  animation;
-}
 
 /*
  #pragma mark - Navigation

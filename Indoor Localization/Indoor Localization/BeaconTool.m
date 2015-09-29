@@ -126,4 +126,42 @@
     return tempPoint;
 }
 
+/**
+ *  Be called every 5 senconds in onTicking method.
+ *  It is designed to sort the beacon array with RSSI value and get the top three beacons.
+ *
+ *  @return NSArray records threes beaonModel objects.
+ */
+- (NSArray *) getTopThreeBeacons: (NSArray *) beaconsStore
+{
+    NSArray *sortedBeacons = [[NSArray alloc]init];
+    NSMutableArray *tempBeacons = [NSMutableArray array];
+    
+    // 当beaconAvg数组中记录的数据大于3条时
+    // 只有当其中存储的beacon信息超过3个时才说明 beacon以及准备好来定位，如果不足三个，就返回not ready
+    NSLog(@"BeaconStore Info: %@",[beaconsStore description]);
+    
+    if([beaconsStore count] >= 3 )
+    {
+        // get beacons array with ascending rssi
+        // rssi按降序排列
+        NSSortDescriptor *sortDescriptor1=[[NSSortDescriptor alloc] initWithKey:@"rssi" ascending:NO];
+        // major按升序排列
+        NSSortDescriptor *sortDescriptor2=[[NSSortDescriptor alloc] initWithKey:@"minor" ascending:YES];
+        // 根据前两个条件对 beaconAvg数组里的元素进行排序
+        sortedBeacons = [beaconsStore sortedArrayUsingDescriptors:[NSArray arrayWithObjects:sortDescriptor1,sortDescriptor2, nil]];
+        // 取出RSSI最强烈的前三条用于定位
+        for (int i = 0; i < 3; i++)
+        {
+            BeaconModel *tempBeacon = [sortedBeacons objectAtIndex:i];
+            [tempBeacons addObject:tempBeacon];
+        }
+    }
+    else{
+        NSLog(@"The number of beacons for localization is less than 3!");
+    }
+    
+    return tempBeacons;
+}
+
 @end

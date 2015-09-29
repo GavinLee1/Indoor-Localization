@@ -14,4 +14,6 @@
 
 - (RealPoint *) computeRealTimePoint: (NSArray *) beaconModels;
 
+- (NSArray *) getTopThreeBeacons: (NSArray *) beaconsStore;
+
 @end
