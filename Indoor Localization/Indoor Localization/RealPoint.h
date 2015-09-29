@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <QuartzCore/QuartzCore.h>
+#import <UIKit/UIKit.h>
 
 @interface RealPoint : NSObject
 
@@ -14,5 +16,6 @@
 @property (assign, nonatomic) float originalY;
 
 - (instancetype) initWith: (float) x andY: (float) y;
+- (void) drawTrackPath: (UIView *) view withPoints: (NSArray *) trackedPoints;
 
 @end

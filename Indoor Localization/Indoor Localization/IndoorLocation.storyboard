@@ -69,8 +69,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="reset:" destination="JEi-CS-4fd" eventType="touchUpInside" id="x9V-mI-3rf"/>
-                                    <action selector="stop:" destination="JEi-CS-4fd" eventType="touchUpInside" id="6jK-dG-YpR"/>
+                                    <action selector="stop:" destination="JEi-CS-4fd" eventType="touchUpInside" id="LuE-DO-fR9"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="36H-ti-klE">
@@ -87,7 +86,7 @@
                                     <action selector="clear:" destination="JEi-CS-4fd" eventType="touchUpInside" id="vkh-Es-VPE"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Press Locate to start!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DCs-4R-zPf" userLabel="InfoLabel">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Press Locate to start!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DCs-4R-zPf" userLabel="InfoLabel">
                                 <rect key="frame" x="0.0" y="485" width="600" height="40"/>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="0.5" colorSpace="calibratedWhite"/>
                                 <constraints>

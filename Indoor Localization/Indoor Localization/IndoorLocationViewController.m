@@ -9,6 +9,7 @@
 #import "IndoorLocationViewController.h"
 #import <CoreLocation/CoreLocation.h>
 #import <CoreMotion/CoreMotion.h>
+#import <QuartzCore/QuartzCore.h>
 #import "BeaconModel.h"
 #import "RealPoint.h"
 #import "BeaconTool.h"
@@ -45,8 +46,8 @@
 
 - (IBAction)startLocate:(UIButton *)sender;
 - (IBAction)track:(UIButton *)sender;
-- (IBAction)stop:(UIButton *)sender;
 - (IBAction)clear:(UIButton *)sender;
+- (IBAction)stop:(UIButton *)sender;
 
 
 @end
@@ -147,13 +148,24 @@
 }
 
 - (IBAction)track:(UIButton *)sender {
-    
+    NSArray *trackedPoints = [RealPointDataBase trackedPoints];
+    [self.point drawTrackPath:self.view withPoints:trackedPoints];
 }
 
-- (IBAction)stop:(UIButton *)sender {
-    NSLog(@"%s", __func__);
-    NSLog(@"Scanning process stop!");
-    self.infoLabel.text = @"Stop scanning! Press Locate to restart!\n";
+
+
+- (IBAction)clear:(UIButton *)sender {
+    self.infoLabel.text = @"Cleared all data in database!\n";
+    // Remove "location" UIImageView
+    [self.location removeFromSuperview];
+    //[self.circleLayer removeFromSuperlayer];
+//    while (self.circleLayer) {
+//        [self.circleLayer removeFromSuperlayer];
+//        //[self.lineLayer removeFromSuperlayer];
+//    }
+    
+    // Delete all points in the dataBase
+    [RealPointDataBase removeAllPoints];
     // 停止时钟并重置
     [self.time invalidate];
     self.time = nil;
@@ -163,12 +175,10 @@
     [self.locationManager stopMonitoringForRegion:self.beaconRegion];
 }
 
-- (IBAction)clear:(UIButton *)sender {
-    self.infoLabel.text = @"Cleared all data in database!\n";
-    // Remove "location" UIImageView
-    [self.location removeFromSuperview];
-    // Delete all points in the dataBase
-    [RealPointDataBase removeAllPoints];
+- (IBAction)stop:(UIButton *)sender {
+    NSLog(@"%s", __func__);
+    NSLog(@"Scanning process stop!");
+    self.infoLabel.text = @"Stop scanning! Press Locate to restart!\n";
     // 停止时钟并重置
     [self.time invalidate];
     self.time = nil;
@@ -479,6 +489,7 @@
     animation.fillMode = kCAFillModeForwards;
     return  animation;
 }
+
 /*
  #pragma mark - Navigation
  

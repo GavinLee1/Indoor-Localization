@@ -16,5 +16,6 @@
 + (RealPoint *) getTheMostUpdatedPoint;
 + (void)addPoint:(RealPoint *)point;
 + (void)removeAllPoints;
++ (NSArray *) trackedPoints;
 
 @end

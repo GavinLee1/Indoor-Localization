@@ -59,7 +59,8 @@ static FMDatabase *_db;
         steps = 1;
     }
     // Get a point for every "steps" points.
-    FMResultSet *set = [_db executeQuery:@"SELECT * FROM t_point WHERE id - (id / %d) * %d = 0;",steps,steps];
+    FMResultSet *set = [_db executeQueryWithFormat:@"SELECT * FROM t_point WHERE id - (id / %d) * %d = 0;",steps,steps];
+    //FMResultSet *set = [_db executeQuery:@"SELECT * FROM t_point WHERE id - (id / 3) * 3 = 0;"];
     while (set.next) {
         RealPoint *point = [[RealPoint alloc] init];
         point.originalX = [set doubleForColumn:@"xValue"];
