@@ -411,6 +411,15 @@
     // self.infoLabel.text = @"Enter region";
 }
 
+# pragma mark -Heading
+// Just monitor the heading of the iPhone to the north, not with beacons
+- (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading
+{
+    CGFloat angle = newHeading.magneticHeading * M_PI / 180;
+    self.location.transform = CGAffineTransformIdentity;
+    self.location.transform = CGAffineTransformMakeRotation( -angle);
+}
+
 #pragma mark === 永久闪烁的动画 ======
 -(CABasicAnimation *)opacityForever_Animation:(float)time
 {
