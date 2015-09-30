@@ -101,8 +101,8 @@
             CAShapeLayer *shapeLayer = [CAShapeLayer layer];
             
             shapeLayer.path = [[self makeCircleAtLocation:location radius:5+size*2] CGPath];
-            shapeLayer.strokeColor = [[UIColor redColor] CGColor];
-            shapeLayer.fillColor = [[UIColor redColor] CGColor];
+            shapeLayer.strokeColor = [[UIColor orangeColor] CGColor];
+            shapeLayer.fillColor = [[UIColor orangeColor] CGColor];
             shapeLayer.lineWidth = 3.0;
             
             [view.layer addSublayer:shapeLayer];
@@ -132,8 +132,8 @@
             // 在新的位置处画一个圆
             CAShapeLayer *shapeLayer = [CAShapeLayer layer];
             shapeLayer.path = [[self makeCircleAtLocation:location radius:5+size*2] CGPath];
-            shapeLayer.strokeColor=[[UIColor blueColor]CGColor];// 圆是蓝色的
-            shapeLayer.fillColor=[[UIColor blueColor]CGColor];
+            shapeLayer.strokeColor=[[UIColor grayColor]CGColor];// 圆是蓝色的
+            shapeLayer.fillColor=[[UIColor grayColor]CGColor];
             shapeLayer.lineWidth=3.0;
             [view.layer addSublayer:shapeLayer];
             // 往前移一个点

@@ -137,8 +137,6 @@
     [self.point drawTrackPath:self.view withPoints:trackedPoints];
 }
 
-
-
 - (IBAction)clear:(UIButton *)sender {
     self.infoLabel.text = @"Cleared all data in database!\n";
     // Remove "location" UIImageView
