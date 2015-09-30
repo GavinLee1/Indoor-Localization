@@ -35,6 +35,7 @@
 
 // Use to show operating information on the view
 @property (weak, nonatomic) IBOutlet UILabel *infoLabel;
+@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *locatedButtons;
 
 // Testing point
 @property (strong, nonatomic) RealPoint *point;
@@ -108,6 +109,11 @@
     // Do any additional setup after loading the view.
     // Set locationManager delegate
     self.locationManager.delegate=self;
+    // Add animations for each located beacons button
+    for (int i =0 ; i < [self.locatedButtons count]; i++) {
+        UIButton *tempButton = [self.locatedButtons objectAtIndex:i];
+        [tempButton.layer addAnimation:[self.point scale:[NSNumber numberWithFloat:1.0f] orgin:[NSNumber numberWithFloat:1.5f] durTimes:0.5f Rep:MAXFLOAT] forKey:nil];
+    }
 }
 
 #pragma mark -Functional Buttons

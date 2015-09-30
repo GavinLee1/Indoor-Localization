@@ -103,7 +103,7 @@
                                     <constraint firstAttribute="width" constant="30" id="yf1-9F-BgW"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="black" pointSize="15"/>
-                                <state key="normal" title="1" backgroundImage="station">
+                                <state key="normal" title="0" backgroundImage="station">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                             </button>
@@ -114,7 +114,7 @@
                                     <constraint firstAttribute="height" constant="30" id="NYd-0y-vve"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="black" pointSize="15"/>
-                                <state key="normal" title="3" backgroundImage="station">
+                                <state key="normal" title="2" backgroundImage="station">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                             </button>
@@ -125,7 +125,7 @@
                                     <constraint firstAttribute="height" constant="30" id="wcj-u8-xLg"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="black" pointSize="15"/>
-                                <state key="normal" title="4" backgroundImage="station">
+                                <state key="normal" title="3" backgroundImage="station">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                             </button>
@@ -136,7 +136,7 @@
                                     <constraint firstAttribute="width" constant="30" id="kHt-Y4-LMh"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="black" pointSize="15"/>
-                                <state key="normal" title="2" backgroundImage="station">
+                                <state key="normal" title="1" backgroundImage="station">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                             </button>
@@ -189,6 +189,10 @@
                     </view>
                     <connections>
                         <outlet property="infoLabel" destination="DCs-4R-zPf" id="CdO-IO-xsE"/>
+                        <outletCollection property="locatedButtons" destination="jOj-zp-VUL" id="2FO-iD-pT7"/>
+                        <outletCollection property="locatedButtons" destination="rNM-c5-7xQ" id="sCX-bx-hQ6"/>
+                        <outletCollection property="locatedButtons" destination="TOf-ZI-jvP" id="zdu-ST-hbM"/>
+                        <outletCollection property="locatedButtons" destination="slc-db-15P" id="g21-4m-5gU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vp1-ka-GgQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
