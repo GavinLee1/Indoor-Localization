@@ -72,7 +72,7 @@
 //#define grid 40
 //#define origin_x 0
 //#define origin_y 80
-    int trackedPointsNum = [trackedPoints count];
+    int trackedPointsNum = (int)[trackedPoints count];
     
     CGPoint oldlocation;
     
