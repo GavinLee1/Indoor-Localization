@@ -210,6 +210,7 @@
     // 每五秒操作一次，执行完这个操作之后就再次进行监听
     [self.locationManager startUpdatingLocation];
 }
+
 # pragma mark -Compass
 // Just monitor the heading of the iPhone to the north, not with beacons
 - (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading

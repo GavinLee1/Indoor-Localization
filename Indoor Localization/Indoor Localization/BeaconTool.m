@@ -18,18 +18,26 @@
 - (NSMutableArray *) initializeLocatedBeaconPoints
 {
     NSMutableArray *locatedBeaconPoints = [NSMutableArray array];
-    RealPoint *point0 = [[RealPoint alloc] initWith:0.5 andY:0.8];
+//    RealPoint *point0 = [[RealPoint alloc] initWith:0.5 andY:0.8];
+//    [locatedBeaconPoints addObject:point0];
+//    RealPoint *point1 = [[RealPoint alloc] initWith:5.5 andY:0.8];
+//    [locatedBeaconPoints addObject:point1];
+//    RealPoint *point2 = [[RealPoint alloc] initWith:8.5 andY:0.5];
+//    [locatedBeaconPoints addObject:point2];
+//    RealPoint *point3 = [[RealPoint alloc] initWith:0.5 andY:3.8];
+//    [locatedBeaconPoints addObject:point3];
+//    RealPoint *point4 = [[RealPoint alloc] initWith:5.5 andY:3.8];
+//    [locatedBeaconPoints addObject:point4];
+//    RealPoint *point5 = [[RealPoint alloc] initWith:9 andY:4.5];
+//    [locatedBeaconPoints addObject:point5];
+    RealPoint *point0 = [[RealPoint alloc] initWith:0.36 andY:0.36];
     [locatedBeaconPoints addObject:point0];
-    RealPoint *point1 = [[RealPoint alloc] initWith:5.5 andY:0.8];
+    RealPoint *point1 = [[RealPoint alloc] initWith:3.40 andY:0.36];
     [locatedBeaconPoints addObject:point1];
-    RealPoint *point2 = [[RealPoint alloc] initWith:8.5 andY:0.5];
+    RealPoint *point2 = [[RealPoint alloc] initWith:0.36 andY:4.60];
     [locatedBeaconPoints addObject:point2];
-    RealPoint *point3 = [[RealPoint alloc] initWith:0.5 andY:3.8];
+    RealPoint *point3 = [[RealPoint alloc] initWith:3.40 andY:4.60];
     [locatedBeaconPoints addObject:point3];
-    RealPoint *point4 = [[RealPoint alloc] initWith:5.5 andY:3.8];
-    [locatedBeaconPoints addObject:point4];
-    RealPoint *point5 = [[RealPoint alloc] initWith:9 andY:4.5];
-    [locatedBeaconPoints addObject:point5];
     
     return locatedBeaconPoints;
 }
@@ -48,10 +56,6 @@
     if ([beaconModels count] < 3) {
         return [[RealPoint alloc] initWith:-1000 andY:-1000];
     }
-    // RSSI for one meter from the beacon
-#define A 70
-    // The signal propagation constant in a specific environment
-#define N 1.66
     // Record the output x value (in meter) afther calculating
     float xValue;
     // Record the output y value (in meter) afther calculating
@@ -75,20 +79,30 @@
         // Add it into the array, one by one
         [selectedThreeBeacons addObject:tempLocatedBeaconPoint];
         
-        /********** Applying LDPL **********/
-        // Calculate and get the distance from user to the current beacon
-        float tempDistance = (0 - A - tempRSSI) / 10 / N;
-        // temDistance 的10次方就是distance
-        float distance = pow(10, tempDistance);
-        if (distance > 1.0) {
-            distance = distance * distance - 1;
-            distance = sqrt(distance);
-        }
-        distance = round(distance);
+        /******************** Applying LDPL ********************/
+//        // Calculate and get the distance from user to the current beacon
+//        float tempDistance = (0 - A - tempRSSI) / 10 / N;
+//        // temDistance 的10次方就是distance
+//        float distance = pow(10, tempDistance);
+//        if (distance > 1.0) {
+//            distance = distance * distance - 1;
+//            distance = sqrt(distance);
+//        }
+//        // distance = round(distance);
+//        
+//        NSLog(@"The Distance: %f",distance);
+        /*****************************************************/
+        float distance = [self computeDistance:tempRSSI];
         // Add each distance value into the array
         [distances addObject:@(distance)];
         computeTag++;
     }
+    //**********************************************Logging**********************************************//
+    for (int i = 0; i < [selectedThreeBeacons count]; i++) {
+        RealPoint *temp = [selectedThreeBeacons objectAtIndex:i];
+        NSLog(@"Selected beacons: Beacon%d ( %f, %f )",i,temp.originalX,temp.originalY);
+    }
+    //***************************************************************************************************//
     
     /**********  Applying Linear Least Square Algorithm  **********/
     /**************************************************************/
@@ -122,8 +136,32 @@
     /**************************************************************/
     
     RealPoint *tempPoint = [[RealPoint alloc] initWith:xValue andY:yValue];
+   
+    NSLog(@"The original calculated point: ( %f, %f )",tempPoint.originalX,tempPoint.originalY);
     
     return tempPoint;
+}
+
+- (float) computeDistance: (float) rssi
+{
+    // RSSI for one meter from the beacon
+#define A 70
+    // The signal propagation constant in a specific environment
+#define N 1.66
+    /******************** Applying LDPL ********************/
+    // Calculate and get the distance from user to the current beacon
+    float tempDistance = (0 - A - rssi) / 10 / N;
+    // temDistance 的10次方就是distance
+    float distance = pow(10, tempDistance);
+    if (distance > 1.0) {
+        distance = distance * distance - 1;
+        distance = sqrt(distance);
+    }
+    // distance = round(distance);
+    
+    NSLog(@"The Distance: %f",distance);
+    /*****************************************************/
+    return distance;
 }
 
 /**
@@ -139,7 +177,15 @@
     
     // 当beaconAvg数组中记录的数据大于3条时
     // 只有当其中存储的beacon信息超过3个时才说明 beacon以及准备好来定位，如果不足三个，就返回not ready
-    NSLog(@"BeaconStore Info: %@",[beaconsStore description]);
+    
+    // NSLog(@"BeaconStore Info: %@",[beaconsStore description]);
+    //**********************************************Logging**********************************************//
+    for (int i = 0; i < [beaconsStore count]; i++) {
+        BeaconModel *temp = [[BeaconModel alloc]init];
+        temp = [beaconsStore objectAtIndex:i];
+        NSLog(@"*Origin Beacon (Major %ld, Minor %ld, RSSI %ld)",temp.major,temp.minor,temp.rssi);
+    }
+    //***************************************************************************************************//
     
     if([beaconsStore count] >= 3 )
     {

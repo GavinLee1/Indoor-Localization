@@ -25,20 +25,18 @@ static FMDatabase *_db;
 
 + (NSArray *) points
 {
-    {
-        // 得到结果集
-        FMResultSet *set = [_db executeQuery:@"SELECT * FROM t_point;"];
-        // 不断往下取数据
-        NSMutableArray *points = [NSMutableArray array];
-        while (set.next) {
-            // 获得当前所指向的数据
-            RealPoint *point = [[RealPoint alloc] init];
-            point.originalX = [set doubleForColumn:@"xValue"];
-            point.originalY = [set doubleForColumn:@"yValue"];
-            [points addObject:point];
-        }
-        return points;
+    // 得到结果集
+    FMResultSet *set = [_db executeQuery:@"SELECT * FROM t_point;"];
+    // 不断往下取数据
+    NSMutableArray *points = [NSMutableArray array];
+    while (set.next) {
+        // 获得当前所指向的数据
+        RealPoint *point = [[RealPoint alloc] init];
+        point.originalX = [set doubleForColumn:@"xValue"];
+        point.originalY = [set doubleForColumn:@"yValue"];
+        [points addObject:point];
     }
+    return points;
 }
 
 /**

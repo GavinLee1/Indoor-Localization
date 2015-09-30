@@ -33,24 +33,31 @@
 {
     // The left up point of the map in the view.
 #define origin_x 0
-#define origin_y 80
+#define origin_y 60
     // 50 pixels for one meter
     // 50 像素代表一米
-#define grid 40
+#define grid 110
+    
     // UILabel *location = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 15, 20)];
     // UIImageView *location = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 20, 10)];
     // location.image = [UIImage imageNamed:@"current_location"];
     
-    CGRect transferFrame = imageView.frame;
+    // CGRect transferFrame = imageView.frame;
+    CGPoint movingCenter = imageView.center;
     
-    NSLog(@"Recevied Point Value is:%@",point);
-    transferFrame.origin.x = point.originalX * grid + origin_x;
-    transferFrame.origin.y = point.originalY * grid + origin_y;
-    NSLog(@"Location Point Coordinate is: ( %f, %f )",transferFrame.origin.x,transferFrame.origin.y);
+    NSLog(@"Recevied Point Value is: ( %f, %f )",point.originalX, point.originalY);
+    
+    // transferFrame.origin.x = point.originalX * grid + origin_x;
+    // transferFrame.origin.y = point.originalY * grid + origin_y;
+    movingCenter.x = point.originalX * grid + origin_x;
+    movingCenter.y = point.originalY * grid + origin_y;
+    NSLog(@"Location Point Coordinate is : (%f, %f)",movingCenter.x,movingCenter.y);
+    //NSLog(@"Location Point Coordinate is: ( %f, %f )",transferFrame.origin.x,transferFrame.origin.y);
     
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:4.0];
-    imageView.frame = transferFrame;
+    //imageView.frame = transferFrame;
+    imageView.center = movingCenter;
     [UIView commitAnimations];
     
     // Add animation to make the current point twinkling.
@@ -80,7 +87,9 @@
     oldlocation.y = 0;
     
     int size=0;
-    float quan = grid;
+    
+    //float quan = grid;
+    
     Boolean moved = true;
     
     for(int i=0; i < trackedPointsNum; i++){
@@ -97,9 +106,9 @@
         {
             oldlocation.x = location.x;
             oldlocation.y = location.y;
+            
             // CAShapeLayer画线或者圆的对象
             CAShapeLayer *shapeLayer = [CAShapeLayer layer];
-            
             shapeLayer.path = [[self makeCircleAtLocation:location radius:5+size*2] CGPath];
             shapeLayer.strokeColor = [[UIColor orangeColor] CGColor];
             shapeLayer.fillColor = [[UIColor orangeColor] CGColor];
@@ -109,17 +118,18 @@
         }
         
         // 如果移动不足 50 像素 <即 1 米>  则不用画出来
-        if (fabs((location.x-oldlocation.x)) < quan && fabs((location.y-oldlocation.y)) < quan)
-        {
-            size = size+1;
-            moved = false;
-        }
-        else
-        {   //size=0;
-            moved=true;
-        }
+//        if (fabs((location.x-oldlocation.x)) < quan && fabs((location.y-oldlocation.y)) < quan)
+//        {
+//            size = size+1;
+//            moved = false;
+//        }
+//        else
+//        {   //size=0;
+//            moved=true;
+//        }
         
-        if(moved==true  && oldlocation.x!=0 && oldlocation.y!=0)
+        
+        if(moved==true  && oldlocation.x != 0 && oldlocation.y != 0)
         {
             // 从以前的点 往 现在的点 画一条线
             CAShapeLayer *shapeLayer2=[CAShapeLayer layer];
