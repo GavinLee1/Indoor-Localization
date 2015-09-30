@@ -22,6 +22,7 @@
     return self;
 }
 
+#pragma mark -Move to current location
 /**
  *  Be called every 5 senconds in onTicking method.
  *  Designed to move current location UIImageView with calculated location point.
@@ -73,7 +74,6 @@
 //#define origin_y 80
     int trackedPointsNum = [trackedPoints count];
     
-    //int number;
     CGPoint oldlocation;
     
     oldlocation.x = 0;
@@ -146,7 +146,7 @@
     }
 }
 
-// 以传入的点和半径 画一个圆，55行和88行 调用两次
+// 以传入的点和半径 画一个圆
 -(UIBezierPath *) makeCircleAtLocation:(CGPoint)location radius:(CGFloat) radius
 {
     UIBezierPath *path = [UIBezierPath bezierPath];
@@ -155,7 +155,7 @@
     return path;
 }
 
-// 从开始的点到结束的点，画一条线，在第80行调用一次
+// 从开始的点到结束的点，画一条线
 -(UIBezierPath *)trackLine:(CGPoint)startPoint endPoint:(CGPoint) endPoint
 {
     UIBezierPath *path=[UIBezierPath bezierPath];
@@ -165,6 +165,13 @@
     return path;
 }
 
+/**
+ *  Animation for twinkling all the way
+ *
+ *  @param Time for completing each twinkling cycle
+ *
+ *  @return CABasicAnimation An basic CABasicAnimation object
+ */
 #pragma mark === 永久闪烁的动画 ======
 -(CABasicAnimation *)opacityForever_Animation:(float)time
 {
@@ -181,6 +188,16 @@
     return animation;
 }
 
+/**
+ *  Animation for scaling UI object
+ *
+ *  @param Multiple is the initil size of the UI object
+ *         orginMultiple is the desired biggest size scales to
+ *         time for completing each twinkling cycle
+ *         repertTimes is the repear times
+ *
+ *  @return CABasicAnimation An basic CABasicAnimation object
+ */
 #pragma mark =====缩放-=============
 -(CABasicAnimation *)scale:(NSNumber *)Multiple orgin:(NSNumber *)orginMultiple durTimes:(float)time Rep:(float)repertTimes
 {

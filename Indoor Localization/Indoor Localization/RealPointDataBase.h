@@ -16,6 +16,13 @@
 + (RealPoint *) getTheMostUpdatedPoint;
 + (void)addPoint:(RealPoint *)point;
 + (void)removeAllPoints;
+
+/**
+ *  Since as design, this system only need 10 points to draw the track line.
+ *  Therefore, this function is design to get reasonable 10 points from the database.
+ *
+ *  @return a NSArray contains point objects.
+ */
 + (NSArray *) trackedPoints;
 
 @end
