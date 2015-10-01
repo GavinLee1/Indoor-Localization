@@ -84,6 +84,7 @@
         NSLog(@"Current system is upper than ios 8.0");
         [self.locationManager requestAlwaysAuthorization];
     }
+    
     [self.locationManager startUpdatingHeading];
 }
 

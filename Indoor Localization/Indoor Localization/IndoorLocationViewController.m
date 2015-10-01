@@ -72,7 +72,10 @@
     if (!_beaconRegion) {
         NSUUID *beaconUUID =[[NSUUID alloc]initWithUUIDString:UUID];
         NSString *beaconIdentifier = BeaconRegionIdentifier;
-        _beaconRegion = [[CLBeaconRegion alloc]initWithProximityUUID:beaconUUID identifier:beaconIdentifier];
+        _beaconRegion = [[CLBeaconRegion alloc]initWithProximityUUID:beaconUUID
+                                                          identifier:beaconIdentifier];
+        _beaconRegion.notifyOnEntry = YES;
+        _beaconRegion.notifyOnExit = YES;
     }
     return _beaconRegion;
 }
@@ -112,7 +115,11 @@
     // Add animations for each located beacons button
     for (int i =0 ; i < [self.locatedButtons count]; i++) {
         UIButton *tempButton = [self.locatedButtons objectAtIndex:i];
-        [tempButton.layer addAnimation:[self.point scale:[NSNumber numberWithFloat:1.0f] orgin:[NSNumber numberWithFloat:1.5f] durTimes:0.5f Rep:MAXFLOAT] forKey:nil];
+        [tempButton.layer addAnimation:[self.point scale:[NSNumber numberWithFloat:1.0f]
+                                                   orgin:[NSNumber numberWithFloat:1.5f]
+                                                durTimes:0.5f
+                                                     Rep:MAXFLOAT]
+                                forKey:nil];
     }
     
     // Start to monitor the heading of the iphone, not the same monitor as beacons
@@ -140,23 +147,25 @@
     self.newCycleTag = 1;
     
     // 每隔 5 秒调用一次 onTick 方法
-    self.time = [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(onTicking:) userInfo:nil repeats:YES];
+    self.time = [NSTimer scheduledTimerWithTimeInterval:1.0
+                                                 target:self
+                                               selector:@selector(onTicking:)
+                                               userInfo:nil
+                                                repeats:YES];
 }
 
 - (IBAction)track:(UIButton *)sender {
     NSLog(@"%s",__func__);
     //NSArray *trackedPoints = [RealPointDataBase trackedPoints];
     NSArray *trackedPoints = [RealPointDataBase points];
-    [self.point drawTrackPath:self.view withPoints:trackedPoints];
+    [self.point drawTrackPath:self.view
+                   withPoints:trackedPoints];
     
-    //**********************************************Testing**********************************************//
-    NSArray *points = [[NSArray alloc] init];
-    points = [RealPointDataBase trackedPoints];
-    for (RealPoint *point in points) {
+    //**********************************************Logging**********************************************//
+    for (RealPoint *point in trackedPoints) {
         NSLog(@"Tracked point in meter: ( %f, %f )",point.originalX,point.originalY);
     }
     //***************************************************************************************************//
-    
 }
 
 - (IBAction)clear:(UIButton *)sender {
@@ -245,7 +254,9 @@
     NSLog(@"The current location in meter: ( %f, %f )",currentLocationPoint.originalX, currentLocationPoint.originalY);
     //***************************************************************************************************//
     
-    [self.point moveCurrentLocation:currentLocationPoint onView:self.view andImageView:self.location];
+    [self.point moveCurrentLocation:currentLocationPoint
+                             onView:self.view
+                       andImageView:self.location];
     
     //**********************************************Testing**********************************************//
 //    [self.point moveCurrentLocation:self.point onView:self.view andImageView:self.location];
@@ -426,11 +437,23 @@
     // self.infoLabel.text = [NSString stringWithFormat:@"Fail with %@\n",error];
 }
 
+// Beacon Manager did enter the region
 -(void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region{
     NSLog(@"Enter region");
     [self.locationManager startRangingBeaconsInRegion:self.beaconRegion];
     [self.locationManager startUpdatingLocation];
     // self.infoLabel.text = @"Enter region";
+    UILocalNotification *notification = [[UILocalNotification alloc] init];
+    notification.alertBody = @"You enterned the region.";
+    [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
+}
+
+// Beacon Manager did exit the region
+- (void) locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region
+{
+    UILocalNotification *notification = [[UILocalNotification alloc] init];
+    notification.alertBody = @"You exited the region.";
+    [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
 }
 
 /*
