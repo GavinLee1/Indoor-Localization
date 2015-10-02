@@ -17,7 +17,7 @@
 		86997B4F1BB58F8A006FE3DA /* IndoorLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86997B4E1BB58F8A006FE3DA /* IndoorLocationViewController.m */; settings = {ASSET_TAGS = (); }; };
 		86997B511BB58FA8006FE3DA /* IndoorLocation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86997B501BB58FA8006FE3DA /* IndoorLocation.storyboard */; settings = {ASSET_TAGS = (); }; };
 		86997B531BB597B5006FE3DA /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86997B521BB597B5006FE3DA /* Profile.storyboard */; settings = {ASSET_TAGS = (); }; };
-		86997B561BB597DB006FE3DA /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86997B551BB597DB006FE3DA /* ProfileViewController.m */; settings = {ASSET_TAGS = (); }; };
+		86997B561BB597DB006FE3DA /* ProfileTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86997B551BB597DB006FE3DA /* ProfileTableViewController.m */; settings = {ASSET_TAGS = (); }; };
 		86997B591BB597FC006FE3DA /* ScanBeaconViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86997B581BB597FC006FE3DA /* ScanBeaconViewController.m */; settings = {ASSET_TAGS = (); }; };
 		86997B5B1BB59812006FE3DA /* ScanBeacon.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86997B5A1BB59812006FE3DA /* ScanBeacon.storyboard */; settings = {ASSET_TAGS = (); }; };
 		86997B5D1BB59831006FE3DA /* MapLocation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86997B5C1BB59831006FE3DA /* MapLocation.storyboard */; settings = {ASSET_TAGS = (); }; };
@@ -25,6 +25,8 @@
 		86997B621BB5995B006FE3DA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86997B611BB5995B006FE3DA /* MapKit.framework */; };
 		86C52C111BBA7901005C8C9D /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 86C52C101BBA7901005C8C9D /* libsqlite3.tbd */; };
 		86C52C131BBA790C005C8C9D /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 86C52C121BBA790C005C8C9D /* libsqlite3.0.tbd */; };
+		86C78F141BBEA69A00DF1A6E /* ProfileTableHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86C78F131BBEA69A00DF1A6E /* ProfileTableHeadView.xib */; settings = {ASSET_TAGS = (); }; };
+		86C78F171BBEA6B800DF1A6E /* ProfileTableHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C78F161BBEA6B800DF1A6E /* ProfileTableHeadView.m */; settings = {ASSET_TAGS = (); }; };
 		86EEDB5F1BB92AAA007558BC /* BeaconTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 86EEDB5E1BB92AAA007558BC /* BeaconTool.m */; settings = {ASSET_TAGS = (); }; };
 		86EEDB621BB92B29007558BC /* RealPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 86EEDB611BB92B29007558BC /* RealPoint.m */; settings = {ASSET_TAGS = (); }; };
 		86EEDB6F1BB97556007558BC /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 86EEDB651BB97556007558BC /* FMDatabase.m */; settings = {ASSET_TAGS = (); }; };
@@ -64,8 +66,8 @@
 		86997B4E1BB58F8A006FE3DA /* IndoorLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndoorLocationViewController.m; sourceTree = "<group>"; };
 		86997B501BB58FA8006FE3DA /* IndoorLocation.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = IndoorLocation.storyboard; sourceTree = "<group>"; };
 		86997B521BB597B5006FE3DA /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
-		86997B541BB597DB006FE3DA /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
-		86997B551BB597DB006FE3DA /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		86997B541BB597DB006FE3DA /* ProfileTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileTableViewController.h; sourceTree = "<group>"; };
+		86997B551BB597DB006FE3DA /* ProfileTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileTableViewController.m; sourceTree = "<group>"; };
 		86997B571BB597FC006FE3DA /* ScanBeaconViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScanBeaconViewController.h; sourceTree = "<group>"; };
 		86997B581BB597FC006FE3DA /* ScanBeaconViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScanBeaconViewController.m; sourceTree = "<group>"; };
 		86997B5A1BB59812006FE3DA /* ScanBeacon.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ScanBeacon.storyboard; sourceTree = "<group>"; };
@@ -75,6 +77,9 @@
 		86997B611BB5995B006FE3DA /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		86C52C101BBA7901005C8C9D /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		86C52C121BBA790C005C8C9D /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		86C78F131BBEA69A00DF1A6E /* ProfileTableHeadView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileTableHeadView.xib; sourceTree = "<group>"; };
+		86C78F151BBEA6B800DF1A6E /* ProfileTableHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileTableHeadView.h; sourceTree = "<group>"; };
+		86C78F161BBEA6B800DF1A6E /* ProfileTableHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileTableHeadView.m; sourceTree = "<group>"; };
 		86EEDB5D1BB92AAA007558BC /* BeaconTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeaconTool.h; sourceTree = "<group>"; };
 		86EEDB5E1BB92AAA007558BC /* BeaconTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeaconTool.m; sourceTree = "<group>"; };
 		86EEDB601BB92B29007558BC /* RealPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RealPoint.h; sourceTree = "<group>"; };
@@ -223,8 +228,11 @@
 			isa = PBXGroup;
 			children = (
 				86997B521BB597B5006FE3DA /* Profile.storyboard */,
-				86997B541BB597DB006FE3DA /* ProfileViewController.h */,
-				86997B551BB597DB006FE3DA /* ProfileViewController.m */,
+				86997B541BB597DB006FE3DA /* ProfileTableViewController.h */,
+				86997B551BB597DB006FE3DA /* ProfileTableViewController.m */,
+				86C78F131BBEA69A00DF1A6E /* ProfileTableHeadView.xib */,
+				86C78F151BBEA6B800DF1A6E /* ProfileTableHeadView.h */,
+				86C78F161BBEA6B800DF1A6E /* ProfileTableHeadView.m */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -352,6 +360,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				86997B511BB58FA8006FE3DA /* IndoorLocation.storyboard in Resources */,
+				86C78F141BBEA69A00DF1A6E /* ProfileTableHeadView.xib in Resources */,
 				86997B5D1BB59831006FE3DA /* MapLocation.storyboard in Resources */,
 				86997B531BB597B5006FE3DA /* Profile.storyboard in Resources */,
 				86235F531BA94E3500A8517C /* LaunchScreen.xib in Resources */,
@@ -374,6 +383,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86C78F171BBEA6B800DF1A6E /* ProfileTableHeadView.m in Sources */,
 				86997B4F1BB58F8A006FE3DA /* IndoorLocationViewController.m in Sources */,
 				86EEDB761BB97602007558BC /* RealPointDataBase.m in Sources */,
 				86359DB41BB8E6720017A0E9 /* BeaconModel.m in Sources */,
@@ -388,7 +398,7 @@
 				86235F481BA94E3500A8517C /* AppDelegate.m in Sources */,
 				86235F451BA94E3500A8517C /* main.m in Sources */,
 				86EEDB6F1BB97556007558BC /* FMDatabase.m in Sources */,
-				86997B561BB597DB006FE3DA /* ProfileViewController.m in Sources */,
+				86997B561BB597DB006FE3DA /* ProfileTableViewController.m in Sources */,
 				86EEDB701BB97556007558BC /* FMDatabaseAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -508,8 +518,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks",
+				);
 				INFOPLIST_FILE = "Indoor Localization/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.lgz.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -519,8 +534,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks",
+				);
 				INFOPLIST_FILE = "Indoor Localization/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.lgz.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

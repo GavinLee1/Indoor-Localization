@@ -1,27 +1,47 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="CfK-u5-VkY">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="QDs-EW-Muo">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <scenes>
-        <!--Profile View Controller-->
-        <scene sceneID="BKq-NJ-Dky">
+        <!--Beacons Detailed Information-->
+        <scene sceneID="lbx-5z-LtH">
             <objects>
-                <viewController id="CfK-u5-VkY" customClass="ProfileViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="fjC-ky-DCl"/>
-                        <viewControllerLayoutGuide type="bottom" id="KCu-LW-SIx"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="A1B-K8-m8u">
+                <tableViewController id="Tz9-6C-gbI" userLabel="Beacons Detailed Information" customClass="ProfileTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Pl4-Nm-hIE" userLabel="Beacons Detailed Information">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jOo-iG-yTb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <connections>
+                            <outlet property="dataSource" destination="Tz9-6C-gbI" id="obC-6k-BEQ"/>
+                            <outlet property="delegate" destination="Tz9-6C-gbI" id="7Dq-wf-YlH"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Beacons Detailed Information" id="hmq-vq-LsR"/>
+                    <connections>
+                        <outlet property="tableView" destination="Pl4-Nm-hIE" id="kHg-2f-w17"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mJi-CN-TWh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="103" y="81"/>
+            <point key="canvasLocation" x="516" y="193"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Dfz-oc-WEe">
+            <objects>
+                <navigationController id="QDs-EW-Muo" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="wBU-Hy-4Md">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Tz9-6C-gbI" kind="relationship" relationship="rootViewController" id="sTJ-0g-KyU"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Mk7-b2-bep" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-304" y="193"/>
         </scene>
     </scenes>
 </document>

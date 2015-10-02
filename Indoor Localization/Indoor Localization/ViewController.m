@@ -24,7 +24,6 @@
     [self addChildVc:@"ScanBeacon" title:@"BeData" image:@"tabbar_data" selectedImage:@"tabbar_data_selected"];
     [self addChildVc:@"IndoorLocation" title:@"Indoor" image:@"tabbar_indoor" selectedImage:@"tabbar_indoor_selected"];
     [self addChildVc:@"Profile" title:@"Profile" image:@"tabbar_profile" selectedImage:@"tabbar_profile_selected"];
-
 }
 
 /**
