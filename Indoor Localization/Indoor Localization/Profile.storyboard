@@ -20,7 +20,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Beacons Detailed Information" id="hmq-vq-LsR"/>
                     <connections>
-                        <outlet property="tableView" destination="Pl4-Nm-hIE" id="kHg-2f-w17"/>
+                        <outlet property="tableView" destination="Pl4-Nm-hIE" id="U7i-Cc-ZnG"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mJi-CN-TWh" userLabel="First Responder" sceneMemberID="firstResponder"/>

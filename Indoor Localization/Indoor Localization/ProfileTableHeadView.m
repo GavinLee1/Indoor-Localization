@@ -156,7 +156,6 @@
     }];
     // 分页初始页数为0
     self.pageController.currentPage = 0;
-    
     // 启动时钟
     [self startTimer];
 }

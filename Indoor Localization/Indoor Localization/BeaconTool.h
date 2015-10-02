@@ -31,4 +31,6 @@
  */
 - (NSArray *) getTopThreeBeacons: (NSArray *) beaconsStore;
 
+- (float) computeDistance: (float) rssi;
+
 @end

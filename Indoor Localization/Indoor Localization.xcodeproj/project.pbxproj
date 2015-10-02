@@ -27,6 +27,8 @@
 		86C52C131BBA790C005C8C9D /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 86C52C121BBA790C005C8C9D /* libsqlite3.0.tbd */; };
 		86C78F141BBEA69A00DF1A6E /* ProfileTableHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86C78F131BBEA69A00DF1A6E /* ProfileTableHeadView.xib */; settings = {ASSET_TAGS = (); }; };
 		86C78F171BBEA6B800DF1A6E /* ProfileTableHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C78F161BBEA6B800DF1A6E /* ProfileTableHeadView.m */; settings = {ASSET_TAGS = (); }; };
+		86C78F191BBEB8CE00DF1A6E /* BeaconInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86C78F181BBEB8CE00DF1A6E /* BeaconInfoCell.xib */; settings = {ASSET_TAGS = (); }; };
+		86C78F1C1BBEC12700DF1A6E /* BeaconInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C78F1B1BBEC12700DF1A6E /* BeaconInfoCell.m */; settings = {ASSET_TAGS = (); }; };
 		86EEDB5F1BB92AAA007558BC /* BeaconTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 86EEDB5E1BB92AAA007558BC /* BeaconTool.m */; settings = {ASSET_TAGS = (); }; };
 		86EEDB621BB92B29007558BC /* RealPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 86EEDB611BB92B29007558BC /* RealPoint.m */; settings = {ASSET_TAGS = (); }; };
 		86EEDB6F1BB97556007558BC /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 86EEDB651BB97556007558BC /* FMDatabase.m */; settings = {ASSET_TAGS = (); }; };
@@ -80,6 +82,9 @@
 		86C78F131BBEA69A00DF1A6E /* ProfileTableHeadView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileTableHeadView.xib; sourceTree = "<group>"; };
 		86C78F151BBEA6B800DF1A6E /* ProfileTableHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileTableHeadView.h; sourceTree = "<group>"; };
 		86C78F161BBEA6B800DF1A6E /* ProfileTableHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileTableHeadView.m; sourceTree = "<group>"; };
+		86C78F181BBEB8CE00DF1A6E /* BeaconInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BeaconInfoCell.xib; sourceTree = "<group>"; };
+		86C78F1A1BBEC12700DF1A6E /* BeaconInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeaconInfoCell.h; sourceTree = "<group>"; };
+		86C78F1B1BBEC12700DF1A6E /* BeaconInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeaconInfoCell.m; sourceTree = "<group>"; };
 		86EEDB5D1BB92AAA007558BC /* BeaconTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeaconTool.h; sourceTree = "<group>"; };
 		86EEDB5E1BB92AAA007558BC /* BeaconTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeaconTool.m; sourceTree = "<group>"; };
 		86EEDB601BB92B29007558BC /* RealPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RealPoint.h; sourceTree = "<group>"; };
@@ -233,6 +238,9 @@
 				86C78F131BBEA69A00DF1A6E /* ProfileTableHeadView.xib */,
 				86C78F151BBEA6B800DF1A6E /* ProfileTableHeadView.h */,
 				86C78F161BBEA6B800DF1A6E /* ProfileTableHeadView.m */,
+				86C78F181BBEB8CE00DF1A6E /* BeaconInfoCell.xib */,
+				86C78F1A1BBEC12700DF1A6E /* BeaconInfoCell.h */,
+				86C78F1B1BBEC12700DF1A6E /* BeaconInfoCell.m */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -366,6 +374,7 @@
 				86235F531BA94E3500A8517C /* LaunchScreen.xib in Resources */,
 				86235F501BA94E3500A8517C /* Images.xcassets in Resources */,
 				86997B5B1BB59812006FE3DA /* ScanBeacon.storyboard in Resources */,
+				86C78F191BBEB8CE00DF1A6E /* BeaconInfoCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -400,6 +409,7 @@
 				86EEDB6F1BB97556007558BC /* FMDatabase.m in Sources */,
 				86997B561BB597DB006FE3DA /* ProfileTableViewController.m in Sources */,
 				86EEDB701BB97556007558BC /* FMDatabaseAdditions.m in Sources */,
+				86C78F1C1BBEC12700DF1A6E /* BeaconInfoCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
