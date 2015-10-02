@@ -232,15 +232,10 @@
 		86997B4B1BB588E9006FE3DA /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				86FE8F201BBEEA9D00C3C041 /* Views */,
 				86997B521BB597B5006FE3DA /* Profile.storyboard */,
 				86997B541BB597DB006FE3DA /* ProfileTableViewController.h */,
 				86997B551BB597DB006FE3DA /* ProfileTableViewController.m */,
-				86C78F131BBEA69A00DF1A6E /* ProfileTableHeadView.xib */,
-				86C78F151BBEA6B800DF1A6E /* ProfileTableHeadView.h */,
-				86C78F161BBEA6B800DF1A6E /* ProfileTableHeadView.m */,
-				86C78F181BBEB8CE00DF1A6E /* BeaconInfoCell.xib */,
-				86C78F1A1BBEC12700DF1A6E /* BeaconInfoCell.h */,
-				86C78F1B1BBEC12700DF1A6E /* BeaconInfoCell.m */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -285,6 +280,19 @@
 				86EEDB6E1BB97556007558BC /* FMResultSet.m */,
 			);
 			path = fmdb;
+			sourceTree = "<group>";
+		};
+		86FE8F201BBEEA9D00C3C041 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				86C78F131BBEA69A00DF1A6E /* ProfileTableHeadView.xib */,
+				86C78F151BBEA6B800DF1A6E /* ProfileTableHeadView.h */,
+				86C78F161BBEA6B800DF1A6E /* ProfileTableHeadView.m */,
+				86C78F181BBEB8CE00DF1A6E /* BeaconInfoCell.xib */,
+				86C78F1A1BBEC12700DF1A6E /* BeaconInfoCell.h */,
+				86C78F1B1BBEC12700DF1A6E /* BeaconInfoCell.m */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

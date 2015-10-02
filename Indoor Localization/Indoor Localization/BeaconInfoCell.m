@@ -39,7 +39,7 @@
     return cell;
 }
 
-- (void) setBeacon:(CLBeacon *)beacon
+/*- (void) setBeacon:(CLBeacon *)beacon
 {
     _beacon = beacon;
     NSInteger tempRssi = beacon.rssi;
@@ -75,7 +75,46 @@
             break;
     }
     
+}*/
+//**********************************************Testing**********************************************//
+- (void) setBeacon:(BeaconModel *)beacon
+{
+    _beacon = beacon;
+    NSInteger tempRssi = beacon.rssi;
+    
+    NSInteger distance = [[[BeaconTool alloc] init] computeDistance:tempRssi];
+    
+    self.majorLabel.text = [NSString stringWithFormat:@"Major: %ld",beacon.major];
+    self.minorLabel.text = [NSString stringWithFormat:@"Minor: %ld",beacon.minor];
+    self.distanceLabel.text = [NSString stringWithFormat:@"Dist: %ld",distance];
+    self.accuracyLabel.text = [NSString stringWithFormat:@"Accu: %f",beacon.accuracy];
+    
+    [self.iconButton setTitle:[NSString stringWithFormat:@"%ld",tempRssi] forState:UIControlStateNormal];
+    //    CLProximityUnknown,
+    //    CLProximityImmediate,
+    //    CLProximityNear,
+    //    CLProximityFar
+    // Set the button's background image according to different proximity value.
+    switch (beacon.proximity) {
+        case CLProximityUnknown:
+            [self.iconButton setBackgroundImage:[UIImage imageNamed:@"beaconIconUnknown"] forState:UIControlStateNormal];
+            break;
+        case CLProximityImmediate:
+            [self.iconButton setBackgroundImage:[UIImage imageNamed:@"beaconIconImmediate"] forState:UIControlStateNormal];
+            break;
+        case CLProximityNear:
+            [self.iconButton setBackgroundImage:[UIImage imageNamed:@"beaconIconNear"] forState:UIControlStateNormal];
+            break;
+        case CLProximityFar:
+            [self.iconButton setBackgroundImage:[UIImage imageNamed:@"beaconIconFar"] forState:UIControlStateNormal];
+            break;
+        default:
+            [self.iconButton setBackgroundImage:[UIImage imageNamed:@"beaconIconNormal"] forState:UIControlStateNormal];
+            break;
+    }
+    
 }
+//***************************************************************************************************//
 
 
 

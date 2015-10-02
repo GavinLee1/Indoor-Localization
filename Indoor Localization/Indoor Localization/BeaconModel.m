@@ -10,6 +10,6 @@
 
 @implementation BeaconModel
 
-@synthesize major,minor,rssi,scannedTimes;
+@synthesize proximity, accuracy, major, minor, rssi, scannedTimes;
 
 @end
