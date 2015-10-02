@@ -30,13 +30,13 @@
 //    [locatedBeaconPoints addObject:point4];
 //    RealPoint *point5 = [[RealPoint alloc] initWith:9 andY:4.5];
 //    [locatedBeaconPoints addObject:point5];
-    RealPoint *point0 = [[RealPoint alloc] initWith:0.36 andY:0.36];
+    RealPoint *point0 = [[RealPoint alloc] initWith:0.1 andY:0.1];
     [locatedBeaconPoints addObject:point0];
-    RealPoint *point1 = [[RealPoint alloc] initWith:3.40 andY:0.36];
+    RealPoint *point1 = [[RealPoint alloc] initWith:6.0 andY:2.0];
     [locatedBeaconPoints addObject:point1];
-    RealPoint *point2 = [[RealPoint alloc] initWith:0.36 andY:4.60];
+    RealPoint *point2 = [[RealPoint alloc] initWith:1.0 andY:8.0];
     [locatedBeaconPoints addObject:point2];
-    RealPoint *point3 = [[RealPoint alloc] initWith:3.40 andY:4.60];
+    RealPoint *point3 = [[RealPoint alloc] initWith:5.0 andY:8.0];
     [locatedBeaconPoints addObject:point3];
     
     return locatedBeaconPoints;

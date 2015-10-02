@@ -153,7 +153,7 @@
     
     NSLog(@"BeaconStore Info: %@",[self.beaconsStore description]);
     
-    self.bleReadyTag = true;
+    //self.bleReadyTag = true;
     
     // rssi按降序排列
     NSSortDescriptor *sortDescriptor1=[[NSSortDescriptor alloc] initWithKey:@"rssi" ascending:NO];
@@ -283,7 +283,7 @@
                 NSInteger tempRssi1 = tempBeacon.rssi;
                 
                 // 与已经保存在 beaconAvg 数组里的beacon比较
-                NSLog(@"%lu",[self.beaconsStore count]);
+                NSLog(@"The number of scanned beacons: %lu",[self.beaconsStore count]);
                 
                 for(int j = 0; j < [self.beaconsStore count]; j++)
                 {

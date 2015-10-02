@@ -36,7 +36,7 @@
 #define origin_y 60
     // 50 pixels for one meter
     // 50 像素代表一米
-#define grid 110
+#define grid 68
     
     // UILabel *location = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 15, 20)];
     // UIImageView *location = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 20, 10)];

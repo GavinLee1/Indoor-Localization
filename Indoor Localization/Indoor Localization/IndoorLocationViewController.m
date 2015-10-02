@@ -96,6 +96,7 @@
     }
     return _location;
 }
+
 // Initialization for testing point
 - (RealPoint *) point
 {
@@ -116,7 +117,7 @@
     for (int i =0 ; i < [self.locatedButtons count]; i++) {
         UIButton *tempButton = [self.locatedButtons objectAtIndex:i];
         [tempButton.layer addAnimation:[self.point scale:[NSNumber numberWithFloat:1.0f]
-                                                   orgin:[NSNumber numberWithFloat:1.5f]
+                                                   orgin:[NSNumber numberWithFloat:3.0f]
                                                 durTimes:0.5f
                                                      Rep:MAXFLOAT]
                                 forKey:nil];
@@ -213,26 +214,26 @@
     [self.locationManager stopUpdatingLocation];
     
     //**********************************************Testing**********************************************//
-    BeaconModel *beacon0 = [[BeaconModel alloc] init];
-    beacon0.major = 0;
-    beacon0.minor = 0;
-    beacon0.rssi = (-1)*(arc4random()%30 + 50);
-    [self.beaconsStore addObject:beacon0];
-    BeaconModel *beacon1 = [[BeaconModel alloc] init];
-    beacon1.major = 0;
-    beacon1.minor = 1;
-    beacon1.rssi = (-1)*(arc4random()%30 + 50);
-    [self.beaconsStore addObject:beacon1];
-    BeaconModel *beacon2 = [[BeaconModel alloc] init];
-    beacon2.major = 0;
-    beacon2.minor = 2;
-    beacon2.rssi = (-1)*(arc4random()%30 + 50);
-    [self.beaconsStore addObject:beacon2];
-    BeaconModel *beacon3 = [[BeaconModel alloc] init];
-    beacon3.major = 0;
-    beacon3.minor = 3;
-    beacon3.rssi = (-1)*(arc4random()%30 + 50);
-    [self.beaconsStore addObject:beacon3];
+//    BeaconModel *beacon0 = [[BeaconModel alloc] init];
+//    beacon0.major = 0;
+//    beacon0.minor = 0;
+//    beacon0.rssi = (-1)*(arc4random()%30 + 50);
+//    [self.beaconsStore addObject:beacon0];
+//    BeaconModel *beacon1 = [[BeaconModel alloc] init];
+//    beacon1.major = 0;
+//    beacon1.minor = 1;
+//    beacon1.rssi = (-1)*(arc4random()%30 + 50);
+//    [self.beaconsStore addObject:beacon1];
+//    BeaconModel *beacon2 = [[BeaconModel alloc] init];
+//    beacon2.major = 0;
+//    beacon2.minor = 2;
+//    beacon2.rssi = (-1)*(arc4random()%30 + 50);
+//    [self.beaconsStore addObject:beacon2];
+//    BeaconModel *beacon3 = [[BeaconModel alloc] init];
+//    beacon3.major = 0;
+//    beacon3.minor = 3;
+//    beacon3.rssi = (-1)*(arc4random()%30 + 50);
+//    [self.beaconsStore addObject:beacon3];
     //***************************************************************************************************//
     
     NSArray *transferArray = [self.beaconTool getTopThreeBeacons:self.beaconsStore];
