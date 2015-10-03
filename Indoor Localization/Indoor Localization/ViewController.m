@@ -8,17 +8,31 @@
 
 #import "ViewController.h"
 #import "IndoorLocationViewController.h"
+#import <CoreBluetooth/CoreBluetooth.h>
 
-@interface ViewController ()
+@interface ViewController () <CBCentralManagerDelegate>
+
+@property (strong, nonatomic) CBCentralManager *centralManager;
 
 @end
 
 @implementation ViewController
 
+#pragma mark -Initialization
+
+- (CBCentralManager *) centralManager
+{
+    if (!_centralManager) {
+        _centralManager = [[CBCentralManager alloc] init];
+    }
+    return _centralManager;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
+    self.centralManager.delegate = self;
     // 1.初始化子控制器
     [self addChildVc:@"MapLocation" title:@"MapLoc" image:@"tabbar_map" selectedImage:@"tabbar_map_selected"];
     [self addChildVc:@"ScanBeacon" title:@"BeData" image:@"tabbar_data" selectedImage:@"tabbar_data_selected"];
@@ -26,6 +40,7 @@
     [self addChildVc:@"Profile" title:@"Profile" image:@"tabbar_profile" selectedImage:@"tabbar_profile_selected"];
 }
 
+#pragma mark -Add Sub Controller
 /**
  *  添加一个子控制器
  *
@@ -55,6 +70,11 @@
     
     // 添加为子控制器
     [self addChildViewController:childVc];
+}
+
+#pragma mark -CBCentralManager Delegate Method
+- (void)centralManagerDidUpdateState:(CBCentralManager *)central
+{
 }
 
 @end

@@ -18,7 +18,7 @@
                             <outlet property="delegate" destination="Tz9-6C-gbI" id="7Dq-wf-YlH"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Beacons Detailed Information" id="hmq-vq-LsR"/>
+                    <navigationItem key="navigationItem" title="Beacon Information" id="hmq-vq-LsR" userLabel="Info"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mJi-CN-TWh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
