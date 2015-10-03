@@ -66,16 +66,21 @@
     NSMutableArray *selectedThreeBeacons = [NSMutableArray array];
     // Initialize the located beacon points
     NSArray *locatedBeaconPoints = [self initializeLocatedBeaconPoints];
+    
     int computeTag = 0;
     
     while (computeTag <= 2) {
+        
         // Get the beacon ranks from 0 to 2 in array beaconModels
         BeaconModel *tempBeacon = [beaconModels objectAtIndex:computeTag];
+        
         // Be used to point at the specifical located beacon
-        int locatedBeaconPointIndex = (int)tempBeacon.minor;
+        int locatedBeaconPointIndex = tempBeacon.minor.intValue;
         float tempRSSI = (float) tempBeacon.rssi;
+        
         // Get the selected beacon
         RealPoint *tempLocatedBeaconPoint = [locatedBeaconPoints objectAtIndex:locatedBeaconPointIndex];
+        
         // Add it into the array, one by one
         [selectedThreeBeacons addObject:tempLocatedBeaconPoint];
         
@@ -194,6 +199,7 @@
     // 只有当其中存储的beacon信息超过3个时才说明 beacon以及准备好来定位，如果不足三个，就返回not ready
     
     // NSLog(@"BeaconStore Info: %@",[beaconsStore description]);
+    
     //**********************************************Logging**********************************************//
     for (int i = 0; i < [beaconsStore count]; i++) {
         BeaconModel *temp = [[BeaconModel alloc]init];

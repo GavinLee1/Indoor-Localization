@@ -46,9 +46,6 @@
  */
 @property (assign, nonatomic) NSInteger matchSameBeaconTag;
 
-@property (strong, nonatomic) NSTimer *time;
-// @property (assign, nonatomic) NSInteger tickTimes;
-
 /**
  *  Use to show operating information on the view.
  */
@@ -59,6 +56,8 @@
  */
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *locatedButtons;
 
+// @property (strong, nonatomic) NSTimer *time;
+// @property (assign, nonatomic) NSInteger tickTimes;
 
 - (IBAction)startLocate:(UIButton *)sender;
 - (IBAction)track:(UIButton *)sender;
@@ -173,28 +172,29 @@
     [self.locationManager requestStateForRegion:self.beaconRegion];
     [self.locationManager startRangingBeaconsInRegion:self.beaconRegion];
     
-    [self.time invalidate];
-    self.time = nil;
+//    [self.time invalidate];
+//    self.time = nil;
     self.newCycleTag = 1;
     
     // 每隔 5 秒调用一次 onTick 方法
-    self.time = [NSTimer scheduledTimerWithTimeInterval:1.0
-                                                 target:self
-                                               selector:@selector(onTicking:)
-                                               userInfo:nil
-                                                repeats:YES];
+//    self.time = [NSTimer scheduledTimerWithTimeInterval:1.0
+//                                                 target:self
+//                                               selector:@selector(onTicking:)
+//                                               userInfo:nil
+//                                                repeats:YES];
 }
 
 - (IBAction)track:(UIButton *)sender {
     NSLog(@"%s",__func__);
     
-    //NSArray *trackedPoints = [RealPointDataBase trackedPoints];
-    NSArray *trackedPoints = [RealPointDataBase points];
+    NSArray *trackedPoints = [RealPointDataBase trackedPoints];
+    //NSArray *trackedPoints = [RealPointDataBase points];
     
     [self.point drawTrackPath:self.view
                    withPoints:trackedPoints];
     
     //**********************************************Logging**********************************************//
+    NSLog(@"Tracked points number: %lu", (unsigned long)[RealPointDataBase count]);
     for (RealPoint *point in trackedPoints) {
         NSLog(@"Tracked point in meter: ( %f, %f )",point.originalX,point.originalY);
     }
@@ -219,8 +219,8 @@
     [RealPointDataBase removeAllPoints];
     
     // 停止时钟并重置
-    [self.time invalidate];
-    self.time = nil;
+//    [self.time invalidate];
+//    self.time = nil;
     
     // 关闭monitor 关闭扫描的region
     [self.locationManager stopUpdatingLocation];
@@ -234,8 +234,8 @@
     self.infoLabel.text = @"Stop scanning! Press Locate to restart!\n";
     
     // 停止时钟并重置
-    [self.time invalidate];
-    self.time = nil;
+//    [self.time invalidate];
+//    self.time = nil;
     
     // 关闭monitor 关闭扫描的region
     [self.locationManager stopUpdatingLocation];
@@ -245,12 +245,13 @@
 
 # pragma mark -Timer
 // At the end of 5 seconds, extract avg rssi, major, minor
--(void)onTicking:(NSTimer *) timer {
-    NSLog(@"-----------------Tick One Time----------------");
+//-(void)onTicking:(NSTimer *) timer {
+-(void)tracking{
+    NSLog(@"----------------- Tracking ----------------");
     // self.infoLabel.text = [NSString stringWithFormat:@"Ticking times: %ls",(long)self.tickTimes];
     // self.tickTimes++;
     
-    // 5秒到了之后就打断一次扫描
+    // Stop updating location, give time to show current location.
     [self.locationManager stopUpdatingLocation];
     
     //**********************************************Testing**********************************************//
@@ -278,8 +279,6 @@
     
     NSArray *transferArray = [self.beaconTool getTopThreeBeacons:self.beaconsStore];
     
-    // NSLog(@"Ranked beacons: %@",transferArray);
-    
     //**********************************************Logging**********************************************//
     for (int i = 0; i < [transferArray count]; i++) {
         BeaconModel *temp = [[BeaconModel alloc]init];
@@ -289,7 +288,6 @@
     //***************************************************************************************************//
     
     RealPoint *currentLocationPoint = [self.beaconTool computeRealTimePoint:transferArray];
-    // NSLog(@"Computed location point: %@",currentLocationPoint);
     
     //**********************************************Logging**********************************************//
     NSLog(@"The current location in meter: ( %f, %f )",currentLocationPoint.originalX, currentLocationPoint.originalY);
@@ -314,10 +312,7 @@
 //    }
     //***************************************************************************************************//
     
-    
-    
     // Insert the showing point into the database.
-    //[RealPointDataBase addPoint:self.point];
     [RealPointDataBase addPoint:currentLocationPoint];
     
     // It means that this is a new scanning cycle
@@ -326,9 +321,8 @@
     // Remove beacons in beaconsStore, which is added into the array in last scanning period.
     [self.beaconsStore removeAllObjects];
     
-    // 每五秒操作一次，执行完这个操作之后就再次进行监听
+    // After tracking and showing location on the view, restart scanning.
     [self.locationManager startUpdatingLocation];
-    
 }
 
 # pragma mark -Heading
@@ -364,12 +358,14 @@
     // scannedBeaconCount: the number of beacons scanned.
     NSInteger scannedBeaconCount = [beacons count];
     NSLog(@"The number of scanned beacons:%ld",[beacons count]);
+    
     // 扫描到beacon 并把它们存到数组里面
     // Filter out the 0dBm RSSI beacons and store in tempBeacon0
     if (scannedBeaconCount > 1)
     {
         NSLog(@"newCyscleTag = %ld",self.newCycleTag);
-        // Every first time, just initialize the beacon model and add it into the array.
+        
+        // Every first scanning cycle, just initialize the beacon model and add it into the array.
         if (self.newCycleTag == 1)
         {
             // At the first scanning cycle.
@@ -465,6 +461,9 @@
         self.newCycleTag = 0;
         NSLog(@"newCycleTag = %ld",self.newCycleTag);
     }
+    
+    // Aftering each scanning period, call tracking method to show user's current location.
+    [self performSelector:@selector(tracking) withObject:nil afterDelay:0];
 }
 
 -(void) locationManager:(CLLocationManager *)manager monitoringDidFailForRegion:(CLRegion *)region withError:(NSError *)error {

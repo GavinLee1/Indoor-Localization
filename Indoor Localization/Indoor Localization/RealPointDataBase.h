@@ -12,10 +12,29 @@
 
 @interface RealPointDataBase : NSObject
 
-+ (NSArray *) points;
 + (RealPoint *) getTheMostUpdatedPoint;
+
+/**
+ *  @return All points in the database.
+ */
++ (NSArray *) points;
+
+/**
+ *  Inset a point in the database.
+ *
+ *  @param point a point object.
+ */
 + (void)addPoint:(RealPoint *)point;
+
+/**
+ *  Remove all records in the database table t_point.
+ */
 + (void)removeAllPoints;
+
+/**
+ *  @return The total records number in the database.
+ */
++ (NSUInteger) count;
 
 /**
  *  Since as design, this system only need 10 points to draw the track line.

@@ -23,6 +23,9 @@ static FMDatabase *_db;
     [_db executeUpdate:@"CREATE TABLE IF NOT EXISTS t_point (id integer PRIMARY KEY, xValue real NOT NULL, yValue real NOT NULL);"];
 }
 
+/**
+ *  @return All points in the database.
+ */
 + (NSArray *) points
 {
     // 得到结果集
@@ -50,6 +53,7 @@ static FMDatabase *_db;
     NSMutableArray *points = [NSMutableArray array];
     NSUInteger sum = [self count];
     int steps;
+    
     // Totally, we only need 10 points from the whole database, therefore, we need a step number to filter data if points in database are more than  10.
     if (sum >= 10) {
         steps = floor(sum/10);
@@ -68,25 +72,36 @@ static FMDatabase *_db;
     return points;
 }
 
-+ (RealPoint *) getTheMostUpdatedPoint
-{
-    return [[RealPoint alloc] init];
-}
-
+/**
+ *  @return The total records number in the database.
+ */
 + (NSUInteger) count
 {
     NSUInteger count = [_db intForQuery:@"SELECT count(*) FROM t_point;"];
     return count;
 }
 
+/**
+ *  Inset a point in the database.
+ *
+ *  @param point a point object.
+ */
 + (void)addPoint:(RealPoint *)point
 {
     [_db executeUpdateWithFormat:@"INSERT INTO t_point(xValue, yValue) VALUES (%f, %f);", point.originalX, point.originalY];
 }
 
+/**
+ *  Remove all records in the database table t_point.
+ */
 + (void)removeAllPoints
 {
     [_db executeUpdateWithFormat:@"DELETE FROM t_point"];
+}
+
++ (RealPoint *) getTheMostUpdatedPoint
+{
+    return [[RealPoint alloc] init];
 }
 
 @end
