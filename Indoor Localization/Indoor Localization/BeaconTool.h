@@ -31,6 +31,13 @@
  */
 - (NSArray *) getTopThreeBeacons: (NSArray *) beaconsStore;
 
+/**
+ *  Compute the distance to the located beacon. Using the algorithm of LDPL.
+ *
+ *  @param rssi the rssi value received from beacon
+ *
+ *  @return the vallue of distance
+ */
 - (float) computeDistance: (float) rssi;
 
 @end

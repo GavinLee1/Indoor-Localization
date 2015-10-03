@@ -12,6 +12,7 @@
 #import "RealPoint.h"
 #import "BeaconTool.h"
 #import "RealPointDataBase.h"
+#import "TestingData.h"
 
 @interface IndoorLocationViewController () <CLLocationManagerDelegate>
 
@@ -50,6 +51,7 @@
 @implementation IndoorLocationViewController
 
 #pragma mark -Initialization
+
 // Initialization for beaconsStore
 - (NSMutableArray *) beaconsStore
 {
@@ -58,6 +60,7 @@
     }
     return _beaconsStore;
 }
+
 // Initialization for locationManager
 - (CLLocationManager *) locationManager
 {
@@ -66,6 +69,7 @@
     }
     return  _locationManager;
 }
+
 // Initialization for beaconRegion
 - (CLBeaconRegion *) beaconRegion
 {
@@ -79,6 +83,7 @@
     }
     return _beaconRegion;
 }
+
 // Initialization for beconTool
 - (BeaconTool *) beaconTool
 {
@@ -87,6 +92,7 @@
     }
     return _beaconTool;
 }
+
 // Initialization for UIImageView <show current location>
 - (UIImageView *) location
 {
@@ -110,12 +116,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
     // Set locationManager delegate
     self.locationManager.delegate=self;
     
     // Add animations for each located beacons button
     for (int i =0 ; i < [self.locatedButtons count]; i++) {
+        
         UIButton *tempButton = [self.locatedButtons objectAtIndex:i];
+        
         [tempButton.layer addAnimation:[self.point scale:[NSNumber numberWithFloat:1.0f]
                                                    orgin:[NSNumber numberWithFloat:3.0f]
                                                 durTimes:0.5f
@@ -126,11 +135,13 @@
     // Start to monitor the heading of the iphone, not the same monitor as beacons
     [self.locationManager startUpdatingHeading];
     // self.tickTimes = 0;
+    
 }
 
 #pragma mark -Functional Buttons
 - (IBAction)startLocate:(UIButton *)sender {
     NSLog(@"%s",__func__);
+    
     self.infoLabel.text = @"Locate Button Pressed!\n";
     
     self.locationManager.pausesLocationUpdatesAutomatically = NO;
@@ -157,8 +168,10 @@
 
 - (IBAction)track:(UIButton *)sender {
     NSLog(@"%s",__func__);
+    
     //NSArray *trackedPoints = [RealPointDataBase trackedPoints];
     NSArray *trackedPoints = [RealPointDataBase points];
+    
     [self.point drawTrackPath:self.view
                    withPoints:trackedPoints];
     
@@ -171,9 +184,12 @@
 
 - (IBAction)clear:(UIButton *)sender {
     NSLog(@"%s",__func__);
+    
     self.infoLabel.text = @"Cleared all data in database!\n";
+    
     // Remove "location" UIImageView
     [self.location removeFromSuperview];
+    
     //[self.circleLayer removeFromSuperlayer];
 //    while (self.circleLayer) {
 //        [self.circleLayer removeFromSuperlayer];
@@ -182,9 +198,11 @@
     
     // Delete all points in the dataBase
     [RealPointDataBase removeAllPoints];
+    
     // 停止时钟并重置
     [self.time invalidate];
     self.time = nil;
+    
     // 关闭monitor 关闭扫描的region
     [self.locationManager stopUpdatingLocation];
     [self.locationManager stopRangingBeaconsInRegion:self.beaconRegion];
@@ -193,10 +211,13 @@
 
 - (IBAction)stop:(UIButton *)sender {
     NSLog(@"%s",__func__);
+    
     self.infoLabel.text = @"Stop scanning! Press Locate to restart!\n";
+    
     // 停止时钟并重置
     [self.time invalidate];
     self.time = nil;
+    
     // 关闭monitor 关闭扫描的region
     [self.locationManager stopUpdatingLocation];
     [self.locationManager stopRangingBeaconsInRegion:self.beaconRegion];
@@ -214,26 +235,26 @@
     [self.locationManager stopUpdatingLocation];
     
     //**********************************************Testing**********************************************//
-    BeaconModel *beacon0 = [[BeaconModel alloc] init];
-    beacon0.major = 0;
-    beacon0.minor = 0;
-    beacon0.rssi = (-1)*(arc4random()%30 + 50);
-    [self.beaconsStore addObject:beacon0];
-    BeaconModel *beacon1 = [[BeaconModel alloc] init];
-    beacon1.major = 0;
-    beacon1.minor = 1;
-    beacon1.rssi = (-1)*(arc4random()%30 + 50);
-    [self.beaconsStore addObject:beacon1];
-    BeaconModel *beacon2 = [[BeaconModel alloc] init];
-    beacon2.major = 0;
-    beacon2.minor = 2;
-    beacon2.rssi = (-1)*(arc4random()%30 + 50);
-    [self.beaconsStore addObject:beacon2];
-    BeaconModel *beacon3 = [[BeaconModel alloc] init];
-    beacon3.major = 0;
-    beacon3.minor = 3;
-    beacon3.rssi = (-1)*(arc4random()%30 + 50);
-    [self.beaconsStore addObject:beacon3];
+//    BeaconModel *beacon0 = [[BeaconModel alloc] init];
+//    beacon0.major = 0;
+//    beacon0.minor = 0;
+//    beacon0.rssi = (-1)*(arc4random()%30 + 50);
+//    [self.beaconsStore addObject:beacon0];
+//    BeaconModel *beacon1 = [[BeaconModel alloc] init];
+//    beacon1.major = 0;
+//    beacon1.minor = 1;
+//    beacon1.rssi = (-1)*(arc4random()%30 + 50);
+//    [self.beaconsStore addObject:beacon1];
+//    BeaconModel *beacon2 = [[BeaconModel alloc] init];
+//    beacon2.major = 0;
+//    beacon2.minor = 2;
+//    beacon2.rssi = (-1)*(arc4random()%30 + 50);
+//    [self.beaconsStore addObject:beacon2];
+//    BeaconModel *beacon3 = [[BeaconModel alloc] init];
+//    beacon3.major = 0;
+//    beacon3.minor = 3;
+//    beacon3.rssi = (-1)*(arc4random()%30 + 50);
+//    [self.beaconsStore addObject:beacon3];
     //***************************************************************************************************//
     
     NSArray *transferArray = [self.beaconTool getTopThreeBeacons:self.beaconsStore];
@@ -283,10 +304,13 @@
     
     // It means that this is a new scanning cycle
     self.newCycleTag = 1;
+    
     // Remove beacons in beaconsStore, which is added into the array in last scanning period.
     [self.beaconsStore removeAllObjects];
+    
     // 每五秒操作一次，执行完这个操作之后就再次进行监听
     [self.locationManager startUpdatingLocation];
+    
 }
 
 # pragma mark -Heading
@@ -307,8 +331,18 @@
  **/
 - (void)locationManager:(CLLocationManager *)manager didRangeBeacons:(NSArray *)beacons inRegion:(CLBeaconRegion *)region
 {
-    self.infoLabel.text = @"Scanning...........\n";
     NSLog(@"%s",__func__);
+    
+    self.infoLabel.text = @"Scanning...........\n";
+    
+    
+    //**********************************************Testing**********************************************//
+    if ([beacons count] < 1) {
+        beacons = [TestingData initTestingData];
+    }
+    //***************************************************************************************************//
+    
+    
     // scannedBeaconCount: the number of beacons scanned.
     NSInteger scannedBeaconCount = [beacons count];
     NSLog(@"The number of scanned beacons:%ld",[beacons count]);
@@ -378,7 +412,7 @@
                         // If finds the same beacons, set the tag as 1
                         self.matchSameBeaconTag = 1;
                         
-                        // Add up rssi according to scanned times of the beacon
+                        // Add up rssi according to scanned times of the beacon, get the mean RSSI.
                         NSInteger changingRssi = tempRssi2 * tempScannedTimes + tempRssi1;
                         tempScannedTimes += 1;
                         changingRssi = changingRssi / tempScannedTimes;

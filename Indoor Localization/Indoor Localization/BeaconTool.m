@@ -142,6 +142,13 @@
     return tempPoint;
 }
 
+/**
+ *  Compute the distance to the located beacon. Using the algorithm of LDPL.
+ *
+ *  @param rssi the rssi value received from beacon
+ *
+ *  @return the vallue of distance
+ */
 - (float) computeDistance: (float) rssi
 {
     // RSSI for one meter from the beacon
