@@ -165,7 +165,8 @@
     // 将排好序的beacon信息输出
     for (BeaconModel *beacon in tempBeacons1)
     {
-        NSString *beaconsInfo=[NSString stringWithFormat:@"Major: %li, Minor: %li, RSSI: %li, Scanned:% li\n",beacon.major,beacon.minor,beacon.rssi,beacon.scannedTimes];
+        NSString *beaconsInfo=[NSString stringWithFormat:@"Major: %@, Minor: %@, RSSI: %li, Scanned:% li\n",beacon.major,beacon.minor,beacon.rssi,beacon.scannedTimes];
+        
         //在TextView中以追加的形式显示beacon的信息
         NSLog(@"%@",self.showDataView.text);
         self.showDataView.text = [self.showDataView.text stringByAppendingString:beaconsInfo];
@@ -251,8 +252,8 @@
                 
                 CLBeacon *tempBeacon = [beacons objectAtIndex:i];
                 
-                NSInteger tempMajor = tempBeacon.major.integerValue;
-                NSInteger tempMinor = tempBeacon.minor.integerValue;
+                NSNumber *tempMajor = tempBeacon.major;
+                NSNumber *tempMinor = tempBeacon.minor;
                 NSInteger tempRssi = tempBeacon.rssi;
                 
                 [tempBeaconModel setMajor:tempMajor];
@@ -278,8 +279,8 @@
                 
                 CLBeacon *tempBeacon=[beacons objectAtIndex:i];
                 
-                NSInteger tempMajor1 = tempBeacon.major.integerValue;
-                NSInteger tempMinor1 = tempBeacon.minor.integerValue;
+                NSNumber *tempMajor1 = tempBeacon.major;
+                NSNumber *tempMinor1 = tempBeacon.minor;
                 NSInteger tempRssi1 = tempBeacon.rssi;
                 
                 // 与已经保存在 beaconAvg 数组里的beacon比较
@@ -289,7 +290,7 @@
                 {
                     BeaconModel *tempBeaconModel = [self.beaconsStore objectAtIndex:j];
                     
-                    NSInteger tempMinor2 = tempBeaconModel.minor;
+                    NSNumber *tempMinor2 = tempBeaconModel.minor;
                     NSInteger tempRssi2 = tempBeaconModel.rssi;
                     NSInteger tempScannedTimes = tempBeaconModel.scannedTimes;
                     

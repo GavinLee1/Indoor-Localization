@@ -109,22 +109,28 @@
     RealPoint *selectedBeacon0 = [selectedThreeBeacons objectAtIndex:0];
     RealPoint *selectedBeacon1 = [selectedThreeBeacons objectAtIndex:1];
     RealPoint *selectedBeacon2 = [selectedThreeBeacons objectAtIndex:2];
+    
     // b0 = x[1]*x[1]+y[1]*y[1]-x[0]*x[0]-y[0]*y[0]-d[1]*d[1]+d[0]*d[0]
     float b0 = selectedBeacon1.originalX * selectedBeacon1.originalX + selectedBeacon1.originalY * selectedBeacon1.originalY - selectedBeacon0.originalX * selectedBeacon0.originalX - selectedBeacon0.originalY * selectedBeacon0.originalY - [[distances objectAtIndex:1] floatValue] * [[distances objectAtIndex:1] floatValue] + [[distances objectAtIndex:0] floatValue] * [[distances objectAtIndex:0] floatValue];
+    
     // b1 = x[2]*x[2]+y[2]*y[2]-x[0]*x[0]-y[0]*y[0]-d[2]*d[2]+d[0]*d[0]
     float b1 = selectedBeacon2.originalX * selectedBeacon2.originalX + selectedBeacon2.originalY * selectedBeacon2.originalY - selectedBeacon0.originalX * selectedBeacon0.originalX - selectedBeacon0.originalY * selectedBeacon0.originalY - [[distances objectAtIndex:2] floatValue] * [[distances objectAtIndex:2] floatValue] + [[distances objectAtIndex:0] floatValue] * [[distances objectAtIndex:0] floatValue];
     
     // M0=2*(x[1]-x[0])
     float M0 = 2 * (selectedBeacon1.originalX - selectedBeacon0.originalX);
+    
     // M1=2*(y[1]-y[0])
     float M1 = 2 * (selectedBeacon1.originalY - selectedBeacon0.originalY);
+    
     // M2=2*(x[2]-x[0])
     float M2 = 2 * (selectedBeacon2.originalX - selectedBeacon0.originalX);
+    
     // M3=2*(y[2]-y[0])
     float M3 = 2 * (selectedBeacon2.originalY - selectedBeacon0.originalY);
     
     // T0=M0*M0+M2*M2
     float T0 = M0 * M0 + M2 * M2;
+    
     // T1=M0*M1+M2*M3
     float T1 = M0 * M1 + M2 * M3;
     float T2 = T1;
@@ -156,8 +162,10 @@
     // The signal propagation constant in a specific environment
 #define N 1.66
     /******************** Applying LDPL ********************/
+    
     // Calculate and get the distance from user to the current beacon
     float tempDistance = (0 - A - rssi) / 10 / N;
+    
     // temDistance 的10次方就是distance
     float distance = pow(10, tempDistance);
     if (distance > 1.0) {
@@ -190,7 +198,7 @@
     for (int i = 0; i < [beaconsStore count]; i++) {
         BeaconModel *temp = [[BeaconModel alloc]init];
         temp = [beaconsStore objectAtIndex:i];
-        NSLog(@"*Origin Beacon (Major %ld, Minor %ld, RSSI %ld)",temp.major,temp.minor,temp.rssi);
+        NSLog(@"*Origin Beacon (Major %@, Minor %@, RSSI %ld)",temp.major,temp.minor,temp.rssi);
     }
     //***************************************************************************************************//
     

@@ -25,13 +25,20 @@
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) CLBeaconRegion *beaconRegion;
 
+/**
+ *  As a tag for deciding it is a new scanning cycle or not.
+ */
 @property (assign, nonatomic) NSInteger newCycleTag;
+
+/**
+ *  Be used in didRangeBeacons method, as a tag for deciding whether there has the same beacon in array.
+ */
 @property (assign, nonatomic) NSInteger matchSameBeaconTag;
 
+/**
+ *  Store scanned beacons.
+ */
 @property (strong, nonatomic) NSMutableArray *beaconsStore;
-
-//@property (strong, nonatomic) CADisplayLink *timer;
-@property (strong, nonatomic) NSTimer *timer;
 
 @end
 
@@ -99,46 +106,61 @@
     
     [self.locationManager requestStateForRegion:self.beaconRegion];
     [self.locationManager startRangingBeaconsInRegion:self.beaconRegion];
-    
-    
-    [self.timer invalidate];
-    self.timer = nil;
-    
-//    if(self.timer == nil)
-//    {
-//        self.timer = [CADisplayLink displayLinkWithTarget:self
-//                                                 selector:@selector(updateTableView)];
-//        
-//        self.timer.frameInterval = 2;
-//        
-//        [self.timer addToRunLoop: [NSRunLoop currentRunLoop]
-//                         forMode:NSDefaultRunLoopMode];
-//    }
-    // 每隔 5 秒调用一次 onTick 方法
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0
-                                                 target:self
-                                               selector:@selector(updateTableView)
-                                               userInfo:nil
-                                                repeats:YES];
+    self.newCycleTag = 1;
 }
 
 
 - (void) updateTableView
 {
     NSLog(@"%s",__func__);
-    [self.locationManager stopUpdatingLocation];
+    NSLog(@"-----------------Update One Time----------------");
+    
+    //[self.locationManager stopUpdatingLocation];
     
     [self.tableView reloadData];
+    //[tableView reloadRowsAtIndexPaths:indexPath withRowAnimation:UITableViewRowAnimationAutomatic];
+    
+    //[self.tableView reloadRowsAtIndexPaths:self.tableView.indexPathsForVisibleRows withRowAnimation:UITableViewRowAnimationAutomatic];
     
     // It means that this is a new scanning cycle
-    self.newCycleTag = 1;
+    // self.newCycleTag = 1;
+    
     // Remove beacons in beaconsStore, which is added into the array in last scanning period.
     //[self.beaconsStore removeAllObjects];
+    
     // 每五秒操作一次，执行完这个操作之后就再次进行监听
-    [self.locationManager startUpdatingLocation];
+    //[self.locationManager startUpdatingLocation];
     
     
     //[self.tableView reloadSections:nil withRowAnimation:UITableViewRowAnimationAutomatic];
+}
+
+#pragma mark -TableView DataSource Method
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    NSLog(@"%s",__func__);
+    //**********************************************Testing**********************************************//
+    
+    //***************************************************************************************************//
+    int numberOfRows = (int)[self.beaconsStore count];
+    
+    if (numberOfRows == 0) {
+        return 0;
+    }
+    
+    NSLog(@"The number of rows: %d", numberOfRows);
+    return numberOfRows;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"%s",__func__);
+    
+    BeaconInfoCell *cell = [BeaconInfoCell cellWithTableView:tableView];
+    cell.beacon = [self.beaconsStore objectAtIndex:indexPath.row];
+    
+    return cell;
 }
 
 # pragma mark -CLLocationManagerDelegate
@@ -149,6 +171,9 @@
 - (void)locationManager:(CLLocationManager *)manager didRangeBeacons:(NSArray *)beacons inRegion:(CLBeaconRegion *)region
 {
     NSLog(@"%s",__func__);
+    
+    // [self.beaconsStore removeAllObjects];
+    
     //**********************************************Testing**********************************************//
     if ([beacons count] < 1) {
         beacons = [TestingData initTestingData];
@@ -176,8 +201,8 @@
                 
                 CLProximity tempProximity = tempBeacon.proximity;
                 CLLocationAccuracy tempAccu = tempBeacon.accuracy;
-                NSInteger tempMajor = tempBeacon.major.integerValue;
-                NSInteger tempMinor = tempBeacon.minor.integerValue;
+                NSNumber *tempMajor = tempBeacon.major;
+                NSNumber *tempMinor = tempBeacon.minor;
                 NSInteger tempRssi = tempBeacon.rssi;
                 
                 [tempBeaconModel setProximity:tempProximity];
@@ -187,9 +212,9 @@
                 [tempBeaconModel setRssi:tempRssi];
                 [tempBeaconModel setScannedTimes:1];
                 
-                //**********************************************Logging**********************************************//
-                NSLog(@"The becaon information:( Major %ld, Minor %ld, RSSI %ld )",tempBeacon.major,tempBeacon.minor,tempBeacon.rssi);
-                //***************************************************************************************************//
+    //**********************************************Logging**********************************************//
+                NSLog(@"The becaon information:( Major %@, Minor %@, RSSI %ld )",tempBeacon.major,tempBeacon.minor,tempBeacon.rssi);
+    //***************************************************************************************************//
                 
                 [self.beaconsStore addObject:tempBeaconModel];
                 // NSLog(@"The becaonStore information:%@",[self.beaconsStore description]);
@@ -210,8 +235,8 @@
                 
                 CLProximity tempProximity1 = tempBeacon.proximity;
                 CLLocationAccuracy tempAccu1 = tempBeacon.accuracy;
-                NSInteger tempMajor1 = tempBeacon.major.integerValue;
-                NSInteger tempMinor1 = tempBeacon.minor.integerValue;
+                NSNumber *tempMajor1 = tempBeacon.major;
+                NSNumber *tempMinor1 = tempBeacon.minor;
                 NSInteger tempRssi1 = tempBeacon.rssi;
                 
                 
@@ -221,7 +246,7 @@
                 {
                     BeaconModel *tempBeaconModel = [self.beaconsStore objectAtIndex:j];
                     
-                    NSInteger tempMinor2 = tempBeaconModel.minor;
+                    NSNumber *tempMinor2 = tempBeaconModel.minor;
                     NSInteger tempRssi2 = tempBeaconModel.rssi;
                     NSInteger tempScannedTimes = tempBeaconModel.scannedTimes;
                     
@@ -242,9 +267,12 @@
                         [tempBeaconModel setScannedTimes:tempScannedTimes];
                         
                         // Compare whether this beaconModel is nil, if not, renew it
-                        if(tempBeaconModel!=nil){
+                        if(tempBeaconModel != nil){
+                            
                             [self.beaconsStore removeObjectAtIndex:j];
+                            
                             [self.beaconsStore insertObject:tempBeaconModel atIndex:j];
+                            
                         }
                     }
                 }
@@ -260,7 +288,7 @@
                     [tempBeaconModel setRssi:tempRssi1];
                     [tempBeaconModel setScannedTimes:1];
                     
-                    if (tempBeaconModel!=nil){
+                    if (tempBeaconModel != nil){
                         [self.beaconsStore addObject:tempBeaconModel];
                     }
                 }
@@ -270,6 +298,9 @@
         self.newCycleTag = 0;
         NSLog(@"newCycleTag = %ld",self.newCycleTag);
     }
+    
+    // Afer each scanning period, call the updateTabelView method to reload the data in tableView.
+    [self performSelector:@selector(updateTableView) withObject:nil afterDelay:0];
     
 }
 
@@ -313,27 +344,6 @@
     UILocalNotification *notification = [[UILocalNotification alloc] init];
     notification.alertBody = @"You exited the region.";
     [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
-}
-
-#pragma mark -TableView DataSource Method
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    NSLog(@"%s",__func__);
-    //**********************************************Testing**********************************************//
-    
-    //***************************************************************************************************//
-    return [self.beaconsStore count];
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSLog(@"%s",__func__);
-    
-    BeaconInfoCell *cell = [BeaconInfoCell cellWithTableView:tableView];
-    cell.beacon = [self.beaconsStore objectAtIndex:indexPath.row];
-    
-    return cell;
 }
 
 

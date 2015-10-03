@@ -14,8 +14,8 @@
 @property (assign, nonatomic) CLProximity proximity;
 @property (assign, nonatomic) CLLocationAccuracy accuracy;
 
-@property (assign, nonatomic) NSInteger major;
-@property (assign, nonatomic) NSInteger minor;
+@property (strong, nonatomic) NSNumber *major;
+@property (strong, nonatomic) NSNumber *minor;
 @property (assign, nonatomic) NSInteger rssi;
 @property (assign, nonatomic) NSInteger scannedTimes;
 

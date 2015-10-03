@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <CoreLocation/CoreLocation.h>
+//#import <CoreLocation/CoreLocation.h>
 #import "BeaconTool.h"
 #import "BeaconModel.h"//测试用的，用完删
 

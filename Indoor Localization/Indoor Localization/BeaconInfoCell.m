@@ -82,12 +82,12 @@
     _beacon = beacon;
     NSInteger tempRssi = beacon.rssi;
     
-    NSInteger distance = [[[BeaconTool alloc] init] computeDistance:tempRssi];
+    float distance = [[[BeaconTool alloc] init] computeDistance:tempRssi];
     
-    self.majorLabel.text = [NSString stringWithFormat:@"Major: %ld",beacon.major];
-    self.minorLabel.text = [NSString stringWithFormat:@"Minor: %ld",beacon.minor];
-    self.distanceLabel.text = [NSString stringWithFormat:@"Dist: %ld",distance];
-    self.accuracyLabel.text = [NSString stringWithFormat:@"Accu: %f",beacon.accuracy];
+    self.majorLabel.text = [NSString stringWithFormat:@"Major: %@",beacon.major];
+    self.minorLabel.text = [NSString stringWithFormat:@"Minor: %@",beacon.minor];
+    self.distanceLabel.text = [NSString stringWithFormat:@"Dist: %0.3f",distance];
+    self.accuracyLabel.text = [NSString stringWithFormat:@"Accu: %0.2f",(float)beacon.accuracy];
     
     [self.iconButton setTitle:[NSString stringWithFormat:@"%ld",tempRssi] forState:UIControlStateNormal];
     //    CLProximityUnknown,

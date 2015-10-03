@@ -24,22 +24,41 @@
 
 @property (strong, nonatomic) BeaconTool *beaconTool;
 @property (strong, nonatomic) BeaconModel *beaconModel;
+@property (strong, nonatomic) RealPoint *point;
 
+/**
+ *  Store scanned beacons.
+ */
 @property (strong, nonatomic) NSMutableArray *beaconsStore;
+
+/**
+ *  Shows the current location of user in the view (or called map).
+ */
 @property (strong, nonatomic) UIImageView *location;
 
-// 每隔5秒重新扫描出 RSSI 最强的前三个 beacon  每次扫描的时候会
+/**
+ *  As a tag for deciding it is a new scanning cycle or not.
+ */
 @property (assign, nonatomic) NSInteger newCycleTag;
+
+/**
+ *  Be used in didRangeBeacons method, as a tag for deciding whether there has the same beacon in array.
+ */
 @property (assign, nonatomic) NSInteger matchSameBeaconTag;
+
 @property (strong, nonatomic) NSTimer *time;
 // @property (assign, nonatomic) NSInteger tickTimes;
 
-// Use to show operating information on the view
+/**
+ *  Use to show operating information on the view.
+ */
 @property (weak, nonatomic) IBOutlet UILabel *infoLabel;
+
+/**
+ *  Stand for located beacons in the view (or called map).
+ */
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *locatedButtons;
 
-// Testing point
-@property (strong, nonatomic) RealPoint *point;
 
 - (IBAction)startLocate:(UIButton *)sender;
 - (IBAction)track:(UIButton *)sender;
@@ -265,7 +284,7 @@
     for (int i = 0; i < [transferArray count]; i++) {
         BeaconModel *temp = [[BeaconModel alloc]init];
         temp = [transferArray objectAtIndex:i];
-        NSLog(@"Ranked Beacon (Major %ld, Minor %ld, RSSI %ld)",temp.major,temp.minor,temp.rssi);
+        NSLog(@"Ranked Beacon (Major %@, Minor %@, RSSI %ld)",temp.major,temp.minor,temp.rssi);
     }
     //***************************************************************************************************//
     
@@ -300,7 +319,6 @@
     // Insert the showing point into the database.
     //[RealPointDataBase addPoint:self.point];
     [RealPointDataBase addPoint:currentLocationPoint];
-    
     
     // It means that this is a new scanning cycle
     self.newCycleTag = 1;
@@ -362,8 +380,8 @@
                 
                 CLBeacon *tempBeacon = [beacons objectAtIndex:i];
                 
-                NSInteger tempMajor = tempBeacon.major.integerValue;
-                NSInteger tempMinor = tempBeacon.minor.integerValue;
+                NSNumber *tempMajor = tempBeacon.major;
+                NSNumber *tempMinor = tempBeacon.minor;
                 NSInteger tempRssi = tempBeacon.rssi;
                 
                 [tempBeaconModel setMajor:tempMajor];
@@ -372,7 +390,7 @@
                 [tempBeaconModel setScannedTimes:1];
                 
     //**********************************************Logging**********************************************//
-                NSLog(@"The becaon information:( Major %ld, Minor %ld, RSSI %ld )",tempBeacon.major,tempBeacon.minor,tempBeacon.rssi);
+                NSLog(@"The becaon information:( Major %@, Minor %@, RSSI %ld )",tempBeacon.major,tempBeacon.minor,tempBeacon.rssi);
     //***************************************************************************************************//
                 
                 [self.beaconsStore addObject:tempBeaconModel];
@@ -392,8 +410,8 @@
                 
                 CLBeacon *tempBeacon=[beacons objectAtIndex:i];
                 
-                NSInteger tempMajor1 = tempBeacon.major.integerValue;
-                NSInteger tempMinor1 = tempBeacon.minor.integerValue;
+                NSNumber *tempMajor1 = tempBeacon.major;
+                NSNumber *tempMinor1 = tempBeacon.minor;
                 NSInteger tempRssi1 = tempBeacon.rssi;
                 
                 
@@ -403,7 +421,7 @@
                 {
                     BeaconModel *tempBeaconModel = [self.beaconsStore objectAtIndex:j];
                     
-                    NSInteger tempMinor2 = tempBeaconModel.minor;
+                    NSNumber *tempMinor2 = tempBeaconModel.minor;
                     NSInteger tempRssi2 = tempBeaconModel.rssi;
                     NSInteger tempScannedTimes = tempBeaconModel.scannedTimes;
                     
