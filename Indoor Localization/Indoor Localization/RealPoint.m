@@ -55,13 +55,14 @@
     //NSLog(@"Location Point Coordinate is: ( %f, %f )",transferFrame.origin.x,transferFrame.origin.y);
     
     [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:4.0];
+    [UIView setAnimationDuration:2.0];
     //imageView.frame = transferFrame;
     imageView.center = movingCenter;
     [UIView commitAnimations];
     
     // Add animation to make the current point twinkling.
-    [imageView.layer addAnimation:[self opacityForever_Animation:0.3] forKey:nil];
+    [imageView.layer addAnimation:[self opacityForever_Animation:0.3]
+                           forKey:nil];
     // 添加缩放的动画
     //[imageView.layer addAnimation:[self scale:[NSNumber numberWithFloat:1.0f] orgin:[NSNumber numberWithFloat:2.0f] durTimes:2.0f Rep:MAXFLOAT] forKey:nil];
     

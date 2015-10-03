@@ -8,23 +8,25 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="53" id="yqX-LB-Dnu" customClass="BeaconInfoCell">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="120"/>
+            <rect key="frame" x="0.0" y="0.0" width="414" height="106"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yqX-LB-Dnu" id="wh4-4x-84P">
-                <rect key="frame" x="0.0" y="0.0" width="414" height="119.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="414" height="105.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="83F-Av-Xn9">
-                        <rect key="frame" x="13" y="10" width="100" height="100"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="83F-Av-Xn9">
+                        <rect key="frame" x="7" y="3" width="100" height="100"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="100" id="kFx-cb-ezL"/>
                             <constraint firstAttribute="height" constant="100" id="o81-4U-9hL"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" weight="black" pointSize="30"/>
-                        <state key="normal" title="-70" backgroundImage="beaconIconNear"/>
+                        <state key="normal" title="-70" backgroundImage="beaconIconNear">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dist:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1IA-2c-u6v">
-                        <rect key="frame" x="143" y="74.5" width="115.5" height="30"/>
+                        <rect key="frame" x="137" y="50" width="118.5" height="30"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="UJB-Ro-yXC"/>
                         </constraints>
@@ -33,7 +35,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Minor:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WSU-AV-ki2">
-                        <rect key="frame" x="278" y="15" width="115.5" height="30"/>
+                        <rect key="frame" x="275" y="15" width="118.5" height="30"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="ym8-xG-qOb"/>
                         </constraints>
@@ -42,7 +44,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Accu:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mwy-hx-2lG">
-                        <rect key="frame" x="278" y="74.5" width="115.5" height="30"/>
+                        <rect key="frame" x="275" y="50" width="118.5" height="30"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="w22-qj-yrz"/>
                         </constraints>
@@ -51,7 +53,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Major:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aSf-bi-mdB">
-                        <rect key="frame" x="143" y="15" width="115.5" height="30"/>
+                        <rect key="frame" x="137" y="15" width="118.5" height="30"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="QO4-3E-gNc"/>
                         </constraints>
@@ -59,21 +61,30 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="batteryHigh" translatesAutoresizingMaskIntoConstraints="NO" id="hbl-Kq-MpV">
+                        <rect key="frame" x="137" y="83" width="60" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="a2r-Ug-QSG"/>
+                            <constraint firstAttribute="width" constant="60" id="dAr-DO-uQs"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="1IA-2c-u6v" firstAttribute="width" secondItem="aSf-bi-mdB" secondAttribute="width" id="Dav-Jp-lg0"/>
                     <constraint firstAttribute="trailing" secondItem="WSU-AV-ki2" secondAttribute="trailing" constant="20" id="Gwe-sn-K5R"/>
+                    <constraint firstItem="hbl-Kq-MpV" firstAttribute="leading" secondItem="83F-Av-Xn9" secondAttribute="trailing" constant="30" id="GxT-Xn-5af"/>
                     <constraint firstItem="aSf-bi-mdB" firstAttribute="leading" secondItem="83F-Av-Xn9" secondAttribute="trailing" constant="30" id="IXr-Ks-axy"/>
-                    <constraint firstItem="83F-Av-Xn9" firstAttribute="leading" secondItem="wh4-4x-84P" secondAttribute="leading" constant="13" id="J1b-hP-f8A"/>
+                    <constraint firstItem="83F-Av-Xn9" firstAttribute="leading" secondItem="wh4-4x-84P" secondAttribute="leading" constant="7" id="J1b-hP-f8A"/>
                     <constraint firstItem="WSU-AV-ki2" firstAttribute="width" secondItem="aSf-bi-mdB" secondAttribute="width" id="Ls8-AB-8hk"/>
-                    <constraint firstItem="83F-Av-Xn9" firstAttribute="top" secondItem="wh4-4x-84P" secondAttribute="top" constant="10" id="Ngz-Sd-ns2"/>
-                    <constraint firstAttribute="bottom" secondItem="Mwy-hx-2lG" secondAttribute="bottom" constant="15" id="OFq-SV-T31"/>
+                    <constraint firstItem="83F-Av-Xn9" firstAttribute="top" secondItem="wh4-4x-84P" secondAttribute="top" constant="3" id="Ngz-Sd-ns2"/>
+                    <constraint firstAttribute="bottom" secondItem="Mwy-hx-2lG" secondAttribute="bottom" constant="25" id="OFq-SV-T31"/>
                     <constraint firstItem="1IA-2c-u6v" firstAttribute="leading" secondItem="83F-Av-Xn9" secondAttribute="trailing" constant="30" id="Qa0-IW-VvQ"/>
                     <constraint firstItem="WSU-AV-ki2" firstAttribute="leading" secondItem="aSf-bi-mdB" secondAttribute="trailing" constant="20" id="XV4-gk-BQ1"/>
+                    <constraint firstAttribute="bottom" secondItem="hbl-Kq-MpV" secondAttribute="bottom" constant="2.5" id="ZNK-6X-J1G"/>
                     <constraint firstItem="WSU-AV-ki2" firstAttribute="height" secondItem="aSf-bi-mdB" secondAttribute="height" id="aZR-1V-Cd7"/>
                     <constraint firstItem="Mwy-hx-2lG" firstAttribute="width" secondItem="aSf-bi-mdB" secondAttribute="width" id="cQu-o8-hlv"/>
                     <constraint firstAttribute="trailing" secondItem="Mwy-hx-2lG" secondAttribute="trailing" constant="20" id="cRJ-WS-qVT"/>
-                    <constraint firstAttribute="bottom" secondItem="1IA-2c-u6v" secondAttribute="bottom" constant="15" id="mIj-yq-U9Z"/>
+                    <constraint firstAttribute="bottom" secondItem="1IA-2c-u6v" secondAttribute="bottom" constant="25" id="mIj-yq-U9Z"/>
                     <constraint firstItem="WSU-AV-ki2" firstAttribute="top" secondItem="wh4-4x-84P" secondAttribute="top" constant="15" id="pKa-xe-lbt"/>
                     <constraint firstItem="1IA-2c-u6v" firstAttribute="height" secondItem="aSf-bi-mdB" secondAttribute="height" id="ss3-62-pke"/>
                     <constraint firstItem="aSf-bi-mdB" firstAttribute="top" secondItem="wh4-4x-84P" secondAttribute="top" constant="15" id="ujO-JO-C6A"/>
@@ -81,9 +92,10 @@
                     <constraint firstItem="Mwy-hx-2lG" firstAttribute="leading" secondItem="1IA-2c-u6v" secondAttribute="trailing" constant="20" id="yBw-XI-Hvs"/>
                 </constraints>
             </tableViewCellContentView>
-            <color key="backgroundColor" red="0.40000000596046448" green="0.80000001192092896" blue="1" alpha="0.14999999999999999" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
             <connections>
                 <outlet property="accuracyLabel" destination="Mwy-hx-2lG" id="O3Y-xO-Ivj"/>
+                <outlet property="batteryImageView" destination="hbl-Kq-MpV" id="fb3-Wc-qf5"/>
                 <outlet property="distanceLabel" destination="1IA-2c-u6v" id="ABp-nL-2Id"/>
                 <outlet property="iconButton" destination="83F-Av-Xn9" id="5HQ-RR-ndb"/>
                 <outlet property="majorLabel" destination="aSf-bi-mdB" id="iJj-Dz-1am"/>
@@ -93,6 +105,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="beaconIconNear" width="30" height="30"/>
+        <image name="batteryHigh" width="75" height="25"/>
+        <image name="beaconIconNear" width="100" height="100"/>
     </resources>
 </document>

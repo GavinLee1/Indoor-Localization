@@ -18,7 +18,7 @@
 #define UUID @"77777777-7777-7777-7777-777777777777"
 #define BeaconRegionIdentifier @"FYP"
 
-@interface ProfileTableViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface ProfileTableViewController () <UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate>
 
 
 
@@ -92,10 +92,10 @@
     self.tableView.separatorColor = [UIColor grayColor];
     
     // Set the height value for each cell
-    self.tableView.rowHeight = 120;
+    self.tableView.rowHeight = 106;
     
     // Set locationManager delegate
-    self.locationManager.delegate=self;
+    self.locationManager.delegate = self;
     
     self.locationManager.pausesLocationUpdatesAutomatically = NO;
     
@@ -116,23 +116,23 @@
     NSLog(@"-----------------Update One Time----------------");
     
     //[self.locationManager stopUpdatingLocation];
+    //[UIView beginAnimations:nil context:nil];
+    //[UIView setAnimationDuration:10.0];
     
     [self.tableView reloadData];
-    //[tableView reloadRowsAtIndexPaths:indexPath withRowAnimation:UITableViewRowAnimationAutomatic];
     
-    //[self.tableView reloadRowsAtIndexPaths:self.tableView.indexPathsForVisibleRows withRowAnimation:UITableViewRowAnimationAutomatic];
-    
-    // It means that this is a new scanning cycle
-    // self.newCycleTag = 1;
-    
-    // Remove beacons in beaconsStore, which is added into the array in last scanning period.
-    //[self.beaconsStore removeAllObjects];
-    
-    // 每五秒操作一次，执行完这个操作之后就再次进行监听
-    //[self.locationManager startUpdatingLocation];
-    
-    
-    //[self.tableView reloadSections:nil withRowAnimation:UITableViewRowAnimationAutomatic];
+    /* Animate the table view reload */
+//    [UIView transitionWithView: self.tableView
+//                      duration: 0.5f
+//                       options: UIViewAnimationOptionTransitionCrossDissolve
+//                    animations: ^(void)
+//     {
+//         [self.tableView reloadData];
+//     }
+//                    completion: ^(BOOL isFinished)
+//     {
+//         /* TODO: Whatever you want here */
+//     }];
 }
 
 #pragma mark -TableView DataSource Method
@@ -140,9 +140,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     NSLog(@"%s",__func__);
-    //**********************************************Testing**********************************************//
     
-    //***************************************************************************************************//
     int numberOfRows = (int)[self.beaconsStore count];
     
     if (numberOfRows == 0) {
@@ -153,6 +151,14 @@
     return numberOfRows;
 }
 
+/**
+ *  Initialize the cell in table view
+ *
+ *  @param tableView the current table view, or the table view you want to show.
+ *  @param indexPath current index path
+ *
+ *  @return a table view cell
+ */
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"%s",__func__);
@@ -225,7 +231,11 @@
             // 匹配是否重复扫描，如果当前扫描到的beacon有被扫描到过，就把被扫描的次数+1
             // 把  beacons 数组里的beacons都拿出来比较一下
             // In order to not store a same beacon for twice, when scan for more than second time, will compare it with beacons exist in beaconStore, if it already here, just add its scanned time instead of add it into the array.
+    //**********************************************Logging**********************************************//
             NSLog(@"-----When sacnned for the second time or more-------");
+            NSLog(@"The number of beacons in beaconsStore: %lu",[self.beaconsStore count]);
+    //***************************************************************************************************//
+            
             for(int i = 0; i < scannedBeaconCount; i++)
             {
                 // Initialize the tag for judge the beacon is already there or not.
@@ -239,8 +249,6 @@
                 NSNumber *tempMinor1 = tempBeacon.minor;
                 NSInteger tempRssi1 = tempBeacon.rssi;
                 
-                
-                NSLog(@"The number of beacons in beaconsStore: %lu",[self.beaconsStore count]);
                 // 与已经保存在 beaconAvg 数组里的beacon比较
                 for(int j = 0; j < [self.beaconsStore count]; j++)
                 {

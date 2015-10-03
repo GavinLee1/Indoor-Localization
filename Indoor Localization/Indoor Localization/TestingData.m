@@ -42,7 +42,7 @@
     beacon2.major = @(0);
     beacon2.minor = @(2);
     beacon2.accuracy = 2.5;
-    beacon2.proximity = CLProximityNear;
+    beacon2.proximity = CLProximityFar;
     //beacon2.rssi = (-1)*(arc4random()%30 + 50);
     int rssi2 = (-1)*(arc4random()%30 + 50);
     beacon2.rssi = rssi2;

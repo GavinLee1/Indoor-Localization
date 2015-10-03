@@ -66,8 +66,8 @@
         _pageController.center = CGPointMake(self.view.center.x, 240);
         
         // 设置颜色
-        _pageController.pageIndicatorTintColor = [UIColor orangeColor];
-        _pageController.currentPageIndicatorTintColor = [UIColor grayColor];
+        _pageController.pageIndicatorTintColor = [UIColor grayColor];
+        _pageController.currentPageIndicatorTintColor = [UIColor orangeColor];
         
         [self.view addSubview:_pageController];
         
@@ -88,7 +88,7 @@
 
 - (void)startTimer
 {
-    self.timer = [NSTimer timerWithTimeInterval:2.0 target:self selector:@selector(updateTimer) userInfo:nil repeats:YES];
+    self.timer = [NSTimer timerWithTimeInterval:3.0 target:self selector:@selector(updateTimer) userInfo:nil repeats:YES];
     // 添加到运行循环
     [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
 }
