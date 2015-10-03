@@ -16,7 +16,10 @@
 @implementation AppDelegate
 
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOption
+{
+    //Just give time to show the welcome image
+    [NSThread sleepForTimeInterval:3.0f];
     // Override point for customization after application launch.
     // 1.创建窗口
     self.window = [[UIWindow alloc] init];

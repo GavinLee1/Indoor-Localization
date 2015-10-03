@@ -9,6 +9,7 @@
 #import "ScanBeaconViewController.h"
 #import <CoreLocation/CoreLocation.h>
 #import "BeaconModel.h"
+#import "TestingData.h"
 
 @interface ScanBeaconViewController () <CLLocationManagerDelegate>
 
@@ -24,9 +25,6 @@
 // 每隔5秒重新扫描出 RSSI 最强的前三个 beacon  每次扫描的时候会
 @property (assign, nonatomic) NSInteger newCycleTag;
 @property (assign, nonatomic) NSInteger matchSameBeaconTag;
-@property (assign, nonatomic) NSInteger bleReadyTag;
-@property (strong, nonatomic) NSTimer *time;
-@property (assign, nonatomic) NSInteger tickTimes;
 
 @property (weak, nonatomic) IBOutlet UILabel *infoLabel;
 @property (weak, nonatomic) IBOutlet UITextView *showDataView;
@@ -40,6 +38,7 @@
 @implementation ScanBeaconViewController
 
 #pragma mark -Initialization
+
 // Initialization for beaconsStore
 - (NSMutableArray *) beaconsStore
 {
@@ -48,6 +47,7 @@
     }
     return _beaconsStore;
 }
+
 // Initialization for locationManager
 - (CLLocationManager *) locationManager
 {
@@ -56,6 +56,7 @@
     }
     return  _locationManager;
 }
+
 // Initialization for beaconRegion
 - (CLBeaconRegion *) beaconRegion
 {
@@ -79,6 +80,8 @@
     // Set locationManager delegate
     self.locationManager.delegate=self;
     
+    self.newCycleTag = 1;
+    
     // Apply for authorization
     if ([[UIDevice currentDevice].systemVersion doubleValue] >= 8.0) {
         NSLog(@"Current system is upper than ios 8.0");
@@ -88,12 +91,8 @@
     [self.locationManager startUpdatingHeading];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 # pragma mark -Start And Stop Button Event
+
 - (IBAction)start:(UIButton *)button {
     
     // self.locationManager = [[CLLocationManager alloc]init];
@@ -113,22 +112,14 @@
     self.infoLabel.text = @"Start scanning!\n";
     self.showDataView.text = @"Beacons Information:\n";
     
-    // 重置计时器
-    [self.time invalidate];
-    self.time = nil;
     self.newCycleTag = 1;
-    
-    // 每隔 5 秒调用一次 onTick 方法
-    self.time = [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(onTicking:) userInfo:nil repeats:YES];
 }
 
 - (IBAction)stop:(UIButton *)button {
     NSLog(@"%s", __func__);
     NSLog(@"Scanning process stop!");
     self.infoLabel.text = @"Stop scanning!\n";
-    // 停止时钟并重置
-    [self.time invalidate];
-    self.time = nil;
+    
     // 关闭monitor 关闭扫描的region
     [self.locationManager stopUpdatingLocation];
     [self.locationManager stopRangingBeaconsInRegion:self.beaconRegion];
@@ -137,23 +128,22 @@
 
 # pragma mark -Timer
 // At the end of 5 seconds, extract avg rssi, major, minor
--(void)onTicking:(NSTimer *)timer{
+-(void)tracking{
     NSLog(@"%s", __func__);
-    NSLog(@"------On Ticking------");
-    self.tickTimes++;
-    self.infoLabel.text = [NSString stringWithFormat:@"Tick to calculate for %li times!\n",self.tickTimes];
-    // 5秒到了之后就打断一次扫描
+    NSLog(@"------------------Tracking------------------");
+    
     [self.locationManager stopUpdatingLocation];
     
+    self.infoLabel.text = @"Tracking........\n";
     
+    //**********************************************Logging**********************************************//
+    for (BeaconModel *beacon in self.beaconsStore) {
+        NSLog(@"Original Beacon: Major:%@, Minor:%@, RSSI:%ld", beacon.major, beacon.minor, beacon.rssi);
+    }
+    //***************************************************************************************************//
+    
+    // Will record the ranked beacons.
     NSArray *tempBeacons1 = [[NSArray alloc]init];
-    
-    // 当beaconAvg数组中记录的数据大于3条时
-    // 只有当其中存储的beacon信息超过3个时才说明 beacon以及准备好来定位，如果不足三个，就返回not ready
-    
-    NSLog(@"BeaconStore Info: %@",[self.beaconsStore description]);
-    
-    //self.bleReadyTag = true;
     
     // rssi按降序排列
     NSSortDescriptor *sortDescriptor1=[[NSSortDescriptor alloc] initWithKey:@"rssi" ascending:NO];
@@ -162,44 +152,23 @@
     // 根据前两个条件对 beaconAvg数组里的元素进行排序
     tempBeacons1 = [self.beaconsStore sortedArrayUsingDescriptors:[NSArray arrayWithObjects:sortDescriptor1,sortDescriptor2, nil]];
     
+    // Recored the text, shown in showDataView.
+    NSString *infor;
+    
     // 将排好序的beacon信息输出
     for (BeaconModel *beacon in tempBeacons1)
     {
-        NSString *beaconsInfo=[NSString stringWithFormat:@"Major: %@, Minor: %@, RSSI: %li, Scanned:% li\n",beacon.major,beacon.minor,beacon.rssi,beacon.scannedTimes];
+        NSString *beaconsInfo=[NSString stringWithFormat:@"< Major:%@ -- Minor:%@ > | RSSI:%li  Scanned:%li |\n",beacon.major,beacon.minor,beacon.rssi,beacon.scannedTimes];
         
         //在TextView中以追加的形式显示beacon的信息
-        NSLog(@"%@",self.showDataView.text);
-        self.showDataView.text = [self.showDataView.text stringByAppendingString:beaconsInfo];
-        NSLog(@"%@",self.showDataView.text);
+        infor = [NSString stringWithString:beaconsInfo];
     }
     
-    /*if([self.beaconsStore count]>=3)
-     {
-     //get beacons array with ascending rssi
-     self.bleReadyTag = true;
-     // rssi按降序排列
-     NSSortDescriptor *sortDescriptor1=[[NSSortDescriptor alloc] initWithKey:@"rssi" ascending:NO];
-     // major按升序排列
-     NSSortDescriptor *sortDescriptor2=[[NSSortDescriptor alloc] initWithKey:@"major" ascending:YES];
-     // 根据前两个条件对 beaconAvg数组里的元素进行排序
-     tempBeacons1 = [self.beaconsStore sortedArrayUsingDescriptors:[NSArray arrayWithObjects:sortDescriptor1,sortDescriptor2, nil]];
-     
-     //_textView.text=@"scanning\n";
-     
-     // 将排好序的beacon信息输出
-     for (BeaconModel *beacon in tempBeacons1)
-     {
-     NSString *beaconsInfo=[NSString stringWithFormat:@"Major: %li, Minor: %li, RSSI: %li\n",beacon.major,beacon.minor,beacon.rssi];
-     //在TextView中以追加的形式显示beacon的信息
-     self.showDataView.text=[self.showDataView.text stringByAppendingString:beaconsInfo];
-     }
-     
-     }
-     else{
-     self.infoLabel.text = @"No beacons around or not enough!\n";
-     self.bleReadyTag = false;
-     //_textView.text=[_textView.text stringByAppendingString:@"No beacons nearby\n"];
-     }*/
+    self.showDataView.text = [self.showDataView.text stringByAppendingString:infor];
+    
+    //**********************************************Logging**********************************************//
+    NSLog(@"View Field Text:\n %@",self.showDataView.text);
+    //***************************************************************************************************//
     
     if ([tempBeacons1 count] < 1) {
         self.showDataView.text = [self.showDataView.text stringByAppendingString:@"No beacons around!\n"];
@@ -207,10 +176,13 @@
     
     // It means that this is a new scanning cycle
     self.newCycleTag = 1;
-    // Remove beacons in beaconsStore, which is added into the array in last scanning period.
+    
+    // Remove beacons in beaconsStore, which is added into the array in the past scanning period.
     [self.beaconsStore removeAllObjects];
-    // 每五秒操作一次，执行完这个操作之后就再次进行监听
+    
+    // 执行完这个操作之后就再次进行监听
     [self.locationManager startUpdatingLocation];
+    
 }
 
 # pragma mark -Compass
@@ -231,6 +203,14 @@
 -(void)locationManager:(CLLocationManager *)manager didRangeBeacons:(NSArray *)beacons inRegion:(CLBeaconRegion *)region
 {
     NSLog(@"%s",__func__);
+    
+    //**********************************************Testing**********************************************//
+    if ([beacons count] < 1) {
+        beacons = [TestingData initTestingData];
+    }
+    //***************************************************************************************************//
+    
+    
     // scannedBeaconCount: the number of beacons scanned.
     NSInteger scannedBeaconCount = [beacons count];
     
@@ -260,9 +240,11 @@
                 [tempBeaconModel setMinor:tempMinor];
                 [tempBeaconModel setRssi:tempRssi];
                 [tempBeaconModel setScannedTimes:1];
-                NSLog(@"The becaon information:%@",[tempBeacon description]);
+    //**********************************************Logging**********************************************//
+                NSLog(@"The becaon information:( Major %@, Minor %@, RSSI %ld )",tempBeacon.major,tempBeacon.minor,tempBeacon.rssi);
+    //***************************************************************************************************//
+                
                 [self.beaconsStore addObject:tempBeaconModel];
-                NSLog(@"The becaonStore information:%@",[self.beaconsStore description]);
             }
             
         }else
@@ -334,6 +316,8 @@
         self.newCycleTag = 0;
         NSLog(@"newCycleTag = %ld",self.newCycleTag);
     }
+    
+    [self performSelector:@selector(tracking) withObject:nil afterDelay:0.0f];
 }
 
 -(void) locationManager:(CLLocationManager *)manager monitoringDidFailForRegion:(CLRegion *)region withError:(NSError *)error {

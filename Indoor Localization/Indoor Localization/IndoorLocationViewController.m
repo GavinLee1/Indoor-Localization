@@ -318,7 +318,7 @@
     // It means that this is a new scanning cycle
     self.newCycleTag = 1;
     
-    // Remove beacons in beaconsStore, which is added into the array in last scanning period.
+    // Remove beacons in beaconsStore, which is added into the array in the past scanning period.
     [self.beaconsStore removeAllObjects];
     
     // After tracking and showing location on the view, restart scanning.
@@ -347,13 +347,11 @@
     
     self.infoLabel.text = @"Scanning...........\n";
     
-    
     //**********************************************Testing**********************************************//
     if ([beacons count] < 1) {
         beacons = [TestingData initTestingData];
     }
     //***************************************************************************************************//
-    
     
     // scannedBeaconCount: the number of beacons scanned.
     NSInteger scannedBeaconCount = [beacons count];
