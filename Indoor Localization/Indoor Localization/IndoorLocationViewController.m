@@ -115,8 +115,14 @@
 - (UIImageView *) location
 {
     if (!_location) {
-        _location = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 20, 10)];
+        _location = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
         _location.image = [UIImage imageNamed:@"current_location"];
+        // 设置阴影透明度
+        _location.layer.shadowOpacity = 1;
+        // 设置阴影颜色
+        _location.layer.shadowColor = [UIColor blackColor].CGColor;
+        // 设置阴影圆角半径，就是显示阴影的区域大小
+        _location.layer.shadowRadius = 5;
     }
     return _location;
 }
@@ -187,8 +193,10 @@
 - (IBAction)track:(UIButton *)sender {
     NSLog(@"%s",__func__);
     
-    NSArray *trackedPoints = [RealPointDataBase trackedPoints];
-    //NSArray *trackedPoints = [RealPointDataBase points];
+    // Only point out 10 points whit step coefficient in datbabase.
+    //NSArray *trackedPoints = [RealPointDataBase trackedPoints];
+    // Will point out all points stored in database.
+    NSArray *trackedPoints = [RealPointDataBase points];
     
     [self.point drawTrackPath:self.view
                    withPoints:trackedPoints];

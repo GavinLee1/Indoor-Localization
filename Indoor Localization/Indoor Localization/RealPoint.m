@@ -61,7 +61,7 @@
     [UIView commitAnimations];
     
     // Add animation to make the current point twinkling.
-    [imageView.layer addAnimation:[self opacityForever_Animation:0.3]
+    [imageView.layer addAnimation:[self opacityForever_Animation:0.5f]
                            forKey:nil];
     // 添加缩放的动画
     //[imageView.layer addAnimation:[self scale:[NSNumber numberWithFloat:1.0f] orgin:[NSNumber numberWithFloat:2.0f] durTimes:2.0f Rep:MAXFLOAT] forKey:nil];
