@@ -188,12 +188,12 @@
     
     // scannedBeaconCount: the number of beacons scanned.
     NSInteger scannedBeaconCount = [beacons count];
-    NSLog(@"The number of scanned beacons:%ld",[beacons count]);
+    NSLog(@"The number of scanned beacons:%d",[beacons count]);
     // 扫描到beacon 并把它们存到数组里面
     // Filter out the 0dBm RSSI beacons and store in tempBeacon0
     if (scannedBeaconCount > 1)
     {
-        NSLog(@"newCyscleTag = %ld",self.newCycleTag);
+        NSLog(@"newCyscleTag = %i",self.newCycleTag);
         // Every first time, just initialize the beacon model and add it into the array.
         if (self.newCycleTag == 1)
         {
@@ -219,7 +219,7 @@
                 [tempBeaconModel setScannedTimes:1];
                 
     //**********************************************Logging**********************************************//
-                NSLog(@"The becaon information:( Major %@, Minor %@, RSSI %ld )",tempBeacon.major,tempBeacon.minor,tempBeacon.rssi);
+                NSLog(@"The becaon information:( Major %@, Minor %@, RSSI %i )",tempBeacon.major,tempBeacon.minor,tempBeacon.rssi);
     //***************************************************************************************************//
                 
                 [self.beaconsStore addObject:tempBeaconModel];
@@ -233,7 +233,7 @@
             // In order to not store a same beacon for twice, when scan for more than second time, will compare it with beacons exist in beaconStore, if it already here, just add its scanned time instead of add it into the array.
     //**********************************************Logging**********************************************//
             NSLog(@"-----When sacnned for the second time or more-------");
-            NSLog(@"The number of beacons in beaconsStore: %lu",[self.beaconsStore count]);
+            NSLog(@"The number of beacons in beaconsStore: %i",[self.beaconsStore count]);
     //***************************************************************************************************//
             
             for(int i = 0; i < scannedBeaconCount; i++)
@@ -304,7 +304,7 @@
         }
         
         self.newCycleTag = 0;
-        NSLog(@"newCycleTag = %ld",self.newCycleTag);
+        NSLog(@"newCycleTag = %i",self.newCycleTag);
     }
     
     // Afer each scanning period, call the updateTabelView method to reload the data in tableView.
@@ -318,7 +318,7 @@
     
     NSLog(@"monitoringDidFailForRegion %@ %@",region, error.localizedDescription);
     NSInteger regionNum = [self.locationManager monitoredRegions].count;
-    NSLog(@"The number of regions:%ld", regionNum);
+    NSLog(@"The number of regions:%i", regionNum);
     for (CLRegion *monitoredRegion in manager.monitoredRegions) {
         NSLog(@"Get Monitored Regions: %@", monitoredRegion);
     }

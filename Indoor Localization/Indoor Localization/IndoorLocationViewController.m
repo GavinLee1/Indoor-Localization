@@ -291,7 +291,7 @@
     for (int i = 0; i < [transferArray count]; i++) {
         BeaconModel *temp = [[BeaconModel alloc]init];
         temp = [transferArray objectAtIndex:i];
-        NSLog(@"Ranked Beacon (Major %@, Minor %@, RSSI %ld)",temp.major,temp.minor,temp.rssi);
+        NSLog(@"Ranked Beacon (Major %@, Minor %@, RSSI %i)",temp.major,temp.minor,temp.rssi);
     }
     //***************************************************************************************************//
     
@@ -363,13 +363,13 @@
     
     // scannedBeaconCount: the number of beacons scanned.
     NSInteger scannedBeaconCount = [beacons count];
-    NSLog(@"The number of scanned beacons:%ld",[beacons count]);
+    NSLog(@"The number of scanned beacons:%i",[beacons count]);
     
     // 扫描到beacon 并把它们存到数组里面
     // Filter out the 0dBm RSSI beacons and store in tempBeacon0
     if (scannedBeaconCount > 1)
     {
-        NSLog(@"newCyscleTag = %ld",self.newCycleTag);
+        NSLog(@"newCyscleTag = %i",self.newCycleTag);
         
         // Every first scanning cycle, just initialize the beacon model and add it into the array.
         if (self.newCycleTag == 1)
@@ -392,7 +392,7 @@
                 [tempBeaconModel setScannedTimes:1];
                 
     //**********************************************Logging**********************************************//
-                NSLog(@"The becaon information:( Major %@, Minor %@, RSSI %ld )",tempBeacon.major,tempBeacon.minor,tempBeacon.rssi);
+                NSLog(@"The becaon information:( Major %@, Minor %@, RSSI %i )",tempBeacon.major,tempBeacon.minor,tempBeacon.rssi);
     //***************************************************************************************************//
                 
                 [self.beaconsStore addObject:tempBeaconModel];
@@ -417,7 +417,7 @@
                 NSInteger tempRssi1 = tempBeacon.rssi;
                 
                 
-                NSLog(@"The number of beacons in beaconsStore: %lu",[self.beaconsStore count]);
+                NSLog(@"The number of beacons in beaconsStore: %i",[self.beaconsStore count]);
                 // 与已经保存在 beaconAvg 数组里的beacon比较
                 for(int j = 0; j < [self.beaconsStore count]; j++)
                 {
@@ -465,7 +465,7 @@
         }
         
         self.newCycleTag = 0;
-        NSLog(@"newCycleTag = %ld",self.newCycleTag);
+        NSLog(@"newCycleTag = %i",self.newCycleTag);
     }
     
     // Aftering each scanning period, call tracking method to show user's current location.
@@ -478,7 +478,7 @@
     
     NSLog(@"monitoringDidFailForRegion %@ %@",region, error.localizedDescription);
     NSInteger regionNum = [self.locationManager monitoredRegions].count;
-    NSLog(@"The number of regions:%ld", regionNum);
+    NSLog(@"The number of regions:%i", regionNum);
     for (CLRegion *monitoredRegion in manager.monitoredRegions) {
         NSLog(@"Get Monitored Regions: %@", monitoredRegion);
     }

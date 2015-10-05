@@ -133,6 +133,7 @@
 			children = (
 				86C52C121BBA790C005C8C9D /* libsqlite3.0.tbd */,
 				86C52C101BBA7901005C8C9D /* libsqlite3.tbd */,
+				86BDB0E31BC10BED0080E3F6 /* Frameworks */,
 				86EEDB631BB97556007558BC /* fmdb */,
 				86997B611BB5995B006FE3DA /* MapKit.framework */,
 				86235F411BA94E3500A8517C /* Indoor Localization */,
@@ -254,6 +255,13 @@
 				868E1E501BBF712B003C572F /* TestingData.m */,
 			);
 			name = TabBar;
+			sourceTree = "<group>";
+		};
+		86BDB0E31BC10BED0080E3F6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Frameworks;
 			sourceTree = "<group>";
 		};
 		86EEDB5C1BB92992007558BC /* Models */ = {

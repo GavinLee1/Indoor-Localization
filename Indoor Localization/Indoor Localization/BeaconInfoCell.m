@@ -90,7 +90,7 @@
     self.distanceLabel.text = [NSString stringWithFormat:@"Dist: %0.3f",distance];
     self.accuracyLabel.text = [NSString stringWithFormat:@"Accu: %0.2f",(float)beacon.accuracy];
     
-    [self.iconButton setTitle:[NSString stringWithFormat:@"%ld",tempRssi] forState:UIControlStateNormal];
+    [self.iconButton setTitle:[NSString stringWithFormat:@"%li",(long)tempRssi] forState:UIControlStateNormal];
     //    CLProximityUnknown,
     //    CLProximityImmediate,
     //    CLProximityNear,
@@ -114,11 +114,11 @@
         case CLProximityUnknown:
             [self.iconButton setBackgroundImage:[UIImage imageNamed:@"beaconIconUnknown"] forState:UIControlStateNormal];
             [self.iconButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-            self.batteryImageView.image = [UIImage imageNamed:@"batteryLow"];
+            self.batteryImageView.image = [UIImage imageNamed:@"batteryEmpty"];
             break;
         case CLProximityImmediate:
             [self.iconButton setBackgroundImage:[UIImage imageNamed:@"beaconIconImmediate"] forState:UIControlStateNormal];
-            self.batteryImageView.image = [UIImage imageNamed:@"batteryHigh"];
+            self.batteryImageView.image = [UIImage imageNamed:@"battery75"];
             break;
         case CLProximityNear:
             [self.iconButton setBackgroundImage:[UIImage imageNamed:@"beaconIconNear"] forState:UIControlStateNormal];
@@ -127,7 +127,7 @@
         case CLProximityFar:
             [self.iconButton setBackgroundImage:[UIImage imageNamed:@"beaconIconFar"] forState:UIControlStateNormal];
             [self.iconButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-            self.batteryImageView.image = [UIImage imageNamed:@"batteryLow"];
+            self.batteryImageView.image = [UIImage imageNamed:@"battery50"];
             break;
         default:
             [self.iconButton setBackgroundImage:[UIImage imageNamed:@"beaconIconNear"] forState:UIControlStateNormal];

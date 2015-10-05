@@ -138,7 +138,7 @@
     
     //**********************************************Logging**********************************************//
     for (BeaconModel *beacon in self.beaconsStore) {
-        NSLog(@"Original Beacon: Major:%@, Minor:%@, RSSI:%ld", beacon.major, beacon.minor, beacon.rssi);
+        NSLog(@"Original Beacon: Major:%@, Minor:%@, RSSI:%i", beacon.major, beacon.minor, beacon.rssi);
     }
     //***************************************************************************************************//
     
@@ -158,7 +158,7 @@
     // 将排好序的beacon信息输出
     for (BeaconModel *beacon in tempBeacons1)
     {
-        NSString *beaconsInfo=[NSString stringWithFormat:@"< Major:%@ -- Minor:%@ > | RSSI:%li  Scanned:%li |\n",beacon.major,beacon.minor,beacon.rssi,beacon.scannedTimes];
+        NSString *beaconsInfo=[NSString stringWithFormat:@"< Major:%@ -- Minor:%@ > | RSSI:%i  Scanned:%i |\n",beacon.major,beacon.minor,beacon.rssi,beacon.scannedTimes];
         
         //在TextView中以追加的形式显示beacon的信息
         infor = [NSString stringWithString:beaconsInfo];
@@ -215,12 +215,12 @@
     NSInteger scannedBeaconCount = [beacons count];
     
     self.infoLabel.text = @"Scanning......\n";
-    NSLog(@"The number of scanned beacons:%ld",[beacons count]);
+    NSLog(@"The number of scanned beacons:%i",[beacons count]);
     // 扫描到beacon 并把它们存到数组里面
     // Filter out the 0dBm RSSI beacons and store in tempBeacon0
     if (scannedBeaconCount > 1)
     {
-        NSLog(@"newCyscleTag = %ld",self.newCycleTag);
+        NSLog(@"newCyscleTag = %i",self.newCycleTag);
         // Every first time, just initialize the beacon model and add it into the array.
         if (self.newCycleTag == 1)
         {
@@ -242,7 +242,7 @@
                 [tempBeaconModel setScannedTimes:1];
                 
     //**********************************************Logging**********************************************//
-                NSLog(@"The becaon information:( Major %@, Minor %@, RSSI %ld )",tempBeacon.major,tempBeacon.minor,tempBeacon.rssi);
+                NSLog(@"The becaon information:( Major %@, Minor %@, RSSI %i )",tempBeacon.major,tempBeacon.minor,tempBeacon.rssi);
     //***************************************************************************************************//
                 
                 [self.beaconsStore addObject:tempBeaconModel];
@@ -267,7 +267,7 @@
                 NSInteger tempRssi1 = tempBeacon.rssi;
                 
                 // 与已经保存在 beaconAvg 数组里的beacon比较
-                NSLog(@"The number of scanned beacons: %lu",[self.beaconsStore count]);
+                NSLog(@"The number of scanned beacons: %i",[self.beaconsStore count]);
                 
                 for(int j = 0; j < [self.beaconsStore count]; j++)
                 {
@@ -315,7 +315,7 @@
         }
         
         self.newCycleTag = 0;
-        NSLog(@"newCycleTag = %ld",self.newCycleTag);
+        NSLog(@"newCycleTag = %i",self.newCycleTag);
     }
     
     [self performSelector:@selector(tracking) withObject:nil afterDelay:0.0f];
@@ -327,7 +327,7 @@
     
     NSLog(@"monitoringDidFailForRegion %@ %@",region, error.localizedDescription);
     NSInteger regionNum = [self.locationManager monitoredRegions].count;
-    NSLog(@"The number of regions:%ld", regionNum);
+    NSLog(@"The number of regions:%i", regionNum);
     for (CLRegion *monitoredRegion in manager.monitoredRegions) {
         NSLog(@"Get Monitored Regions: %@", monitoredRegion);
     }

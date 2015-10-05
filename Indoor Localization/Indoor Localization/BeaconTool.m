@@ -204,7 +204,7 @@
     for (int i = 0; i < [beaconsStore count]; i++) {
         BeaconModel *temp = [[BeaconModel alloc]init];
         temp = [beaconsStore objectAtIndex:i];
-        NSLog(@"*Origin Beacon (Major %@, Minor %@, RSSI %ld)",temp.major,temp.minor,temp.rssi);
+        NSLog(@"*Origin Beacon (Major %@, Minor %@, RSSI %li)",temp.major,temp.minor,(long)temp.rssi);
     }
     //***************************************************************************************************//
     
