@@ -40,4 +40,10 @@
  */
 - (float) computeDistance: (float) rssi;
 
+/**
+ *  Designed to get the sorted beacons for table view showing.
+ *
+ */
+- (NSArray *) sortedBeacons: (NSArray *) beaconsStore;
+
 @end

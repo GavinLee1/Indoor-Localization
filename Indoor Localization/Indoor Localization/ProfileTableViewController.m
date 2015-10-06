@@ -10,6 +10,7 @@
 #import "ProfileTableHeadView.h"
 #import "BeaconInfoCell.h"
 #import "BeaconModel.h"
+#import "BeaconTool.h"
 #import <CoreLocation/CoreLocation.h>
 #import <QuartzCore/QuartzCore.h>
 
@@ -25,6 +26,7 @@
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) CLBeaconRegion *beaconRegion;
 
+@property (strong, nonatomic) BeaconTool *beaconTool;
 /**
  *  As a tag for deciding it is a new scanning cycle or not.
  */
@@ -79,6 +81,15 @@
     return _beaconRegion;
 }
 
+//Initialization for beaconTool
+- (BeaconTool *) beaconTool
+{
+    if (!_beaconTool) {
+        _beaconTool = [[BeaconTool alloc] init];
+    }
+    return _beaconTool;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -109,32 +120,6 @@
     self.newCycleTag = 1;
 }
 
-
-- (void) updateTableView
-{
-    NSLog(@"%s",__func__);
-    NSLog(@"-----------------Update One Time----------------");
-    
-    //[self.locationManager stopUpdatingLocation];
-    //[UIView beginAnimations:nil context:nil];
-    //[UIView setAnimationDuration:10.0];
-    
-    [self.tableView reloadData];
-    
-    /* Animate the table view reload */
-//    [UIView transitionWithView: self.tableView
-//                      duration: 0.5f
-//                       options: UIViewAnimationOptionTransitionCrossDissolve
-//                    animations: ^(void)
-//     {
-//         [self.tableView reloadData];
-//     }
-//                    completion: ^(BOOL isFinished)
-//     {
-//         /* TODO: Whatever you want here */
-//     }];
-}
-
 #pragma mark -TableView DataSource Method
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -148,6 +133,7 @@
     }
     
     NSLog(@"The number of rows: %d", numberOfRows);
+    
     return numberOfRows;
 }
 
@@ -164,9 +150,38 @@
     NSLog(@"%s",__func__);
     
     BeaconInfoCell *cell = [BeaconInfoCell cellWithTableView:tableView];
-    cell.beacon = [self.beaconsStore objectAtIndex:indexPath.row];
+    
+    // Use the sorted beacons to initialize the cell
+    NSArray *sortedBeacons = [self.beaconTool sortedBeacons:self.beaconsStore];
+    
+    cell.beacon = [sortedBeacons objectAtIndex:indexPath.row];
     
     return cell;
+}
+
+- (void) updateTableView
+{
+    NSLog(@"%s",__func__);
+    NSLog(@"-----------------Update One Time----------------");
+    
+    //[self.locationManager stopUpdatingLocation];
+    //[UIView beginAnimations:nil context:nil];
+    //[UIView setAnimationDuration:10.0];
+    
+    [self.tableView reloadData];
+    
+    /* Animate the table view reload */
+    //    [UIView transitionWithView: self.tableView
+    //                      duration: 0.5f
+    //                       options: UIViewAnimationOptionTransitionCrossDissolve
+    //                    animations: ^(void)
+    //     {
+    //         [self.tableView reloadData];
+    //     }
+    //                    completion: ^(BOOL isFinished)
+    //     {
+    //         /* TODO: Whatever you want here */
+    //     }];
 }
 
 # pragma mark -CLLocationManagerDelegate
@@ -309,7 +324,6 @@
     
     // Afer each scanning period, call the updateTabelView method to reload the data in tableView.
     [self performSelector:@selector(updateTableView) withObject:nil afterDelay:0];
-    
 }
 
 -(void) locationManager:(CLLocationManager *)manager monitoringDidFailForRegion:(CLRegion *)region withError:(NSError *)error {

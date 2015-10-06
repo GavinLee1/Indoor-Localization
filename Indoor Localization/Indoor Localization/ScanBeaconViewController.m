@@ -153,7 +153,7 @@
     tempBeacons1 = [self.beaconsStore sortedArrayUsingDescriptors:[NSArray arrayWithObjects:sortDescriptor1,sortDescriptor2, nil]];
     
     // Recored the text, shown in showDataView.
-    NSString *infor;
+    NSMutableString *infor = [[NSMutableString alloc] init];;
     
     // 将排好序的beacon信息输出
     for (BeaconModel *beacon in tempBeacons1)
@@ -161,7 +161,8 @@
         NSString *beaconsInfo=[NSString stringWithFormat:@"< Major:%@ -- Minor:%@ > | RSSI:%i  Scanned:%i |\n",beacon.major,beacon.minor,beacon.rssi,beacon.scannedTimes];
         
         //在TextView中以追加的形式显示beacon的信息
-        infor = [NSString stringWithString:beaconsInfo];
+        [infor appendString:beaconsInfo];
+        NSLog(@"Beacon minor: %i",beacon.minor);
     }
     
     self.showDataView.text = [self.showDataView.text stringByAppendingString:infor];

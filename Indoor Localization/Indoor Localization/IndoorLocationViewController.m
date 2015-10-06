@@ -391,9 +391,9 @@
                 [tempBeaconModel setRssi:tempRssi];
                 [tempBeaconModel setScannedTimes:1];
                 
-    //**********************************************Logging**********************************************//
+//**********************************************Logging**********************************************//
                 NSLog(@"The becaon information:( Major %@, Minor %@, RSSI %i )",tempBeacon.major,tempBeacon.minor,tempBeacon.rssi);
-    //***************************************************************************************************//
+//***************************************************************************************************//
                 
                 [self.beaconsStore addObject:tempBeaconModel];
                 // NSLog(@"The becaonStore information:%@",[self.beaconsStore description]);

@@ -163,9 +163,10 @@
 - (float) computeDistance: (float) rssi
 {
     // RSSI for one meter from the beacon
-#define A 70
+#define A 59
     // The signal propagation constant in a specific environment
 #define N 1.66
+    //1.4
     /******************** Applying LDPL ********************/
     
     // Calculate and get the distance from user to the current beacon
@@ -228,7 +229,32 @@
         NSLog(@"The number of beacons for localization is less than 3!");
     }
     
+    //**********************************************Logging**********************************************//
+    for (int i = 0; i < [tempBeacons count]; i++) {
+        BeaconModel *temp = [[BeaconModel alloc]init];
+        temp = [tempBeacons objectAtIndex:i];
+        NSLog(@"*Ranked Beacon (Major %@, Minor %@, RSSI %li)",temp.major,temp.minor,(long)temp.rssi);
+    }
+    //***************************************************************************************************//
+    
     return tempBeacons;
+}
+
+/**
+ *  Designed to get the sorted beacons for table view showing.
+ *
+ */
+- (NSArray *) sortedBeacons: (NSArray *) beaconsStore
+{
+    NSArray *sortedBeacons = [[NSArray alloc]init];
+    // get beacons array with ascending rssi
+    // rssi按降序排列
+    NSSortDescriptor *sortDescriptor1=[[NSSortDescriptor alloc] initWithKey:@"rssi" ascending:NO];
+    // major按升序排列
+    NSSortDescriptor *sortDescriptor2=[[NSSortDescriptor alloc] initWithKey:@"minor" ascending:YES];
+        // 根据前两个条件对 beaconAvg数组里的元素进行排序
+    sortedBeacons = [beaconsStore sortedArrayUsingDescriptors:[NSArray arrayWithObjects:sortDescriptor1,sortDescriptor2, nil]];
+    return sortedBeacons;
 }
 
 @end

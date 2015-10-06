@@ -51,7 +51,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		86235F3F1BA94E3500A8517C /* Indoor Localization.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Indoor Localization.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		86235F3F1BA94E3500A8517C /* IndoorLoc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IndoorLoc.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86235F431BA94E3500A8517C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		86235F441BA94E3500A8517C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		86235F461BA94E3500A8517C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -145,7 +145,7 @@
 		86235F401BA94E3500A8517C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				86235F3F1BA94E3500A8517C /* Indoor Localization.app */,
+				86235F3F1BA94E3500A8517C /* IndoorLoc.app */,
 				86235F581BA94E3500A8517C /* Indoor LocalizationTests.xctest */,
 			);
 			name = Products;
@@ -325,7 +325,7 @@
 			);
 			name = "Indoor Localization";
 			productName = "Indoor Localization";
-			productReference = 86235F3F1BA94E3500A8517C /* Indoor Localization.app */;
+			productReference = 86235F3F1BA94E3500A8517C /* IndoorLoc.app */;
 			productType = "com.apple.product-type.application";
 		};
 		86235F571BA94E3500A8517C /* Indoor LocalizationTests */ = {
@@ -558,7 +558,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.lgz.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = IndoorLoc;
 			};
 			name = Debug;
 		};
@@ -574,7 +574,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.lgz.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = IndoorLoc;
 			};
 			name = Release;
 		};

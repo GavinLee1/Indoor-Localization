@@ -26,7 +26,7 @@
                         </state>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dist:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1IA-2c-u6v">
-                        <rect key="frame" x="137" y="50" width="118.5" height="30"/>
+                        <rect key="frame" x="137" y="50" width="53" height="30"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="UJB-Ro-yXC"/>
                         </constraints>
@@ -35,7 +35,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Minor:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WSU-AV-ki2">
-                        <rect key="frame" x="275" y="15" width="118.5" height="30"/>
+                        <rect key="frame" x="209.5" y="15" width="53" height="30"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="ym8-xG-qOb"/>
                         </constraints>
@@ -44,7 +44,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Accu:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mwy-hx-2lG">
-                        <rect key="frame" x="275" y="50" width="118.5" height="30"/>
+                        <rect key="frame" x="209.5" y="50" width="53" height="30"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="w22-qj-yrz"/>
                         </constraints>
@@ -53,7 +53,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Major:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aSf-bi-mdB">
-                        <rect key="frame" x="137" y="15" width="118.5" height="30"/>
+                        <rect key="frame" x="137" y="15" width="53" height="30"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="QO4-3E-gNc"/>
                         </constraints>
@@ -83,7 +83,7 @@
                     <constraint firstItem="hbl-Kq-MpV" firstAttribute="leading" secondItem="83F-Av-Xn9" secondAttribute="trailing" constant="268" id="cEL-DA-0hg"/>
                     <constraint firstItem="Mwy-hx-2lG" firstAttribute="width" secondItem="aSf-bi-mdB" secondAttribute="width" id="cQu-o8-hlv"/>
                     <constraint firstAttribute="trailing" secondItem="Mwy-hx-2lG" secondAttribute="trailing" constant="20" id="cRJ-WS-qVT"/>
-                    <constraint firstAttribute="trailing" secondItem="hbl-Kq-MpV" secondAttribute="trailing" constant="7" id="dZL-Sd-Fff"/>
+                    <constraint firstAttribute="trailing" secondItem="hbl-Kq-MpV" secondAttribute="trailing" constant="10" id="dZL-Sd-Fff"/>
                     <constraint firstAttribute="bottom" secondItem="1IA-2c-u6v" secondAttribute="bottom" constant="25" id="mIj-yq-U9Z"/>
                     <constraint firstItem="WSU-AV-ki2" firstAttribute="top" secondItem="wh4-4x-84P" secondAttribute="top" constant="15" id="pKa-xe-lbt"/>
                     <constraint firstItem="1IA-2c-u6v" firstAttribute="height" secondItem="aSf-bi-mdB" secondAttribute="height" id="ss3-62-pke"/>
@@ -106,7 +106,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="batteryHigh" width="32" height="32"/>
+        <image name="batteryHigh" width="64" height="64"/>
         <image name="beaconIconNear" width="100" height="100"/>
     </resources>
 </document>

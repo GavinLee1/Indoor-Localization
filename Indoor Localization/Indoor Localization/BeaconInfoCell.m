@@ -91,26 +91,14 @@
     self.accuracyLabel.text = [NSString stringWithFormat:@"Accu: %0.2f",(float)beacon.accuracy];
     
     [self.iconButton setTitle:[NSString stringWithFormat:@"%li",(long)tempRssi] forState:UIControlStateNormal];
-    //    CLProximityUnknown,
-    //    CLProximityImmediate,
-    //    CLProximityNear,
-    //    CLProximityFar
+    
+    //**********************************************Logging**********************************************//
+    NSLog(@"Received Beacon Information: Major:%@ Minor:%@ RSSI:%li \n accuray:%f proximity:%ld distance:%f",beacon.major,beacon.minor,beacon.rssi,beacon.accuracy,(long)beacon.proximity,distance);
+    //***************************************************************************************************//
+    
     // Set the button's background image according to different proximity value.
     switch (beacon.proximity) {
-//            + (UIColor *)blackColor;      // 0.0 white
-//            + (UIColor *)darkGrayColor;   // 0.333 white
-//            + (UIColor *)lightGrayColor;  // 0.667 white
-//            + (UIColor *)whiteColor;      // 1.0 white
-//            + (UIColor *)grayColor;       // 0.5 white
-//            + (UIColor *)redColor;        // 1.0, 0.0, 0.0 RGB
-//            + (UIColor *)greenColor;      // 0.0, 1.0, 0.0 RGB
-//            + (UIColor *)blueColor;       // 0.0, 0.0, 1.0 RGB
-//            + (UIColor *)cyanColor;       // 0.0, 1.0, 1.0 RGB
-//            + (UIColor *)yellowColor;     // 1.0, 1.0, 0.0 RGB
-//            + (UIColor *)magentaColor;    // 1.0, 0.0, 1.0 RGB
-//            + (UIColor *)orangeColor;     // 1.0, 0.5, 0.0 RGB
-//            + (UIColor *)purpleColor;     // 0.5, 0.0, 0.5 RGB 
-//            + (UIColor *)brownColor;      // 0.6, 0.4, 0.2 RGB
+            
         case CLProximityUnknown:
             [self.iconButton setBackgroundImage:[UIImage imageNamed:@"beaconIconUnknown"] forState:UIControlStateNormal];
             [self.iconButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
