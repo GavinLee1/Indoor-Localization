@@ -30,20 +30,20 @@
 //    [locatedBeaconPoints addObject:point4];
 //    RealPoint *point5 = [[RealPoint alloc] initWith:9 andY:4.5];
 //    [locatedBeaconPoints addObject:point5];
-    RealPoint *point0 = [[RealPoint alloc] initWith:0.1 andY:0.1];
+    RealPoint *point0 = [[RealPoint alloc] initWith:0.73f andY:0.04f];
     [locatedBeaconPoints addObject:point0];
-    RealPoint *point1 = [[RealPoint alloc] initWith:6.0 andY:2.0];
+    RealPoint *point1 = [[RealPoint alloc] initWith:0.73f andY:3.63f];
     [locatedBeaconPoints addObject:point1];
-    RealPoint *point2 = [[RealPoint alloc] initWith:1.0 andY:8.0];
+    RealPoint *point2 = [[RealPoint alloc] initWith:6.57f andY:0.04f];
     [locatedBeaconPoints addObject:point2];
-    RealPoint *point3 = [[RealPoint alloc] initWith:5.0 andY:8.0];
+    RealPoint *point3 = [[RealPoint alloc] initWith:6.90f andY:5.44f];
     [locatedBeaconPoints addObject:point3];
     
     return locatedBeaconPoints;
 }
 
 /**
- *  Core calculation algorithms, invovling LDPL and Linear Least Square Algorithm.
+ *  Core calculation algorithms, invovling Linear Least Square Algorithm.
  *  LDPL can compute the distance from device to a specific beacon with RSSI value.
  *  LLSA can compute a accurate location point with three beacons.
  *

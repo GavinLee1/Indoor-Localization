@@ -35,6 +35,8 @@
  *  Shows the current location of user in the view (or called map).
  */
 @property (strong, nonatomic) UIImageView *location;
+@property (strong, nonatomic) IBOutlet UIView *paintView;
+
 
 /**
  *  As a tag for deciding it is a new scanning cycle or not.
@@ -198,7 +200,7 @@
     // Will point out all points stored in database.
     NSArray *trackedPoints = [RealPointDataBase points];
     
-    [self.point drawTrackPath:self.view
+    [self.point drawTrackPath:self.paintView
                    withPoints:trackedPoints];
     
     //**********************************************Logging**********************************************//
@@ -216,6 +218,7 @@
     
     // Remove "location" UIImageView
     [self.location removeFromSuperview];
+    self.paintView.layer.sublayers = nil;
     
     //[self.circleLayer removeFromSuperlayer];
 //    while (self.circleLayer) {
@@ -261,29 +264,6 @@
     
     // Stop updating location, give time to show current location.
     [self.locationManager stopUpdatingLocation];
-    
-    //**********************************************Testing**********************************************//
-//    BeaconModel *beacon0 = [[BeaconModel alloc] init];
-//    beacon0.major = 0;
-//    beacon0.minor = 0;
-//    beacon0.rssi = (-1)*(arc4random()%30 + 50);
-//    [self.beaconsStore addObject:beacon0];
-//    BeaconModel *beacon1 = [[BeaconModel alloc] init];
-//    beacon1.major = 0;
-//    beacon1.minor = 1;
-//    beacon1.rssi = (-1)*(arc4random()%30 + 50);
-//    [self.beaconsStore addObject:beacon1];
-//    BeaconModel *beacon2 = [[BeaconModel alloc] init];
-//    beacon2.major = 0;
-//    beacon2.minor = 2;
-//    beacon2.rssi = (-1)*(arc4random()%30 + 50);
-//    [self.beaconsStore addObject:beacon2];
-//    BeaconModel *beacon3 = [[BeaconModel alloc] init];
-//    beacon3.major = 0;
-//    beacon3.minor = 3;
-//    beacon3.rssi = (-1)*(arc4random()%30 + 50);
-//    [self.beaconsStore addObject:beacon3];
-    //***************************************************************************************************//
     
     NSArray *transferArray = [self.beaconTool getTopThreeBeacons:self.beaconsStore];
     

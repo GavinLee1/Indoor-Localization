@@ -236,7 +236,7 @@
 		86997B4B1BB588E9006FE3DA /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				86FE8F201BBEEA9D00C3C041 /* Views */,
+				86FE8F201BBEEA9D00C3C041 /* Profile SubViews */,
 				86997B521BB597B5006FE3DA /* Profile.storyboard */,
 				86997B541BB597DB006FE3DA /* ProfileTableViewController.h */,
 				86997B551BB597DB006FE3DA /* ProfileTableViewController.m */,
@@ -295,7 +295,7 @@
 			path = fmdb;
 			sourceTree = "<group>";
 		};
-		86FE8F201BBEEA9D00C3C041 /* Views */ = {
+		86FE8F201BBEEA9D00C3C041 /* Profile SubViews */ = {
 			isa = PBXGroup;
 			children = (
 				86C78F131BBEA69A00DF1A6E /* ProfileTableHeadView.xib */,
@@ -305,7 +305,7 @@
 				86C78F1A1BBEC12700DF1A6E /* BeaconInfoCell.h */,
 				86C78F1B1BBEC12700DF1A6E /* BeaconInfoCell.m */,
 			);
-			name = Views;
+			name = "Profile SubViews";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
